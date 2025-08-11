@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { Calendar, Users, ExternalLink } from 'lucide-react';
+import { Calendar, Users, ExternalLink, Play } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Carousel from '@/components/ui/Carousel';
 
@@ -13,10 +13,10 @@ export default function Projects({ locale }: ProjectsProps) {
 
 	const content = {
 		ko: {
-			title: '프로젝트',
-			subtitle: '성공적으로 완료된 프로젝트들을 소개합니다',
+			title: 'Projects',
+			subtitle: 'Infinite Autoplay Carousel with items',
 			description:
-				'GPVC가 다양한 파트너와 함께 수행한 혁신적인 프로젝트들을 통해 우리의 역량과 전문성을 확인하세요.',
+				'돌아가는 그림들 Mouseover시 설명이나 텍스트 또 켰음. No Mouseover → monochrome, Mouseover → real color',
 			viewProject: '프로젝트 보기',
 			duration: '기간',
 			teamSize: '팀 규모',
@@ -28,9 +28,9 @@ export default function Projects({ locale }: ProjectsProps) {
 		},
 		en: {
 			title: 'Projects',
-			subtitle: 'Introducing successfully completed projects',
+			subtitle: 'Infinite Autoplay Carousel with items',
 			description:
-				'Discover our capabilities and expertise through innovative projects that GPVC has conducted with various partners.',
+				'Rotating images with descriptions or text on mouseover. No Mouseover → monochrome, Mouseover → real color',
 			viewProject: 'View Project',
 			duration: 'Duration',
 			teamSize: 'Team Size',
@@ -45,96 +45,114 @@ export default function Projects({ locale }: ProjectsProps) {
 	const projects = [
 		{
 			id: 1,
-			title: { ko: 'AI 기반 금융 솔루션', en: 'AI-Based Financial Solution' },
+			title: { ko: "Clos de L'Obac Wine", en: "Clos de L'Obac Wine" },
 			description: {
-				ko: '머신러닝을 활용한 실시간 리스크 분석 시스템 구축',
-				en: 'Building real-time risk analysis system using machine learning',
+				ko: '설명',
+				en: 'Description',
 			},
-			client: { ko: 'KB금융그룹', en: 'KB Financial Group' },
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
 			duration: '12개월',
 			teamSize: '15명',
 			status: 'completed',
-			image: '/placeholder-project1.png',
-			tech: ['AI/ML', 'Python', 'TensorFlow', 'AWS'],
+			image: '/placeholder-wine.jpg',
+			type: 'wine',
 		},
 		{
 			id: 2,
-			title: { ko: '스마트시티 IoT 플랫폼', en: 'Smart City IoT Platform' },
+			title: { ko: '요술램프 포스터(2개)', en: 'Magic Lamp Poster (2pcs)' },
 			description: {
-				ko: '도시 인프라 통합 관리를 위한 IoT 센서 네트워크 구축',
-				en: 'Building IoT sensor network for integrated city infrastructure management',
+				ko: '설명',
+				en: 'Description',
 			},
-			client: { ko: '서울시', en: 'Seoul Metropolitan Government' },
-			duration: '18개월',
-			teamSize: '22명',
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '8개월',
+			teamSize: '10명',
 			status: 'ongoing',
-			image: '/placeholder-project2.png',
-			tech: ['IoT', 'Node.js', 'MongoDB', 'Azure'],
+			image: '/placeholder-poster.jpg',
+			type: 'poster',
 		},
 		{
 			id: 3,
 			title: {
-				ko: '블록체인 공급망 관리',
-				en: 'Blockchain Supply Chain Management',
+				ko: '숏폼드라마 썸네일 경쟁',
+				en: 'Short Drama Thumbnail Competition',
 			},
 			description: {
-				ko: '투명하고 안전한 공급망 추적 시스템 개발',
-				en: 'Developing transparent and secure supply chain tracking system',
+				ko: '설명',
+				en: 'Description',
 			},
-			client: { ko: '삼성전자', en: 'Samsung Electronics' },
-			duration: '8개월',
-			teamSize: '12명',
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '6개월',
+			teamSize: '8명',
 			status: 'completed',
-			image: '/placeholder-project3.png',
-			tech: ['Blockchain', 'Solidity', 'React', 'IPFS'],
+			image: '/placeholder-drama.jpg',
+			type: 'drama',
 		},
 		{
 			id: 4,
-			title: {
-				ko: '의료 데이터 분석 플랫폼',
-				en: 'Medical Data Analysis Platform',
-			},
+			title: { ko: '웹 에돌 레인보우무+', en: 'Web Episode Rainbow Mu+' },
 			description: {
-				ko: '병원 데이터 통합 및 예측 분석 시스템',
-				en: 'Hospital data integration and predictive analysis system',
+				ko: '설명',
+				en: 'Description',
 			},
-			client: { ko: '서울대병원', en: 'Seoul National University Hospital' },
-			duration: '15개월',
-			teamSize: '18명',
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '10개월',
+			teamSize: '12명',
 			status: 'ongoing',
-			image: '/placeholder-project4.png',
-			tech: ['Data Science', 'Python', 'PostgreSQL', 'Docker'],
+			image: '/placeholder-web.jpg',
+			type: 'web',
 		},
 		{
 			id: 5,
-			title: { ko: '클라우드 마이그레이션', en: 'Cloud Migration Project' },
-			description: {
-				ko: '레거시 시스템의 클라우드 전환 및 최적화',
-				en: 'Cloud migration and optimization of legacy systems',
+			title: {
+				ko: '인피니트 아성열 중국 Fan meeting1,2',
+				en: 'Infinite Lee Seong Yeol China Fan Meeting 1,2',
 			},
-			client: { ko: 'LG화학', en: 'LG Chem' },
-			duration: '10개월',
+			description: {
+				ko: '설명',
+				en: 'Description',
+			},
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '15개월',
 			teamSize: '20명',
 			status: 'completed',
-			image: '/placeholder-project5.png',
-			tech: ['AWS', 'Kubernetes', 'DevOps', 'Terraform'],
+			image: '/placeholder-fanmeeting.jpg',
+			type: 'event',
 		},
 		{
 			id: 6,
 			title: {
-				ko: '사이버보안 통합 솔루션',
-				en: 'Integrated Cybersecurity Solution',
+				ko: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
+				en: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
 			},
 			description: {
-				ko: '기업 전체 보안 체계 구축 및 위협 탐지 시스템',
-				en: 'Enterprise-wide security framework and threat detection system',
+				ko: '설명',
+				en: 'Description',
 			},
-			client: { ko: '현대자동차', en: 'Hyundai Motors' },
-			duration: '24개월',
-			teamSize: '25명',
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '12개월',
+			teamSize: '15명',
 			status: 'planning',
-			image: '/placeholder-project6.png',
-			tech: ['Cybersecurity', 'SIEM', 'AI/ML', 'Networking'],
+			image: '/placeholder-cosmetics.jpg',
+			type: 'cosmetics',
 		},
 	];
 
@@ -175,18 +193,80 @@ export default function Projects({ locale }: ProjectsProps) {
 	const renderProjectCard = (project: (typeof projects)[0], index: number) => (
 		<div
 			key={project.id}
-			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2'
+			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2'
 		>
-			{/* Image Placeholder */}
-			<div className='h-48 bg-gradient-to-br from-[#bdb9dc] to-[#827bb8] relative overflow-hidden'>
-				<div className='absolute inset-0 bg-black/10'></div>
-				<div className='absolute inset-0 flex items-center justify-center'>
-					<div className='w-20 h-20 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm'>
-						<div className='w-10 h-10 bg-white/40 rounded-lg'></div>
+			{/* Image with monochrome effect */}
+			<div className='h-64 relative overflow-hidden'>
+				{/* Project-specific styling based on type */}
+				<div
+					className={`absolute inset-0 transition-all duration-500 ${
+						project.type === 'wine'
+							? 'bg-gradient-to-br from-amber-200 to-red-300'
+							: project.type === 'poster'
+							? 'bg-gradient-to-br from-blue-200 to-purple-300'
+							: project.type === 'drama'
+							? 'bg-gradient-to-br from-pink-200 to-purple-300'
+							: project.type === 'event'
+							? 'bg-gradient-to-br from-green-200 to-blue-300'
+							: project.type === 'cosmetics'
+							? 'bg-gradient-to-br from-purple-200 to-pink-300'
+							: 'bg-gradient-to-br from-gray-200 to-gray-400'
+					} group-hover:from-[#bdb9dc] group-hover:to-[#827bb8]`}
+				>
+					{/* Content based on project type */}
+					<div className='absolute inset-0 flex items-center justify-center'>
+						{project.type === 'wine' && (
+							<div className='relative'>
+								<div className='w-12 h-24 bg-white/30 rounded-b-full mx-auto mb-2'></div>
+								<div className='w-20 h-8 bg-white/20 rounded-lg mx-auto'></div>
+								<div className='absolute top-4 right-0 w-4 h-4 bg-white/25 rounded-full'></div>
+								<div className='absolute bottom-0 left-1 w-3 h-3 bg-white/25 rounded-full'></div>
+							</div>
+						)}
+						{project.type === 'poster' && (
+							<div className='text-center'>
+								<div className='w-16 h-20 bg-white/30 rounded-lg mx-auto mb-2'></div>
+								<div className='w-12 h-12 bg-white/20 rounded-lg mx-auto'></div>
+							</div>
+						)}
+						{project.type === 'drama' && (
+							<div className='flex space-x-2'>
+								<div className='w-12 h-16 bg-white/30 rounded-lg'></div>
+								<div className='w-12 h-16 bg-white/25 rounded-lg'></div>
+							</div>
+						)}
+						{project.type === 'event' && (
+							<div className='text-center'>
+								<div className='w-20 h-20 bg-white/30 rounded-full mx-auto mb-2 flex items-center justify-center'>
+									<Play size={24} className='text-white/60' />
+								</div>
+								<div className='flex space-x-1 justify-center'>
+									<div className='w-3 h-3 bg-white/25 rounded-full'></div>
+									<div className='w-3 h-3 bg-white/25 rounded-full'></div>
+									<div className='w-3 h-3 bg-white/25 rounded-full'></div>
+								</div>
+							</div>
+						)}
+						{project.type === 'cosmetics' && (
+							<div className='flex space-x-3'>
+								<div className='w-8 h-16 bg-white/30 rounded-full'></div>
+								<div className='w-10 h-12 bg-white/25 rounded-lg'></div>
+								<div className='w-6 h-14 bg-white/20 rounded-full'></div>
+							</div>
+						)}
+						{project.type === 'web' && (
+							<div className='grid grid-cols-2 gap-2'>
+								<div className='w-12 h-8 bg-white/30 rounded'></div>
+								<div className='w-12 h-8 bg-white/25 rounded'></div>
+								<div className='w-12 h-8 bg-white/20 rounded'></div>
+								<div className='w-12 h-8 bg-white/25 rounded'></div>
+							</div>
+						)}
 					</div>
 				</div>
-				{/* Hover overlay */}
-				<div className='absolute inset-0 bg-[#bdb9dc]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
+
+				{/* Monochrome overlay that disappears on hover */}
+				<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
 
 				{/* Status badge */}
 				<div className='absolute top-4 left-4'>
@@ -198,49 +278,46 @@ export default function Projects({ locale }: ProjectsProps) {
 						{t.status[project.status as keyof typeof t.status]}
 					</span>
 				</div>
+
+				{/* Project number */}
+				<div className='absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
+					<span className='text-white text-sm font-bold'>{project.id}</span>
+				</div>
+
+				{/* Hover overlay with description */}
+				<div className='absolute inset-0 bg-[#bdb9dc]/95 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center'>
+					<div className='text-center text-white p-6'>
+						<h4 className='text-lg font-bold mb-2'>{project.title[locale]}</h4>
+						<p className='text-white/90 text-sm mb-4'>
+							{project.description[locale]}
+						</p>
+						<div className='flex items-center justify-center space-x-4 text-xs'>
+							<div className='flex items-center space-x-1'>
+								<Calendar size={12} />
+								<span>{project.duration}</span>
+							</div>
+							<div className='flex items-center space-x-1'>
+								<Users size={12} />
+								<span>{project.teamSize}</span>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 
 			{/* Content */}
 			<div className='p-6'>
-				<h3 className='text-xl font-bold text-gray-900 mb-2 group-hover:text-[#bdb9dc] transition-colors duration-300'>
+				<h3 className='text-xl font-bold text-gray-900 mb-2 group-hover:text-[#bdb9dc] transition-colors duration-300 line-clamp-2'>
 					{project.title[locale]}
 				</h3>
 
 				<p className='text-sm text-[#bdb9dc] font-medium mb-3'>
-					{project.client[locale]}
+					{project.category[locale]}
 				</p>
 
 				<p className='text-gray-600 text-sm leading-relaxed mb-4'>
 					{project.description[locale]}
 				</p>
-
-				{/* Project Details */}
-				<div className='flex items-center justify-between mb-4 text-sm text-gray-500'>
-					<div className='flex items-center space-x-1'>
-						<Calendar size={14} />
-						<span>
-							{t.duration}: {project.duration}
-						</span>
-					</div>
-					<div className='flex items-center space-x-1'>
-						<Users size={14} />
-						<span>
-							{t.teamSize}: {project.teamSize}
-						</span>
-					</div>
-				</div>
-
-				{/* Tech Stack */}
-				<div className='flex flex-wrap gap-2 mb-4'>
-					{project.tech.map((tech, techIndex) => (
-						<span
-							key={techIndex}
-							className='px-2 py-1 bg-[#bdb9dc]/10 text-[#827bb8] text-xs rounded-md font-medium'
-						>
-							{tech}
-						</span>
-					))}
-				</div>
 
 				<button className='flex items-center space-x-2 text-[#bdb9dc] hover:text-[#827bb8] transition-colors duration-300 group/btn'>
 					<span className='text-sm font-medium'>{t.viewProject}</span>
@@ -249,11 +326,6 @@ export default function Projects({ locale }: ProjectsProps) {
 						className='group-hover/btn:translate-x-1 transition-transform duration-300'
 					/>
 				</button>
-			</div>
-
-			{/* Project number */}
-			<div className='absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
-				<span className='text-white text-sm font-bold'>{project.id}</span>
 			</div>
 		</div>
 	);
@@ -276,6 +348,25 @@ export default function Projects({ locale }: ProjectsProps) {
 				{/* Carousel */}
 				<div className='relative'>
 					<Carousel items={projects} renderItem={renderProjectCard} />
+				</div>
+
+				{/* Clients/Partners Section */}
+				<div className='mt-20'>
+					<h3 className='text-2xl lg:text-3xl font-bold text-gray-900 text-center mb-8'>
+						Clients / Partners
+					</h3>
+					<div className='text-center'>
+						<p className='text-lg text-gray-600 mb-4'>
+							{locale === 'ko'
+								? '파트너사를 로고만 들어갈 부분'
+								: 'Partners logo section will be here'}
+						</p>
+						<p className='text-gray-600 leading-relaxed max-w-5xl mx-auto'>
+							MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L&apos;obac,
+							이상엔터, Pledis, YG, Inkode, Rain Company, Viu, ViuTV,
+							DatVietVAC, VieON, 하우스오브신세계,
+						</p>
+					</div>
 				</div>
 
 				{/* Background decoration */}
