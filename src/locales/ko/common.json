@@ -1,0 +1,18 @@
+{
+	"navigation": {
+		"home": "홈",
+		"about": "회사소개",
+		"business": "사업영역",
+		"projects": "프로젝트",
+		"contact": "연락처"
+	},
+	"hero": {
+		"title": "혁신적인 기술로 미래를 선도하는",
+		"subtitle": "GPVC와 함께 성장하세요",
+		"cta": "더 알아보기"
+	},
+	"about": {
+		"title": "회사소개",
+		"description": "저희는 첨단 기술과 창의적 솔루션으로 고객의 성공을 지원합니다."
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"navigation": {
+		"home": "Home",
+		"about": "About",
+		"business": "Business Areas",
+		"projects": "Projects",
+		"contact": "Contact"
+	},
+	"hero": {
+		"title": "Leading the Future with Innovative Technology",
+		"subtitle": "Grow with GPVC",
+		"cta": "Learn More"
+	},
+	"about": {
+		"title": "About Us",
+		"description": "We support our clients' success through advanced technology and creative solutions."
+	}
+}
