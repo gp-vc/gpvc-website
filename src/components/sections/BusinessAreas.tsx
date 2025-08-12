@@ -1,8 +1,9 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Carousel from '@/components/ui/Carousel';
+import Image from 'next/image';
 
 interface BusinessAreasProps {
 	locale: Locale;
@@ -10,21 +11,22 @@ interface BusinessAreasProps {
 
 export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	const sectionRef = useRef<HTMLDivElement>(null);
+	const [clientLogos, setClientLogos] = useState<string[]>([]);
 
 	const content = {
 		ko: {
-			title: '전문 분야',
-			subtitle: '파트너사를 로고만 들어갈 부분',
+			title: 'Business Area',
+			subtitle: '파트너사 로고',
 			description:
 				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, 이상엔터, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, 하우스오브신세계,",
-			partnerTitle: '파트너사를 로고만 들어갈 부분',
+			partnerTitle: '파트너사',
 		},
 		en: {
-			title: 'Business Areas',
-			subtitle: 'Partners logo section will be here',
+			title: 'Business Area',
+			subtitle: 'Client Partners',
 			description:
 				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, Lee Sang Entertainment, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, House of Shinsegae,",
-			partnerTitle: 'Partners logo section will be here',
+			partnerTitle: 'Partners',
 		},
 	};
 
@@ -115,6 +117,63 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	const t = content[locale];
 
+	// Function to load client logos from /public/client-logos directory
+	useEffect(() => {
+		const loadClientLogos = async () => {
+			try {
+				// List of common client logo filenames (you can expand this list)
+				const possibleLogos = [
+					'mbc-plus',
+					'mbc-everyone',
+					'tving',
+					'wavve',
+					'shortime',
+					// 'clos-de-lobac',
+					// 'lee-sang-entertainment',
+					'pledis',
+					'yg',
+					'inkode',
+					'rain-company',
+					'viu',
+					'viu-tv',
+					'dat-viet-vac',
+					'vie-on',
+					'house-of-shinsegae',
+					// Add more client names as needed
+				];
+
+				const extensions = ['svg', 'png', 'webp'];
+				const foundLogos: string[] = [];
+
+				// Check each possible logo with each extension
+				for (const logo of possibleLogos) {
+					for (const ext of extensions) {
+						try {
+							const logoPath = `/client-logos/${logo}.${ext}`;
+							// Try to fetch the image to check if it exists
+							const response = await fetch(logoPath, { method: 'HEAD' });
+							if (response.ok) {
+								foundLogos.push(logoPath);
+								break; // Found this logo, move to next
+							}
+						} catch (error) {
+							// Logo doesn't exist with this extension, try next
+							continue;
+						}
+					}
+				}
+
+				setClientLogos(foundLogos);
+			} catch (error) {
+				console.log('Client logos directory not found or empty');
+				// Fallback: set empty array or placeholder logos
+				setClientLogos([]);
+			}
+		};
+
+		loadClientLogos();
+	}, []);
+
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -135,15 +194,15 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	}, []);
 
 	const renderBusinessCard = (
-		area: (typeof businessAreas)[0],
-		_index: number
+		area: (typeof businessAreas)[0]
+		// _index: number
 	) => (
 		<div
 			key={area.id}
-			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500'
+			className='group relative bg-white rounded-2xl overflow-hidden hover:shadow-none transition-all duration-500 h-full flex flex-col'
 		>
 			{/* Image with monochrome effect */}
-			<div className='h-64 relative overflow-hidden'>
+			<div className='h-64 relative overflow-hidden flex-shrink-0'>
 				{/* Placeholder image with food styling similar to mockup */}
 				<div className='absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-500 group-hover:from-[#bdb9dc] group-hover:to-[#827bb8] transition-all duration-500'>
 					{/* Food styling elements to match mockup */}
@@ -169,8 +228,8 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 				<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
 			</div>
 
-			{/* Content */}
-			<div className='p-6'>
+			{/* Content - now fills remaining space */}
+			<div className='p-6 flex-1 flex flex-col'>
 				<div className='mb-3'>
 					<span className='text-xs font-semibold text-[#bdb9dc] uppercase tracking-wide'>
 						{area.category}
@@ -181,47 +240,89 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 					{area.title[locale]}
 				</h3>
 
-				{/* Items list */}
-				<div className='space-y-2 mb-4'>
+				{/* Items list - with consistent spacing */}
+				<div className='space-y-2 mb-4 flex-1'>
 					{area.items.map((item, itemIndex) => (
 						<div key={itemIndex} className='flex items-center space-x-2'>
-							<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full'></div>
+							<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full flex-shrink-0'></div>
 							<span className='text-sm text-gray-600'>{item[locale]}</span>
 						</div>
 					))}
 				</div>
 
-				<button className='flex items-center space-x-2 text-[#bdb9dc] hover:text-[#827bb8] transition-colors duration-300 group/btn mt-4'>
-					<span className='text-sm font-medium'>
-						{locale === 'ko' ? '자세히 보기' : 'Learn More'}
-					</span>
-					<ArrowRight
-						size={16}
-						className='group-hover/btn:translate-x-1 transition-transform duration-300'
-					/>
-				</button>
+				{/* Button - always at bottom */}
+				<div className='mt-auto'>
+					<button className='flex items-center space-x-2 text-[#bdb9dc] hover:text-[#827bb8] transition-colors duration-300 group/btn'>
+						<span className='text-sm font-medium'>
+							{locale === 'ko' ? '자세히 보기' : 'Learn More'}
+						</span>
+						<ArrowRight
+							size={16}
+							className='group-hover/btn:translate-x-1 transition-transform duration-300'
+						/>
+					</button>
+				</div>
 			</div>
 		</div>
 	);
 
 	return (
-		<section id='business' className='py-16 lg:py-24 bg-gray-50'>
+		<section id='business' className='py-16 lg:py-24 bg-white'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<div ref={sectionRef} className='text-center mb-16'>
 					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
 						{t.title}
 					</h2>
 					<div className='max-w-4xl mx-auto'>
-						<p className='text-lg text-gray-600 mb-8'>{t.partnerTitle}</p>
-						<p className='text-base text-gray-600 leading-relaxed'>
-							{t.description}
-						</p>
+						<h3 className='text-lg text-gray-600 mb-8'>{t.partnerTitle}</h3>
+
+						{/* Client Logos Section */}
+						{clientLogos.length > 0 ? (
+							<div className='mb-8'>
+								<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center justify-items-center'>
+									{clientLogos.map((logoPath, index) => (
+										<div
+											key={index}
+											className='flex items-center justify-center p-4 bg-transparent rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 w-full h-20'
+										>
+											<Image
+												src={logoPath}
+												alt={`Client logo ${index + 1}`}
+												width={80}
+												height={40}
+												className='max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300'
+												unoptimized
+											/>
+										</div>
+									))}
+								</div>
+							</div>
+						) : (
+							/* Fallback text when logos aren't available */
+							<div className='mb-8'>
+								<p className='text-base text-gray-600 leading-relaxed'>
+									{t.description}
+								</p>
+							</div>
+						)}
 					</div>
 				</div>
 
-				{/* Carousel */}
+				{/* Carousel with consistent card heights */}
 				<div className='relative'>
-					<Carousel items={businessAreas} renderItem={renderBusinessCard} />
+					<style jsx>{`
+						.business-carousel .swiper-slide {
+							height: auto;
+							display: flex;
+						}
+						.business-carousel .swiper-slide > div {
+							height: 100%;
+							min-height: 400px;
+						}
+					`}</style>
+					<div className='business-carousel'>
+						<Carousel items={businessAreas} renderItem={renderBusinessCard} />
+					</div>
 				</div>
 			</div>
 		</section>
