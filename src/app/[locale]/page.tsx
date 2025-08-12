@@ -4,7 +4,7 @@ import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import BusinessAreas from '@/components/sections/BusinessAreas';
 import Projects from '@/components/sections/Projects';
-import Contact from '@/components/sections/Contact';
+// import Contact from '@/components/sections/Contact'; // Removed unused import
 import { Locale } from '@/lib/i18n';
 
 // This is required for `output: export` with dynamic routes
@@ -13,20 +13,22 @@ export async function generateStaticParams() {
 	return locales.map((locale) => ({ locale }));
 }
 
-export default function Home({
-	params: { locale },
+export default async function Home({
+	params,
 }: {
-	params: { locale: Locale };
+	params: Promise<{ locale: Locale }>;
 }) {
+	const { locale } = await params;
+
 	return (
 		<div className='relative'>
-			<ClientOnly
+			{/* <ClientOnly
 				fallback={
 					<div className='w-full h-screen bg-gradient-to-br from-gray-900 to-gray-800' />
 				}
 			>
 				<FixedScene3D />
-			</ClientOnly>
+			</ClientOnly> */}
 			<Hero locale={locale} />
 			<About locale={locale} />
 			<BusinessAreas locale={locale} />

@@ -190,7 +190,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		}
 	};
 
-	const renderProjectCard = (project: (typeof projects)[0], index: number) => (
+	const renderProjectCard = (project: (typeof projects)[0]) => (
 		<div
 			key={project.id}
 			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2'

@@ -136,7 +136,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	const renderBusinessCard = (
 		area: (typeof businessAreas)[0],
-		index: number
+		// _index: number
 	) => (
 		<div
 			key={area.id}

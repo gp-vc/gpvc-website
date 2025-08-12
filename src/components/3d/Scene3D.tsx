@@ -23,6 +23,7 @@ function EnhancedFloatingElements() {
 	// Generate random positions for multiple floating elements
 	const elements = useMemo(() => {
 		return Array.from({ length: 12 }, (_, i) => ({
+			id: i,
 			position: [
 				(Math.random() - 0.5) * 15,
 				(Math.random() - 0.5) * 10,
@@ -77,7 +78,7 @@ function EnhancedFloatingElements() {
 		switch (element.type) {
 			case 'sphere':
 				return (
-					<mesh {...props} key={index}>
+					<mesh {...props} key={`sphere-${element.id}`}>
 						<sphereGeometry args={[1, 16, 16]} />
 						<MeshDistortMaterial
 							color={
@@ -96,7 +97,7 @@ function EnhancedFloatingElements() {
 				);
 			case 'box':
 				return (
-					<mesh {...props} key={index}>
+					<mesh {...props} key={`box-${element.id}`}>
 						<boxGeometry args={[1.5, 1.5, 1.5]} />
 						<meshStandardMaterial
 							color={
@@ -114,7 +115,7 @@ function EnhancedFloatingElements() {
 				);
 			case 'torus':
 				return (
-					<mesh {...props} key={index}>
+					<mesh {...props} key={`torus-${element.id}`}>
 						<torusGeometry args={[1.2, 0.4, 8, 16]} />
 						<meshStandardMaterial
 							color={brandColor}
@@ -127,7 +128,7 @@ function EnhancedFloatingElements() {
 				);
 			case 'octahedron':
 				return (
-					<mesh {...props} key={index}>
+					<mesh {...props} key={`octahedron-${element.id}`}>
 						<octahedronGeometry args={[1]} />
 						<meshStandardMaterial
 							color={brandColorDark}

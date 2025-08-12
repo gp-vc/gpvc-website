@@ -10,15 +10,28 @@ const inter = Inter({
 	display: 'swap',
 });
 
+interface LocaleLayoutProps {
+	children: React.ReactNode;
+	params: Promise<{ locale: Locale }>;
+}
+
 export default async function LocaleLayout({
 	children,
-	params: { locale },
-}: {
-	children: React.ReactNode;
-	params: { locale: Locale };
-}) {
+	params,
+}: LocaleLayoutProps) {
+	const resolvedParams = await params;
+	const { locale } = resolvedParams;
+
 	return (
 		<html lang={locale} className={inter.variable}>
+			<head>
+				<title>GPVC - Global Content Media Group</title>
+				<meta
+					name='description'
+					content='Global Content Media Group providing innovative solutions across various fields'
+				/>
+				<meta name='viewport' content='width=device-width, initial-scale=1' />
+			</head>
 			<body className={`${inter.className} antialiased`}>
 				<Header locale={locale} />
 				<main>{children}</main>
