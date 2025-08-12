@@ -6,6 +6,7 @@ import BusinessAreas from '@/components/sections/BusinessAreas';
 import Projects from '@/components/sections/Projects';
 import Contact from '@/components/sections/Contact'; // Removed unused import
 import { Locale } from '@/lib/i18n';
+import Clients from '@/components/sections/Clients';
 
 // This is required for `output: export` with dynamic routes
 export async function generateStaticParams() {
@@ -33,6 +34,7 @@ export default async function Home({
 			<About locale={locale} />
 			<BusinessAreas locale={locale} />
 			<Projects locale={locale} />
+			<Clients locale={locale} />
 			<Contact locale={locale} />
 		</div>
 	);

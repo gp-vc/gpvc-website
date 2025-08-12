@@ -1,9 +1,8 @@
 'use client';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Carousel from '@/components/ui/Carousel';
-import Image from 'next/image';
 
 interface BusinessAreasProps {
 	locale: Locale;
@@ -11,22 +10,13 @@ interface BusinessAreasProps {
 
 export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	const sectionRef = useRef<HTMLDivElement>(null);
-	const [clientLogos, setClientLogos] = useState<string[]>([]);
 
 	const content = {
 		ko: {
 			title: 'Business Area',
-			subtitle: '파트너사 로고',
-			description:
-				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, 이상엔터, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, 하우스오브신세계,",
-			partnerTitle: '파트너사',
 		},
 		en: {
 			title: 'Business Area',
-			subtitle: 'Client Partners',
-			description:
-				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, Lee Sang Entertainment, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, House of Shinsegae,",
-			partnerTitle: 'Partners',
 		},
 	};
 
@@ -117,63 +107,6 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	const t = content[locale];
 
-	// Function to load client logos from /public/client-logos directory
-	useEffect(() => {
-		const loadClientLogos = async () => {
-			try {
-				// List of common client logo filenames (you can expand this list)
-				const possibleLogos = [
-					'mbc-plus',
-					'mbc-everyone',
-					'tving',
-					'wavve',
-					'shortime',
-					// 'clos-de-lobac',
-					// 'lee-sang-entertainment',
-					'pledis',
-					'yg',
-					'inkode',
-					'rain-company',
-					'viu',
-					'viu-tv',
-					'dat-viet-vac',
-					'vie-on',
-					'house-of-shinsegae',
-					// Add more client names as needed
-				];
-
-				const extensions = ['svg', 'png', 'webp'];
-				const foundLogos: string[] = [];
-
-				// Check each possible logo with each extension
-				for (const logo of possibleLogos) {
-					for (const ext of extensions) {
-						try {
-							const logoPath = `/client-logos/${logo}.${ext}`;
-							// Try to fetch the image to check if it exists
-							const response = await fetch(logoPath, { method: 'HEAD' });
-							if (response.ok) {
-								foundLogos.push(logoPath);
-								break; // Found this logo, move to next
-							}
-						} catch (error) {
-							// Logo doesn't exist with this extension, try next
-							continue;
-						}
-					}
-				}
-
-				setClientLogos(foundLogos);
-			} catch (error) {
-				console.log('Client logos directory not found or empty');
-				// Fallback: set empty array or placeholder logos
-				setClientLogos([]);
-			}
-		};
-
-		loadClientLogos();
-	}, []);
-
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -193,10 +126,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 		return () => observer.disconnect();
 	}, []);
 
-	const renderBusinessCard = (
-		area: (typeof businessAreas)[0]
-		// _index: number
-	) => (
+	const renderBusinessCard = (area: (typeof businessAreas)[0]) => (
 		<div
 			key={area.id}
 			className='group relative bg-white rounded-2xl overflow-hidden hover:shadow-none transition-all duration-500 h-full flex flex-col'
@@ -268,61 +198,26 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	return (
 		<section id='business' className='py-16 lg:py-24 bg-white'>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-				<div ref={sectionRef} className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
-						{t.title}
-					</h2>
-					<div className='max-w-4xl mx-auto'>
-						<h3 className='text-lg text-gray-600 mb-8'>{t.partnerTitle}</h3>
+			<div ref={sectionRef} className='text-center mb-16'>
+				<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
+					{t.title}
+				</h2>
+			</div>
 
-						{/* Client Logos Section */}
-						{clientLogos.length > 0 ? (
-							<div className='mb-8'>
-								<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 items-center justify-items-center'>
-									{clientLogos.map((logoPath, index) => (
-										<div
-											key={index}
-											className='flex items-center justify-center p-4 bg-transparent rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200 w-full h-20'
-										>
-											<Image
-												src={logoPath}
-												alt={`Client logo ${index + 1}`}
-												width={80}
-												height={40}
-												className='max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300'
-												unoptimized
-											/>
-										</div>
-									))}
-								</div>
-							</div>
-						) : (
-							/* Fallback text when logos aren't available */
-							<div className='mb-8'>
-								<p className='text-base text-gray-600 leading-relaxed'>
-									{t.description}
-								</p>
-							</div>
-						)}
-					</div>
-				</div>
-
-				{/* Carousel with consistent card heights */}
-				<div className='relative'>
-					<style jsx>{`
-						.business-carousel .swiper-slide {
-							height: auto;
-							display: flex;
-						}
-						.business-carousel .swiper-slide > div {
-							height: 100%;
-							min-height: 400px;
-						}
-					`}</style>
-					<div className='business-carousel'>
-						<Carousel items={businessAreas} renderItem={renderBusinessCard} />
-					</div>
+			{/* Carousel with consistent card heights */}
+			<div className='relative'>
+				<style jsx>{`
+					.business-carousel .swiper-slide {
+						height: auto;
+						display: flex;
+					}
+					.business-carousel .swiper-slide > div {
+						height: 100%;
+						min-height: 400px;
+					}
+				`}</style>
+				<div className='business-carousel'>
+					<Carousel items={businessAreas} renderItem={renderBusinessCard} />
 				</div>
 			</div>
 		</section>

@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { Calendar, Users } from 'lucide-react';
+import Image from 'next/image';
 import { Locale } from '@/lib/i18n';
 import Carousel from '@/components/ui/Carousel';
 
@@ -13,18 +14,12 @@ export default function Projects({ locale }: ProjectsProps) {
 
 	const content = {
 		ko: {
-			title: 'Projects',
-			subtitle: 'Infinite Autoplay Carousel with items',
-			description:
-				'돌아가는 그림들 Mouseover시 설명이나 텍스트 또 켰음. No Mouseover → monochrome, Mouseover → real color',
+			title: '프로젝트',
 			duration: '기간',
 			teamSize: '팀 규모',
 		},
 		en: {
 			title: 'Projects',
-			subtitle: 'Infinite Autoplay Carousel with items',
-			description:
-				'Rotating images with descriptions or text on mouseover. No Mouseover → monochrome, Mouseover → real color',
 			duration: 'Duration',
 			teamSize: 'Team Size',
 		},
@@ -34,6 +29,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		{
 			id: 1,
 			title: { ko: "Clos de L'Obac Wine", en: "Clos de L'Obac Wine" },
+			imagePath: '/project-images/project-1.png',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -49,6 +45,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		{
 			id: 2,
 			title: { ko: '요술램프 포스터(2개)', en: 'Magic Lamp Poster (2pcs)' },
+			imagePath: '/project-images/project-2.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -67,6 +64,7 @@ export default function Projects({ locale }: ProjectsProps) {
 				ko: '숏폼드라마 썸네일 경쟁',
 				en: 'Short Drama Thumbnail Competition',
 			},
+			imagePath: '/project-images/project-3.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -82,6 +80,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		{
 			id: 4,
 			title: { ko: '웹 에돌 레인보우무+', en: 'Web Episode Rainbow Mu+' },
+			imagePath: '/project-images/project-4.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -100,6 +99,7 @@ export default function Projects({ locale }: ProjectsProps) {
 				ko: '인피니트 아성열 중국 Fan meeting1,2',
 				en: 'Infinite Lee Seong Yeol China Fan Meeting 1,2',
 			},
+			imagePath: '/project-images/project-5.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -118,6 +118,7 @@ export default function Projects({ locale }: ProjectsProps) {
 				ko: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
 				en: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
 			},
+			imagePath: '/project-images/project-6.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -156,7 +157,7 @@ export default function Projects({ locale }: ProjectsProps) {
 	const renderProjectCard = (project: (typeof projects)[0]) => (
 		<div
 			key={project.id}
-			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 aspect-[4/3] cursor-pointer'
+			className='group relative bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 aspect-[4/3] cursor-pointer'
 		>
 			{/* Full Image Background */}
 			<div className='absolute inset-0'>
@@ -178,53 +179,15 @@ export default function Projects({ locale }: ProjectsProps) {
 				>
 					{/* Content based on project type */}
 					<div className='absolute inset-0 flex items-center justify-center'>
-						{project.type === 'wine' && (
-							<div className='relative'>
-								<div className='w-16 h-32 bg-white/30 rounded-b-full mx-auto mb-4'></div>
-								<div className='w-24 h-10 bg-white/20 rounded-lg mx-auto'></div>
-								<div className='absolute top-6 right-0 w-5 h-5 bg-white/25 rounded-full'></div>
-								<div className='absolute bottom-2 left-1 w-4 h-4 bg-white/25 rounded-full'></div>
-							</div>
-						)}
-						{project.type === 'poster' && (
-							<div className='text-center'>
-								<div className='w-20 h-24 bg-white/30 rounded-lg mx-auto mb-4'></div>
-								<div className='w-16 h-16 bg-white/20 rounded-lg mx-auto'></div>
-							</div>
-						)}
-						{project.type === 'drama' && (
-							<div className='flex space-x-3'>
-								<div className='w-16 h-20 bg-white/30 rounded-lg'></div>
-								<div className='w-16 h-20 bg-white/25 rounded-lg'></div>
-							</div>
-						)}
-						{project.type === 'event' && (
-							<div className='text-center'>
-								<div className='w-24 h-24 bg-white/30 rounded-full mx-auto mb-4 flex items-center justify-center'>
-									<div className='w-8 h-8 bg-white/40 rounded-full'></div>
-								</div>
-								<div className='flex space-x-2 justify-center'>
-									<div className='w-4 h-4 bg-white/25 rounded-full'></div>
-									<div className='w-4 h-4 bg-white/25 rounded-full'></div>
-									<div className='w-4 h-4 bg-white/25 rounded-full'></div>
-								</div>
-							</div>
-						)}
-						{project.type === 'cosmetics' && (
-							<div className='flex space-x-4'>
-								<div className='w-10 h-20 bg-white/30 rounded-full'></div>
-								<div className='w-12 h-16 bg-white/25 rounded-lg'></div>
-								<div className='w-8 h-18 bg-white/20 rounded-full'></div>
-							</div>
-						)}
-						{project.type === 'web' && (
-							<div className='grid grid-cols-2 gap-3'>
-								<div className='w-16 h-10 bg-white/30 rounded'></div>
-								<div className='w-16 h-10 bg-white/25 rounded'></div>
-								<div className='w-16 h-10 bg-white/20 rounded'></div>
-								<div className='w-16 h-10 bg-white/25 rounded'></div>
-							</div>
-						)}
+						<Image
+							src={project.imagePath}
+							alt={`Client logo ${project.id}`}
+							width={80}
+							height={80}
+							className='max-w-full max-h-full object-contain'
+							style={{ width: 'auto', height: 'auto' }}
+							unoptimized
+						/>
 					</div>
 				</div>
 
@@ -232,9 +195,9 @@ export default function Projects({ locale }: ProjectsProps) {
 				<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
 
 				{/* Project number */}
-				<div className='absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
+				{/* <div className='absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
 					<span className='text-white text-sm font-bold'>{project.id}</span>
-				</div>
+				</div> */}
 			</div>
 
 			{/* Overlay content that appears on hover (Desktop) / tap (Mobile) */}
@@ -303,48 +266,16 @@ export default function Projects({ locale }: ProjectsProps) {
 
 	return (
 		<section id='projects' className='py-16 lg:py-24 bg-white relative'>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+			<div>
 				<div ref={sectionRef} className='text-center mb-16'>
 					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
 						{t.title}
 					</h2>
-					<p className='text-xl text-[#bdb9dc] mb-4 font-medium'>
-						{t.subtitle}
-					</p>
-					<p className='text-gray-600 max-w-3xl mx-auto leading-relaxed'>
-						{t.description}
-					</p>
 				</div>
 
 				{/* Carousel */}
 				<div className='relative'>
-					<Carousel items={projects} renderItem={renderProjectCard} />
-				</div>
-
-				{/* Clients/Partners Section */}
-				<div className='mt-20'>
-					<h3 className='text-2xl lg:text-3xl font-bold text-gray-900 text-center mb-8'>
-						Clients / Partners
-					</h3>
-					<div className='text-center'>
-						<p className='text-lg text-gray-600 mb-4'>
-							{locale === 'ko'
-								? '파트너사를 로고만 들어갈 부분'
-								: 'Partners logo section will be here'}
-						</p>
-						<p className='text-gray-600 leading-relaxed max-w-5xl mx-auto'>
-							MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De
-							L&apos;obac, 이상엔터, Pledis, YG, Inkode, Rain Company, Viu,
-							ViuTV, DatVietVAC, VieON, 하우스오브신세계,
-						</p>
-					</div>
-				</div>
-
-				{/* Background decoration */}
-				<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-					<div className='absolute top-20 left-10 w-32 h-32 bg-[#bdb9dc]/5 rounded-full'></div>
-					<div className='absolute bottom-20 right-10 w-24 h-24 bg-[#bdb9dc]/5 rounded-full'></div>
-					<div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#bdb9dc]/3 rounded-full blur-3xl'></div>
+					<Carousel items={projects} renderItem={renderProjectCard} spaceBetween={0} />
 				</div>
 			</div>
 
