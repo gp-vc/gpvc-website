@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { Calendar, Users, ExternalLink, Play } from 'lucide-react';
+import { Calendar, Users } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Carousel from '@/components/ui/Carousel';
 
@@ -17,28 +17,16 @@ export default function Projects({ locale }: ProjectsProps) {
 			subtitle: 'Infinite Autoplay Carousel with items',
 			description:
 				'돌아가는 그림들 Mouseover시 설명이나 텍스트 또 켰음. No Mouseover → monochrome, Mouseover → real color',
-			viewProject: '프로젝트 보기',
 			duration: '기간',
 			teamSize: '팀 규모',
-			status: {
-				completed: '완료',
-				ongoing: '진행중',
-				planning: '기획중',
-			},
 		},
 		en: {
 			title: 'Projects',
 			subtitle: 'Infinite Autoplay Carousel with items',
 			description:
 				'Rotating images with descriptions or text on mouseover. No Mouseover → monochrome, Mouseover → real color',
-			viewProject: 'View Project',
 			duration: 'Duration',
 			teamSize: 'Team Size',
-			status: {
-				completed: 'Completed',
-				ongoing: 'Ongoing',
-				planning: 'Planning',
-			},
 		},
 	};
 
@@ -56,8 +44,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			duration: '12개월',
 			teamSize: '15명',
-			status: 'completed',
-			image: '/placeholder-wine.jpg',
 			type: 'wine',
 		},
 		{
@@ -73,8 +59,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			duration: '8개월',
 			teamSize: '10명',
-			status: 'ongoing',
-			image: '/placeholder-poster.jpg',
 			type: 'poster',
 		},
 		{
@@ -93,8 +77,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			duration: '6개월',
 			teamSize: '8명',
-			status: 'completed',
-			image: '/placeholder-drama.jpg',
 			type: 'drama',
 		},
 		{
@@ -110,8 +92,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			duration: '10개월',
 			teamSize: '12명',
-			status: 'ongoing',
-			image: '/placeholder-web.jpg',
 			type: 'web',
 		},
 		{
@@ -130,8 +110,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			duration: '15개월',
 			teamSize: '20명',
-			status: 'completed',
-			image: '/placeholder-fanmeeting.jpg',
 			type: 'event',
 		},
 		{
@@ -150,8 +128,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			duration: '12개월',
 			teamSize: '15명',
-			status: 'planning',
-			image: '/placeholder-cosmetics.jpg',
 			type: 'cosmetics',
 		},
 	];
@@ -177,26 +153,13 @@ export default function Projects({ locale }: ProjectsProps) {
 		return () => observer.disconnect();
 	}, []);
 
-	const getStatusColor = (status: string) => {
-		switch (status) {
-			case 'completed':
-				return 'bg-green-100 text-green-800';
-			case 'ongoing':
-				return 'bg-blue-100 text-blue-800';
-			case 'planning':
-				return 'bg-yellow-100 text-yellow-800';
-			default:
-				return 'bg-gray-100 text-gray-800';
-		}
-	};
-
 	const renderProjectCard = (project: (typeof projects)[0]) => (
 		<div
 			key={project.id}
-			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2'
+			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 aspect-[4/3] cursor-pointer'
 		>
-			{/* Image with monochrome effect */}
-			<div className='h-64 relative overflow-hidden'>
+			{/* Full Image Background */}
+			<div className='absolute inset-0'>
 				{/* Project-specific styling based on type */}
 				<div
 					className={`absolute inset-0 transition-all duration-500 ${
@@ -217,115 +180,123 @@ export default function Projects({ locale }: ProjectsProps) {
 					<div className='absolute inset-0 flex items-center justify-center'>
 						{project.type === 'wine' && (
 							<div className='relative'>
-								<div className='w-12 h-24 bg-white/30 rounded-b-full mx-auto mb-2'></div>
-								<div className='w-20 h-8 bg-white/20 rounded-lg mx-auto'></div>
-								<div className='absolute top-4 right-0 w-4 h-4 bg-white/25 rounded-full'></div>
-								<div className='absolute bottom-0 left-1 w-3 h-3 bg-white/25 rounded-full'></div>
+								<div className='w-16 h-32 bg-white/30 rounded-b-full mx-auto mb-4'></div>
+								<div className='w-24 h-10 bg-white/20 rounded-lg mx-auto'></div>
+								<div className='absolute top-6 right-0 w-5 h-5 bg-white/25 rounded-full'></div>
+								<div className='absolute bottom-2 left-1 w-4 h-4 bg-white/25 rounded-full'></div>
 							</div>
 						)}
 						{project.type === 'poster' && (
 							<div className='text-center'>
-								<div className='w-16 h-20 bg-white/30 rounded-lg mx-auto mb-2'></div>
-								<div className='w-12 h-12 bg-white/20 rounded-lg mx-auto'></div>
+								<div className='w-20 h-24 bg-white/30 rounded-lg mx-auto mb-4'></div>
+								<div className='w-16 h-16 bg-white/20 rounded-lg mx-auto'></div>
 							</div>
 						)}
 						{project.type === 'drama' && (
-							<div className='flex space-x-2'>
-								<div className='w-12 h-16 bg-white/30 rounded-lg'></div>
-								<div className='w-12 h-16 bg-white/25 rounded-lg'></div>
+							<div className='flex space-x-3'>
+								<div className='w-16 h-20 bg-white/30 rounded-lg'></div>
+								<div className='w-16 h-20 bg-white/25 rounded-lg'></div>
 							</div>
 						)}
 						{project.type === 'event' && (
 							<div className='text-center'>
-								<div className='w-20 h-20 bg-white/30 rounded-full mx-auto mb-2 flex items-center justify-center'>
-									<Play size={24} className='text-white/60' />
+								<div className='w-24 h-24 bg-white/30 rounded-full mx-auto mb-4 flex items-center justify-center'>
+									<div className='w-8 h-8 bg-white/40 rounded-full'></div>
 								</div>
-								<div className='flex space-x-1 justify-center'>
-									<div className='w-3 h-3 bg-white/25 rounded-full'></div>
-									<div className='w-3 h-3 bg-white/25 rounded-full'></div>
-									<div className='w-3 h-3 bg-white/25 rounded-full'></div>
+								<div className='flex space-x-2 justify-center'>
+									<div className='w-4 h-4 bg-white/25 rounded-full'></div>
+									<div className='w-4 h-4 bg-white/25 rounded-full'></div>
+									<div className='w-4 h-4 bg-white/25 rounded-full'></div>
 								</div>
 							</div>
 						)}
 						{project.type === 'cosmetics' && (
-							<div className='flex space-x-3'>
-								<div className='w-8 h-16 bg-white/30 rounded-full'></div>
-								<div className='w-10 h-12 bg-white/25 rounded-lg'></div>
-								<div className='w-6 h-14 bg-white/20 rounded-full'></div>
+							<div className='flex space-x-4'>
+								<div className='w-10 h-20 bg-white/30 rounded-full'></div>
+								<div className='w-12 h-16 bg-white/25 rounded-lg'></div>
+								<div className='w-8 h-18 bg-white/20 rounded-full'></div>
 							</div>
 						)}
 						{project.type === 'web' && (
-							<div className='grid grid-cols-2 gap-2'>
-								<div className='w-12 h-8 bg-white/30 rounded'></div>
-								<div className='w-12 h-8 bg-white/25 rounded'></div>
-								<div className='w-12 h-8 bg-white/20 rounded'></div>
-								<div className='w-12 h-8 bg-white/25 rounded'></div>
+							<div className='grid grid-cols-2 gap-3'>
+								<div className='w-16 h-10 bg-white/30 rounded'></div>
+								<div className='w-16 h-10 bg-white/25 rounded'></div>
+								<div className='w-16 h-10 bg-white/20 rounded'></div>
+								<div className='w-16 h-10 bg-white/25 rounded'></div>
 							</div>
 						)}
 					</div>
 				</div>
 
-				{/* Monochrome overlay that disappears on hover */}
+				{/* Monochrome overlay that disappears on hover/touch */}
 				<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
 
-				{/* Status badge */}
-				<div className='absolute top-4 left-4'>
-					<span
-						className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
-							project.status
-						)}`}
-					>
-						{t.status[project.status as keyof typeof t.status]}
-					</span>
-				</div>
-
 				{/* Project number */}
-				<div className='absolute top-4 right-4 w-8 h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
+				<div className='absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
 					<span className='text-white text-sm font-bold'>{project.id}</span>
 				</div>
+			</div>
 
-				{/* Hover overlay with description */}
-				<div className='absolute inset-0 bg-[#bdb9dc]/95 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center'>
-					<div className='text-center text-white p-6'>
-						<h4 className='text-lg font-bold mb-2'>{project.title[locale]}</h4>
-						<p className='text-white/90 text-sm mb-4'>
-							{project.description[locale]}
-						</p>
-						<div className='flex items-center justify-center space-x-4 text-xs'>
-							<div className='flex items-center space-x-1'>
-								<Calendar size={12} />
-								<span>{project.duration}</span>
-							</div>
-							<div className='flex items-center space-x-1'>
-								<Users size={12} />
-								<span>{project.teamSize}</span>
-							</div>
+			{/* Overlay content that appears on hover (Desktop) / tap (Mobile) */}
+			<div className='absolute inset-0 bg-[#bdb9dc]/95 opacity-0 group-hover:opacity-100 lg:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-6 text-center'>
+				<div className='text-white'>
+					<h3 className='text-xl lg:text-2xl font-bold mb-3 leading-tight'>
+						{project.title[locale]}
+					</h3>
+
+					<p className='text-sm lg:text-base text-white/90 font-medium mb-4'>
+						{project.category[locale]}
+					</p>
+
+					<p className='text-white/80 text-sm mb-6 leading-relaxed'>
+						{project.description[locale]}
+					</p>
+
+					{/* Project Details */}
+					<div className='flex items-center justify-center space-x-6 text-sm'>
+						<div className='flex items-center space-x-2'>
+							<Calendar size={16} />
+							<span>
+								{t.duration}: {project.duration}
+							</span>
+						</div>
+						<div className='flex items-center space-x-2'>
+							<Users size={16} />
+							<span>
+								{t.teamSize}: {project.teamSize}
+							</span>
 						</div>
 					</div>
 				</div>
 			</div>
 
-			{/* Content */}
-			<div className='p-6'>
-				<h3 className='text-xl font-bold text-gray-900 mb-2 group-hover:text-[#bdb9dc] transition-colors duration-300 line-clamp-2'>
-					{project.title[locale]}
-				</h3>
+			{/* Mobile/Tablet tap overlay (alternative approach for touch devices) */}
+			<div className='lg:hidden absolute inset-0 bg-[#bdb9dc]/95 opacity-0 transition-all duration-300 flex flex-col justify-center items-center p-4 text-center touch-overlay'>
+				<div className='text-white'>
+					<h3 className='text-lg font-bold mb-2 leading-tight'>
+						{project.title[locale]}
+					</h3>
 
-				<p className='text-sm text-[#bdb9dc] font-medium mb-3'>
-					{project.category[locale]}
-				</p>
+					<p className='text-sm text-white/90 font-medium mb-3'>
+						{project.category[locale]}
+					</p>
 
-				<p className='text-gray-600 text-sm leading-relaxed mb-4'>
-					{project.description[locale]}
-				</p>
+					<p className='text-white/80 text-xs mb-4 leading-relaxed'>
+						{project.description[locale]}
+					</p>
 
-				<button className='flex items-center space-x-2 text-[#bdb9dc] hover:text-[#827bb8] transition-colors duration-300 group/btn'>
-					<span className='text-sm font-medium'>{t.viewProject}</span>
-					<ExternalLink
-						size={16}
-						className='group-hover/btn:translate-x-1 transition-transform duration-300'
-					/>
-				</button>
+					{/* Project Details for Mobile */}
+					<div className='flex items-center justify-center space-x-4 text-xs'>
+						<div className='flex items-center space-x-1'>
+							<Calendar size={14} />
+							<span>{project.duration}</span>
+						</div>
+						<div className='flex items-center space-x-1'>
+							<Users size={14} />
+							<span>{project.teamSize}</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	);
@@ -362,9 +333,9 @@ export default function Projects({ locale }: ProjectsProps) {
 								: 'Partners logo section will be here'}
 						</p>
 						<p className='text-gray-600 leading-relaxed max-w-5xl mx-auto'>
-							MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L&apos;obac,
-							이상엔터, Pledis, YG, Inkode, Rain Company, Viu, ViuTV,
-							DatVietVAC, VieON, 하우스오브신세계,
+							MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De
+							L&apos;obac, 이상엔터, Pledis, YG, Inkode, Rain Company, Viu,
+							ViuTV, DatVietVAC, VieON, 하우스오브신세계,
 						</p>
 					</div>
 				</div>
@@ -376,6 +347,22 @@ export default function Projects({ locale }: ProjectsProps) {
 					<div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#bdb9dc]/3 rounded-full blur-3xl'></div>
 				</div>
 			</div>
+
+			{/* Add custom styles for mobile touch interaction */}
+			<style jsx>{`
+				@media (max-width: 1023px) {
+					.touch-overlay {
+						opacity: 0;
+						pointer-events: none;
+					}
+
+					.group:active .touch-overlay,
+					.group.active .touch-overlay {
+						opacity: 1;
+						pointer-events: all;
+					}
+				}
+			`}</style>
 		</section>
 	);
 }

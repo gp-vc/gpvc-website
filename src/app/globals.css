@@ -279,3 +279,55 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Project card touch interactions for mobile/tablet */
+@media (max-width: 1023px) {
+  .project-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .project-card .touch-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .project-card:active .touch-overlay,
+  .project-card.touch-active .touch-overlay {
+    opacity: 1;
+    pointer-events: all;
+  }
+  
+  /* Prevent text selection on touch */
+  .project-card {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Enhanced hover effects for desktop */
+@media (min-width: 1024px) {
+  .project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(189, 185, 220, 0.25);
+  }
+  
+  .project-card .hover-overlay {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+/* Smooth backdrop filter transitions */
+.project-card .monochrome-overlay {
+  backdrop-filter: grayscale(1);
+  -webkit-backdrop-filter: grayscale(1);
+  transition: backdrop-filter 0.5s ease, -webkit-backdrop-filter 0.5s ease;
+}
+
+.project-card:hover .monochrome-overlay,
+.project-card.touch-active .monochrome-overlay {
+  backdrop-filter: grayscale(0);
+  -webkit-backdrop-filter: grayscale(0);
+}

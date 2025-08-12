@@ -10,39 +10,21 @@ export default function Footer({ locale }: FooterProps) {
 		ko: {
 			company: 'GPVC',
 			description: '혁신적인 기술로 미래를 선도하는 글로벌 기업',
-			quickLinks: '빠른 링크',
 			contact: '연락처',
 			address: '서울 강남구 언주로157길 6',
 			phone: '+82-2-1234-5678',
 			email: 'info@gpvc.com',
 			copyright: '© 2025 GPVC. 모든 권리 보유.',
-			links: {
-				about: '회사소개',
-				business: '사업영역',
-				projects: '프로젝트',
-				careers: '채용정보',
-				news: '뉴스',
-				privacy: '개인정보처리방침',
-			},
 		},
 		en: {
 			company: 'GPVC',
 			description:
 				'A global company leading the future with innovative technology',
-			quickLinks: 'Quick Links',
 			contact: 'Contact Info',
 			address: '157 Eonju-ro 6, Gangnam-gu, Seoul, South Korea',
 			phone: '+82-2-1234-5678',
 			email: 'info@gpvc.com',
 			copyright: '© 2025 GPVC. All rights reserved.',
-			links: {
-				about: 'About',
-				business: 'Business Areas',
-				projects: 'Projects',
-				careers: 'Careers',
-				news: 'News',
-				privacy: 'Privacy Policy',
-			},
 		},
 	};
 
@@ -51,9 +33,9 @@ export default function Footer({ locale }: FooterProps) {
 	return (
 		<footer className='bg-gray-900 text-white'>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16'>
-				<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12'>
+				<div className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12'>
 					{/* Company Info */}
-					<div className='col-span-1 lg:col-span-2'>
+					<div className='col-span-1'>
 						<div className='mb-6'>
 							<div className='text-3xl font-bold text-[#bdb9dc] mb-4'>
 								{t.company}
@@ -62,8 +44,13 @@ export default function Footer({ locale }: FooterProps) {
 								{t.description}
 							</p>
 						</div>
+					</div>
 
-						{/* Contact Info */}
+					{/* Contact Info */}
+					<div>
+						<h3 className='text-lg font-semibold mb-4 text-[#bdb9dc]'>
+							{t.contact}
+						</h3>
 						<div className='space-y-3'>
 							<div className='flex items-start space-x-3'>
 								<MapPin
@@ -81,72 +68,6 @@ export default function Footer({ locale }: FooterProps) {
 								<span className='text-gray-300 text-sm'>{t.email}</span>
 							</div>
 						</div>
-					</div>
-
-					{/* Quick Links */}
-					<div>
-						<h3 className='text-lg font-semibold mb-4 text-[#bdb9dc]'>
-							{t.quickLinks}
-						</h3>
-						<ul className='space-y-2'>
-							<li>
-								<a
-									href='#about'
-									className='text-gray-300 hover:text-[#bdb9dc] transition-colors duration-200 text-sm'
-								>
-									{t.links.about}
-								</a>
-							</li>
-							<li>
-								<a
-									href='#business'
-									className='text-gray-300 hover:text-[#bdb9dc] transition-colors duration-200 text-sm'
-								>
-									{t.links.business}
-								</a>
-							</li>
-							<li>
-								<a
-									href='#projects'
-									className='text-gray-300 hover:text-[#bdb9dc] transition-colors duration-200 text-sm'
-								>
-									{t.links.projects}
-								</a>
-							</li>
-							<li>
-								<a
-									href='#careers'
-									className='text-gray-300 hover:text-[#bdb9dc] transition-colors duration-200 text-sm'
-								>
-									{t.links.careers}
-								</a>
-							</li>
-						</ul>
-					</div>
-
-					{/* Additional Links */}
-					<div>
-						<h3 className='text-lg font-semibold mb-4 text-[#bdb9dc]'>
-							&nbsp;
-						</h3>
-						<ul className='space-y-2'>
-							<li>
-								<a
-									href='#news'
-									className='text-gray-300 hover:text-[#bdb9dc] transition-colors duration-200 text-sm'
-								>
-									{t.links.news}
-								</a>
-							</li>
-							<li>
-								<a
-									href='#privacy'
-									className='text-gray-300 hover:text-[#bdb9dc] transition-colors duration-200 text-sm'
-								>
-									{t.links.privacy}
-								</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 

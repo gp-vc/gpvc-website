@@ -67,7 +67,7 @@ export default function Hero({ locale }: HeroProps) {
 		<section
 			id='hero'
 			ref={heroRef}
-			className='min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900'
+			className='min-h-screen flex items-center justify-center relative overflow-hidden bg-transparent'
 		>
 			{/* Background overlay */}
 			<div className='absolute inset-0 bg-black/20'></div>
@@ -119,18 +119,44 @@ export default function Hero({ locale }: HeroProps) {
 				</div>
 			</div>
 
-			{/* Scroll indicator */}
-			<div className='absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'>
+			{/* Scroll indicator - Desktop */}
+			<div className='hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'>
 				<div className='w-6 h-10 border-2 border-white/30 rounded-full flex justify-center'>
 					<div className='w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse'></div>
 				</div>
 			</div>
 
-			{/* Decorative elements */}
-			<div className='absolute top-1/4 left-10 w-2 h-2 bg-[#bdb9dc]/30 rounded-full animate-pulse'></div>
-			<div className='absolute top-1/3 right-10 w-3 h-3 bg-[#bdb9dc]/20 rounded-full animate-pulse delay-1000'></div>
-			<div className='absolute bottom-1/4 left-1/4 w-1 h-1 bg-white/40 rounded-full animate-pulse delay-500'></div>
-			<div className='absolute bottom-1/3 right-1/4 w-2 h-2 bg-[#bdb9dc]/25 rounded-full animate-pulse delay-1500'></div>
+			{/* Swipe indicator - Mobile/Tablet */}
+			<div className='lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2'>
+				<div className='flex items-center space-x-2 text-white/70 animate-pulse'>
+					<div className='flex space-x-1'>
+						<div className='w-2 h-2 bg-white/50 rounded-full animate-bounce'></div>
+						<div
+							className='w-2 h-2 bg-white/50 rounded-full animate-bounce'
+							style={{ animationDelay: '0.1s' }}
+						></div>
+						<div
+							className='w-2 h-2 bg-white/50 rounded-full animate-bounce'
+							style={{ animationDelay: '0.2s' }}
+						></div>
+					</div>
+					<svg
+						width='24'
+						height='24'
+						viewBox='0 0 24 24'
+						fill='none'
+						stroke='currentColor'
+						strokeWidth='2'
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						className='animate-pulse'
+					>
+						<path d='M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4' />
+						<polyline points='10,17 15,12 10,7' />
+						<line x1='15' x2='3' y1='12' y2='12' />
+					</svg>
+				</div>
+			</div>
 		</section>
 	);
 }

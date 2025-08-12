@@ -30,7 +30,7 @@ export default function Header({ locale }: HeaderProps) {
 		},
 		en: {
 			about: 'Our Story',
-			business: 'Products / Project',
+			business: 'Industry Expertise',
 			projects: 'Projects',
 			contact: 'Contact Us',
 		},

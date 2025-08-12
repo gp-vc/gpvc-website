@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 
@@ -14,7 +14,6 @@ export default function Contact({ locale }: ContactProps) {
 		email: '',
 		message: '',
 	});
-	const sectionRef = useRef<HTMLDivElement>(null);
 
 	const content = {
 		ko: {
@@ -26,14 +25,10 @@ export default function Contact({ locale }: ContactProps) {
 			message: '메시지',
 			messagePlaceholder: '질문이나 메시지를 입력하세요',
 			submit: 'Submit',
-			contactInfo: '연락처 정보',
-			address: '서울특별시 강남구 테헤란로 123',
+			company: 'GPVC Co.,Ltd.',
+			address: '서울 강남구 언주로157길 6',
 			phone: '+82-2-1234-5678',
 			emailAddress: 'info@gpvc.com',
-			company: 'GPVC Co.,Ltd.',
-			businessNumber: '사업자등록번호',
-			ceoName: '대표이사',
-			emailLabel: '이메일',
 			copyright: '© 2025 GPVC Co.,Ltd. All rights reserved.',
 		},
 		en: {
@@ -45,40 +40,15 @@ export default function Contact({ locale }: ContactProps) {
 			message: 'Message',
 			messagePlaceholder: 'Enter your question or message',
 			submit: 'Submit',
-			contactInfo: 'Contact Information',
-			address: '123 Teheran-ro, Gangnam-gu, Seoul, South Korea',
+			company: 'GPVC Co.,Ltd.',
+			address: '157 Eonju-ro 6, Gangnam-gu, Seoul, South Korea',
 			phone: '+82-2-1234-5678',
 			emailAddress: 'info@gpvc.com',
-			company: 'GPVC Co.,Ltd.',
-			businessNumber: 'Business Registration Number',
-			ceoName: 'CEO',
-			emailLabel: 'Email',
 			copyright: '© 2025 GPVC Co.,Ltd. All rights reserved.',
 		},
 	};
 
 	const t = content[locale];
-
-	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				entries.forEach((entry) => {
-					if (entry.isIntersecting) {
-						entry.target.classList.add('animate-slide-up');
-					}
-				});
-			},
-			{ threshold: 0.1 }
-		);
-
-		if (sectionRef.current) {
-			const elements =
-				sectionRef.current.querySelectorAll('.animate-on-scroll');
-			elements.forEach((el) => observer.observe(el));
-		}
-
-		return () => observer.disconnect();
-	}, []);
 
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -89,18 +59,18 @@ export default function Contact({ locale }: ContactProps) {
 
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
-		// Handle form submission
 		console.log('Form submitted:', formData);
 	};
 
 	return (
 		<section
 			id='contact'
-			className='py-16 lg:py-24 bg-white relative overflow-hidden'
+			className='py-16 lg:py-24 bg-white relative z-10'
+			style={{ backgroundColor: '#ffffff' }}
 		>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-				{/* Header */}
-				<div ref={sectionRef} className='animate-on-scroll text-center mb-16'>
+				{/* Section Header */}
+				<div className='text-center mb-16'>
 					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
 						{t.title}
 					</h2>
@@ -109,9 +79,14 @@ export default function Contact({ locale }: ContactProps) {
 					</p>
 				</div>
 
+				{/* Main Content */}
 				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16'>
 					{/* Contact Form */}
-					<div className='animate-on-scroll'>
+					<div className='bg-white p-8 rounded-2xl shadow-xl border border-gray-100'>
+						<h3 className='text-2xl font-bold text-gray-900 mb-6'>
+							{locale === 'ko' ? '문의하기' : 'Get in Touch'}
+						</h3>
+
 						<form onSubmit={handleSubmit} className='space-y-6'>
 							{/* Name Fields */}
 							<div className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
@@ -129,7 +104,7 @@ export default function Contact({ locale }: ContactProps) {
 										value={formData.firstName}
 										onChange={handleInputChange}
 										placeholder='Jane'
-										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]'
+										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] bg-white text-gray-900'
 										required
 									/>
 								</div>
@@ -147,7 +122,7 @@ export default function Contact({ locale }: ContactProps) {
 										value={formData.lastName}
 										onChange={handleInputChange}
 										placeholder='Smitherton'
-										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]'
+										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] bg-white text-gray-900'
 										required
 									/>
 								</div>
@@ -168,7 +143,7 @@ export default function Contact({ locale }: ContactProps) {
 									value={formData.email}
 									onChange={handleInputChange}
 									placeholder='email@janesfakedomain.net'
-									className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]'
+									className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] bg-white text-gray-900'
 									required
 								/>
 							</div>
@@ -188,7 +163,7 @@ export default function Contact({ locale }: ContactProps) {
 									value={formData.message}
 									onChange={handleInputChange}
 									placeholder={t.messagePlaceholder}
-									className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] resize-vertical'
+									className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] resize-vertical bg-white text-gray-900'
 									required
 								/>
 							</div>
@@ -207,13 +182,12 @@ export default function Contact({ locale }: ContactProps) {
 						</form>
 					</div>
 
-					{/* Hero Image & Contact Info */}
-					<div className='animate-on-scroll space-y-8'>
+					{/* Contact Info & Image */}
+					<div className='space-y-8'>
 						{/* Hero Image */}
 						<div className='aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl'>
 							<div className='w-full h-full bg-gradient-to-br from-[#bdb9dc] to-[#827bb8] relative'>
-								{/* Modern architectural bridge image placeholder */}
-								<div className='absolute inset-0 bg-gradient-to-t from-black/30 to-transparent'></div>
+								{/* Content overlay */}
 								<div className='absolute inset-0 flex items-end justify-start p-8'>
 									<div className='text-white'>
 										<h3 className='text-2xl font-bold mb-2'>Connect With Us</h3>
@@ -298,12 +272,6 @@ export default function Contact({ locale }: ContactProps) {
 						</div>
 					</div>
 				</div>
-			</div>
-
-			{/* Background decoration */}
-			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-				<div className='absolute top-1/4 -right-20 w-40 h-40 bg-[#bdb9dc]/5 rounded-full blur-3xl'></div>
-				<div className='absolute bottom-1/4 -left-20 w-32 h-32 bg-[#a8a4d0]/5 rounded-full blur-3xl'></div>
 			</div>
 		</section>
 	);

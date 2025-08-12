@@ -13,14 +13,14 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	const content = {
 		ko: {
-			title: 'Business Area',
+			title: '전문 분야',
 			subtitle: '파트너사를 로고만 들어갈 부분',
 			description:
 				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, 이상엔터, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, 하우스오브신세계,",
 			partnerTitle: '파트너사를 로고만 들어갈 부분',
 		},
 		en: {
-			title: 'Business Area',
+			title: 'Business Areas',
 			subtitle: 'Partners logo section will be here',
 			description:
 				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, Lee Sang Entertainment, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, House of Shinsegae,",
@@ -136,11 +136,11 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	const renderBusinessCard = (
 		area: (typeof businessAreas)[0],
-		// _index: number
+		_index: number
 	) => (
 		<div
 			key={area.id}
-			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2'
+			className='group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500'
 		>
 			{/* Image with monochrome effect */}
 			<div className='h-64 relative overflow-hidden'>
