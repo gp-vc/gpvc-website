@@ -12,6 +12,10 @@ interface CarouselProps {
 	showPagination?: boolean;
 	effectType?: 'slide' | 'coverflow';
 	spaceBetween?: number;
+	customBreakpoints?: Record<
+		number,
+		{ slidesPerView: number; spaceBetween: number }
+	>;
 }
 
 export default function Carousel({
@@ -21,7 +25,27 @@ export default function Carousel({
 	showPagination = false,
 	effectType = 'slide',
 	spaceBetween = 30,
+	customBreakpoints,
 }: CarouselProps) {
+	const defaultBreakpoints = {
+		640: {
+			slidesPerView: effectType === 'coverflow' ? 1.5 : 2,
+			spaceBetween: 20,
+		},
+		768: {
+			slidesPerView: effectType === 'coverflow' ? 2 : 2.5,
+			spaceBetween: 25,
+		},
+		1024: {
+			slidesPerView: effectType === 'coverflow' ? 2.5 : 3,
+			spaceBetween: spaceBetween,
+		},
+		1280: {
+			slidesPerView: effectType === 'coverflow' ? 3 : 3.5,
+			spaceBetween: spaceBetween,
+		},
+	};
+
 	const swiperConfig = {
 		modules: [Autoplay, Pagination, EffectCoverflow],
 		spaceBetween: spaceBetween,
@@ -41,24 +65,7 @@ export default function Carousel({
 		loop: true,
 		speed: 800,
 		centeredSlides: effectType === 'coverflow',
-		breakpoints: {
-			640: {
-				slidesPerView: effectType === 'coverflow' ? 1.5 : 2,
-				spaceBetween: 20,
-			},
-			768: {
-				slidesPerView: effectType === 'coverflow' ? 2 : 2.5,
-				spaceBetween: 25,
-			},
-			1024: {
-				slidesPerView: effectType === 'coverflow' ? 2.5 : 3,
-				spaceBetween: spaceBetween,
-			},
-			1280: {
-				slidesPerView: effectType === 'coverflow' ? 3 : 3.5,
-				spaceBetween: spaceBetween,
-			},
-		},
+		breakpoints: customBreakpoints || defaultBreakpoints,
 		// Add coverflow effect if specified
 		...(effectType === 'coverflow' && {
 			effect: 'coverflow',

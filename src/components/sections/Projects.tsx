@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Calendar, Users } from 'lucide-react';
 import Image from 'next/image';
 import { Locale } from '@/lib/i18n';
@@ -11,6 +11,9 @@ interface ProjectsProps {
 
 export default function Projects({ locale }: ProjectsProps) {
 	const sectionRef = useRef<HTMLDivElement>(null);
+	const [imageDimensions, setImageDimensions] = useState<
+		Record<number, { width: number; height: number }>
+	>({});
 
 	const content = {
 		ko: {
@@ -135,6 +138,23 @@ export default function Projects({ locale }: ProjectsProps) {
 
 	const t = content[locale];
 
+	// Function to load image dimensions
+	const loadImageDimensions = (project: (typeof projects)[0]) => {
+		const img = new window.Image();
+		img.onload = () => {
+			setImageDimensions((prev) => ({
+				...prev,
+				[project.id]: { width: img.naturalWidth, height: img.naturalHeight },
+			}));
+		};
+		img.src = project.imagePath;
+	};
+
+	useEffect(() => {
+		// Load dimensions for all project images
+		projects.forEach(loadImageDimensions);
+	}, []);
+
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			(entries) => {
@@ -154,115 +174,103 @@ export default function Projects({ locale }: ProjectsProps) {
 		return () => observer.disconnect();
 	}, []);
 
-	const renderProjectCard = (project: (typeof projects)[0]) => (
-		<div
-			key={project.id}
-			className='group relative bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 aspect-[4/3] cursor-pointer'
-		>
-			{/* Full Image Background */}
-			<div className='absolute inset-0'>
-				{/* Project-specific styling based on type */}
-				<div
-					className={`absolute inset-0 transition-all duration-500 ${
-						project.type === 'wine'
-							? 'bg-gradient-to-br from-amber-200 to-red-300'
-							: project.type === 'poster'
-							? 'bg-gradient-to-br from-blue-200 to-purple-300'
-							: project.type === 'drama'
-							? 'bg-gradient-to-br from-pink-200 to-purple-300'
-							: project.type === 'event'
-							? 'bg-gradient-to-br from-green-200 to-blue-300'
-							: project.type === 'cosmetics'
-							? 'bg-gradient-to-br from-purple-200 to-pink-300'
-							: 'bg-gradient-to-br from-gray-200 to-gray-400'
-					} group-hover:from-[#bdb9dc] group-hover:to-[#827bb8]`}
-				>
-					{/* Content based on project type */}
-					<div className='absolute inset-0 flex items-center justify-center'>
+	const renderProjectCard = (project: (typeof projects)[0]) => {
+		const dimensions = imageDimensions[project.id];
+		const aspectRatio = dimensions
+			? dimensions.width / dimensions.height
+			: 4 / 3; // fallback to 4:3
+
+		return (
+			<div
+				key={project.id}
+				className='group relative bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer'
+				style={{
+					aspectRatio: aspectRatio.toString(),
+					minHeight: '300px', // Ensure minimum height for loading state
+				}}
+			>
+				{/* Full Image Background */}
+				<div className='absolute inset-0'>
+					{/* Project Image */}
+					<div className='relative w-full h-full'>
 						<Image
 							src={project.imagePath}
-							alt={`Client logo ${project.id}`}
-							width={80}
-							height={80}
-							className='max-w-full max-h-full object-contain'
-							style={{ width: 'auto', height: 'auto' }}
-							unoptimized
+							alt={project.title[locale]}
+							fill
+							className='object-cover transition-all duration-500'
+							sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
+							priority={project.id <= 3} // Priority for first 3 images
 						/>
 					</div>
+
+					{/* Monochrome overlay that disappears on hover/touch */}
+					<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
 				</div>
 
-				{/* Monochrome overlay that disappears on hover/touch */}
-				<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
+				{/* Overlay content that appears on hover (Desktop) / tap (Mobile) */}
+				<div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 lg:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-6 text-center'>
+					<div className='text-white'>
+						<h3 className='text-xl lg:text-2xl font-bold mb-3 leading-tight'>
+							{project.title[locale]}
+						</h3>
 
-				{/* Project number */}
-				{/* <div className='absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center'>
-					<span className='text-white text-sm font-bold'>{project.id}</span>
-				</div> */}
-			</div>
+						<p className='text-sm lg:text-base text-white/90 font-medium mb-4'>
+							{project.category[locale]}
+						</p>
 
-			{/* Overlay content that appears on hover (Desktop) / tap (Mobile) */}
-			<div className='absolute inset-0 bg-[#bdb9dc]/95 opacity-0 group-hover:opacity-100 lg:group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-6 text-center'>
-				<div className='text-white'>
-					<h3 className='text-xl lg:text-2xl font-bold mb-3 leading-tight'>
-						{project.title[locale]}
-					</h3>
+						<p className='text-white/80 text-sm mb-6 leading-relaxed'>
+							{project.description[locale]}
+						</p>
 
-					<p className='text-sm lg:text-base text-white/90 font-medium mb-4'>
-						{project.category[locale]}
-					</p>
-
-					<p className='text-white/80 text-sm mb-6 leading-relaxed'>
-						{project.description[locale]}
-					</p>
-
-					{/* Project Details */}
-					<div className='flex items-center justify-center space-x-6 text-sm'>
-						<div className='flex items-center space-x-2'>
-							<Calendar size={16} />
-							<span>
-								{t.duration}: {project.duration}
-							</span>
+						{/* Project Details */}
+						<div className='flex items-center justify-center space-x-6 text-sm'>
+							<div className='flex items-center space-x-2'>
+								<Calendar size={16} />
+								<span>
+									{t.duration}: {project.duration}
+								</span>
+							</div>
+							<div className='flex items-center space-x-2'>
+								<Users size={16} />
+								<span>
+									{t.teamSize}: {project.teamSize}
+								</span>
+							</div>
 						</div>
-						<div className='flex items-center space-x-2'>
-							<Users size={16} />
-							<span>
-								{t.teamSize}: {project.teamSize}
-							</span>
+					</div>
+				</div>
+
+				{/* Mobile/Tablet tap overlay (alternative approach for touch devices) */}
+				<div className='lg:hidden absolute inset-0 bg-black/70 opacity-0 transition-all duration-300 flex flex-col justify-center items-center p-4 text-center touch-overlay'>
+					<div className='text-white'>
+						<h3 className='text-lg font-bold mb-2 leading-tight'>
+							{project.title[locale]}
+						</h3>
+
+						<p className='text-sm text-white/90 font-medium mb-3'>
+							{project.category[locale]}
+						</p>
+
+						<p className='text-white/80 text-xs mb-4 leading-relaxed'>
+							{project.description[locale]}
+						</p>
+
+						{/* Project Details for Mobile */}
+						<div className='flex items-center justify-center space-x-4 text-xs'>
+							<div className='flex items-center space-x-1'>
+								<Calendar size={14} />
+								<span>{project.duration}</span>
+							</div>
+							<div className='flex items-center space-x-1'>
+								<Users size={14} />
+								<span>{project.teamSize}</span>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			{/* Mobile/Tablet tap overlay (alternative approach for touch devices) */}
-			<div className='lg:hidden absolute inset-0 bg-[#bdb9dc]/95 opacity-0 transition-all duration-300 flex flex-col justify-center items-center p-4 text-center touch-overlay'>
-				<div className='text-white'>
-					<h3 className='text-lg font-bold mb-2 leading-tight'>
-						{project.title[locale]}
-					</h3>
-
-					<p className='text-sm text-white/90 font-medium mb-3'>
-						{project.category[locale]}
-					</p>
-
-					<p className='text-white/80 text-xs mb-4 leading-relaxed'>
-						{project.description[locale]}
-					</p>
-
-					{/* Project Details for Mobile */}
-					<div className='flex items-center justify-center space-x-4 text-xs'>
-						<div className='flex items-center space-x-1'>
-							<Calendar size={14} />
-							<span>{project.duration}</span>
-						</div>
-						<div className='flex items-center space-x-1'>
-							<Users size={14} />
-							<span>{project.teamSize}</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+		);
+	};
 
 	return (
 		<section id='projects' className='py-16 lg:py-24 bg-white relative'>
@@ -275,7 +283,29 @@ export default function Projects({ locale }: ProjectsProps) {
 
 				{/* Carousel */}
 				<div className='relative'>
-					<Carousel items={projects} renderItem={renderProjectCard} spaceBetween={0} />
+					<Carousel
+						items={projects}
+						renderItem={renderProjectCard}
+						spaceBetween={0}
+						customBreakpoints={{
+							640: {
+								slidesPerView: 2,
+								spaceBetween: 0,
+							},
+							768: {
+								slidesPerView: 2.5,
+								spaceBetween: 0,
+							},
+							1024: {
+								slidesPerView: 3,
+								spaceBetween: 0,
+							},
+							1280: {
+								slidesPerView: 3.5,
+								spaceBetween: 0,
+							},
+						}}
+					/>
 				</div>
 			</div>
 

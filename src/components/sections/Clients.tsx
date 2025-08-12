@@ -125,15 +125,16 @@ export default function Clients({ locale }: ClientsProps) {
 								>
 									{/* Circular container */}
 									<div className='w-full h-full bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center p-4 group-hover:bg-gray-50'>
-										<Image
-											src={logoPath}
-											alt={`Client logo ${index + 1}`}
-											width={80}
-											height={80}
-											className='max-w-full max-h-full object-contain'
-											style={{ width: 'auto', height: 'auto' }}
-											unoptimized
-										/>
+										<div className='relative w-full h-full flex items-center justify-center'>
+											<Image
+												src={logoPath}
+												alt={`Client logo ${index + 1}`}
+												fill
+												className='object-contain'
+												sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, 112px'
+												unoptimized
+											/>
+										</div>
 									</div>
 
 									{/* Optional: Subtle animation on hover */}
