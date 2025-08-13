@@ -1,145 +1,257 @@
 'use client';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Environment } from '@react-three/drei';
-import { Suspense, useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Suspense, useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 
-// Simple floating elements component
-function FloatingElements() {
-	const groupRef = useRef<THREE.Group>(null!);
-	const sphere1Ref = useRef<THREE.Mesh>(null!);
-	const sphere2Ref = useRef<THREE.Mesh>(null!);
-	const boxRef = useRef<THREE.Mesh>(null!);
+// Mouse position tracking
+let mouseX = 0;
+let mouseY = 0;
+let targetRotationX = 0;
+let targetRotationY = 0;
+let mouseListenersAdded = false;
 
-	// GPVC brand colors
-	const brandColor = '#bdb9dc';
-	const brandColorDark = '#827bb8';
-	const brandColorLight = '#a8a4d0';
+// Torus Knot component with mouse-based rotation
+function TorusKnot() {
+	const meshRef = useRef<THREE.Mesh>(null!);
+	const [autoRotate, setAutoRotate] = useState(true);
 
-	useFrame((state) => {
-		const time = state.clock.getElapsedTime();
+	// Track mouse movement for rotation - attach to document to capture all mouse events
+	useEffect(() => {
+		if (mouseListenersAdded) return;
 
-		// Rotate the main group slowly
-		if (groupRef.current) {
-			groupRef.current.rotation.y = time * 0.1;
-		}
+		const handleMouseMove = (event: MouseEvent) => {
+			mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+			mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
 
-		// Animate individual elements
-		if (sphere1Ref.current) {
-			sphere1Ref.current.position.y = Math.sin(time * 0.5) * 0.5;
-			sphere1Ref.current.rotation.x = time * 0.2;
-		}
+			// Convert mouse position to rotation targets
+			targetRotationY = mouseX * Math.PI * 0.5;
+			targetRotationX = mouseY * Math.PI * 0.3;
+			setAutoRotate(false);
+		};
 
-		if (sphere2Ref.current) {
-			sphere2Ref.current.position.y = Math.cos(time * 0.7) * 0.3;
-			sphere2Ref.current.rotation.y = time * 0.3;
-		}
+		const handleMouseLeave = () => setAutoRotate(true);
 
-		if (boxRef.current) {
-			boxRef.current.rotation.x = time * 0.15;
-			boxRef.current.rotation.z = time * 0.1;
+		// Attach to document instead of window to capture all mouse events
+		document.addEventListener('mousemove', handleMouseMove);
+		document.addEventListener('mouseleave', handleMouseLeave);
+		mouseListenersAdded = true;
+
+		return () => {
+			document.removeEventListener('mousemove', handleMouseMove);
+			document.removeEventListener('mouseleave', handleMouseLeave);
+			mouseListenersAdded = false;
+		};
+	}, []);
+
+	useFrame((state, delta) => {
+		if (meshRef.current) {
+			if (autoRotate) {
+				// Auto rotation when mouse is not active
+				meshRef.current.rotation.y += 0.005;
+				meshRef.current.rotation.x += 0.002;
+			} else {
+				// Smooth interpolation to mouse-based rotation
+				meshRef.current.rotation.y +=
+					(targetRotationY - meshRef.current.rotation.y) * 0.05;
+				meshRef.current.rotation.x +=
+					(targetRotationX - meshRef.current.rotation.x) * 0.05;
+			}
 		}
 	});
 
 	return (
-		<group ref={groupRef}>
-			{/* Large sphere */}
-			<mesh ref={sphere1Ref} position={[-3, 0, -2]}>
-				<sphereGeometry args={[1.2, 32, 32]} />
-				<meshStandardMaterial
-					color={brandColor}
-					transparent
-					opacity={0.3}
-					wireframe
-				/>
-			</mesh>
+		<mesh ref={meshRef}>
+			<torusKnotGeometry args={[1, 0.4, 128, 128, 1, 3]} />
+			<meshStandardMaterial
+				roughness={0.1}
+				metalness={0.9}
+				color='#bdb9dc'
+				emissive='#827bb8'
+				emissiveIntensity={0.1}
+				envMapIntensity={1.5}
+			/>
+		</mesh>
+	);
+}
 
-			{/* Medium sphere */}
-			<mesh ref={sphere2Ref} position={[3, 1, -1]}>
-				<sphereGeometry args={[0.8, 16, 16]} />
-				<meshStandardMaterial
-					color={brandColorDark}
-					transparent
-					opacity={0.4}
-				/>
-			</mesh>
+// Environment setup with video background
+function EnvironmentSetup() {
+	const { scene, gl } = useThree();
+	const videoRef = useRef<HTMLVideoElement>(null!);
+	const [videoLoaded, setVideoLoaded] = useState(false);
+	const cubeRenderTargetRef = useRef<THREE.WebGLCubeRenderTarget>(null!);
+	const cubeMapCameraRef = useRef<THREE.CubeCamera>(null!);
 
-			{/* Rotating box */}
-			<mesh ref={boxRef} position={[2, -1, 1]}>
-				<boxGeometry args={[0.6, 0.6, 0.6]} />
-				<meshStandardMaterial
-					color={brandColorLight}
-					transparent
-					opacity={0.3}
-					wireframe
-				/>
-			</mesh>
+	useEffect(() => {
+		// Create video element
+		const video = document.createElement('video');
+		video.src = '/stock-images/3d-bg.mp4';
+		video.crossOrigin = 'anonymous';
+		video.loop = true;
+		video.muted = true;
+		video.autoplay = true;
+		video.playsInline = true;
+		video.preload = 'auto';
 
-			{/* Background torus */}
-			<mesh position={[-4, 2, -3]} rotation={[0, 0, Math.PI / 4]}>
-				<torusGeometry args={[1.5, 0.2, 8, 24]} />
-				<meshBasicMaterial color={brandColor} transparent opacity={0.2} />
-			</mesh>
+		// Add event listeners for debugging
+		video.addEventListener('loadeddata', () => {
+			console.log('Video loaded successfully');
+			setVideoLoaded(true);
+		});
 
-			{/* Particles */}
-			{[...Array(20)].map((_, index) => (
-				<mesh
-					key={`particle-${index}`}
-					position={[
-						(Math.random() - 0.5) * 15,
-						(Math.random() - 0.5) * 10,
-						(Math.random() - 0.5) * 15,
-					]}
-				>
-					<sphereGeometry args={[0.05, 8, 8]} />
-					<meshBasicMaterial
-						color={index % 2 === 0 ? brandColor : brandColorLight}
-						transparent
-						opacity={0.6}
-					/>
-				</mesh>
-			))}
-		</group>
+		video.addEventListener('error', (e) => {
+			console.error('Video loading error:', e);
+		});
+
+		video.addEventListener('canplay', () => {
+			console.log('Video can play');
+			video.play().catch(console.error);
+		});
+
+		videoRef.current = video;
+
+		// Create video texture for background
+		const videoTexture = new THREE.VideoTexture(video);
+		videoTexture.colorSpace = THREE.SRGBColorSpace;
+		videoTexture.generateMipmaps = false;
+		videoTexture.minFilter = THREE.LinearFilter;
+		videoTexture.magFilter = THREE.LinearFilter;
+		videoTexture.format = THREE.RGBAFormat;
+
+		// Create a background sphere for the video
+		const sphereGeometry = new THREE.SphereGeometry(100, 64, 64);
+		const sphereMaterial = new THREE.MeshBasicMaterial({
+			map: videoTexture,
+			side: THREE.BackSide,
+		});
+		const backgroundSphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+		scene.add(backgroundSphere);
+
+		// Create cube render target for proper environment mapping
+		cubeRenderTargetRef.current = new THREE.WebGLCubeRenderTarget(256);
+		cubeMapCameraRef.current = new THREE.CubeCamera(
+			1,
+			1000,
+			cubeRenderTargetRef.current
+		);
+
+		// Set the cube map as environment
+		scene.environment = cubeRenderTargetRef.current.texture;
+
+		return () => {
+			if (videoRef.current) {
+				videoRef.current.pause();
+				videoRef.current.src = '';
+			}
+			// Clean up textures
+			videoTexture.dispose();
+			cubeRenderTargetRef.current?.dispose();
+		};
+	}, [scene, gl]);
+
+	// Update cube map every frame for reflections
+	useFrame(() => {
+		if (
+			videoLoaded &&
+			cubeMapCameraRef.current &&
+			cubeRenderTargetRef.current
+		) {
+			// Update the cube camera to capture the video background
+			cubeMapCameraRef.current.update(gl, scene);
+		}
+	});
+
+	return null;
+}
+
+// Lighting setup
+function Lighting() {
+	return (
+		<>
+			{/* Ambient light for overall illumination */}
+			<ambientLight intensity={0.4} />
+
+			{/* Directional light for highlights */}
+			<directionalLight
+				position={[5, 5, 5]}
+				intensity={1}
+				color='#ffffff'
+				castShadow
+			/>
+
+			{/* Additional point lights for GPVC branding */}
+			<pointLight position={[-5, 2, 2]} intensity={0.8} color='#bdb9dc' />
+
+			<pointLight position={[3, -2, 4]} intensity={0.6} color='#a8a4d0' />
+		</>
+	);
+}
+
+// Camera setup
+function CameraSetup() {
+	const { camera } = useThree();
+
+	useEffect(() => {
+		camera.position.set(0, 0, -6);
+		camera.lookAt(0, 0, 0);
+	}, [camera]);
+
+	return null;
+}
+
+// Renderer setup
+function RendererSetup() {
+	const { gl } = useThree();
+
+	useEffect(() => {
+		// Configure tone mapping similar to the original example
+		gl.toneMapping = THREE.ACESFilmicToneMapping;
+		gl.toneMappingExposure = 1.0;
+		gl.shadowMap.enabled = true;
+		gl.shadowMap.type = THREE.PCFSoftShadowMap;
+	}, [gl]);
+
+	return null;
+}
+
+// Loading fallback
+function SceneLoader() {
+	return (
+		<div className='absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800'>
+			<div className='w-8 h-8 border-2 border-[#bdb9dc] border-t-transparent rounded-full animate-spin'></div>
+		</div>
 	);
 }
 
 export default function Scene3D() {
 	return (
-		<div className='fixed inset-0 -z-10 w-full h-full'>
+		<div className='fixed inset-0 w-full h-full -z-50 pointer-events-none'>
 			<Canvas
-				camera={{ position: [0, 0, 8], fov: 60 }}
+				camera={{
+					fov: 50,
+					aspect:
+						typeof window !== 'undefined'
+							? window.innerWidth / window.innerHeight
+							: 1,
+					near: 1,
+					far: 500,
+					position: [0, 0, -6],
+				}}
 				gl={{
 					antialias: true,
 					alpha: true,
 					powerPreference: 'high-performance',
 				}}
 				dpr={[1, 2]}
+				style={{ background: 'transparent' }}
 			>
-				{/* Lighting */}
-				<ambientLight intensity={0.4} />
-				<pointLight position={[10, 10, 10]} intensity={0.6} color='#bdb9dc' />
-				<pointLight
-					position={[-10, -10, -10]}
-					intensity={0.3}
-					color='#a8a4d0'
-				/>
-
-				{/* Scene content */}
 				<Suspense fallback={null}>
-					<Environment preset='city' background={false} />
-					<FloatingElements />
+					<RendererSetup />
+					<CameraSetup />
+					<EnvironmentSetup />
+					<Lighting />
+					<TorusKnot />
 				</Suspense>
-
-				{/* Controls */}
-				<OrbitControls
-					enableZoom={false}
-					enablePan={false}
-					autoRotate={true}
-					autoRotateSpeed={0.3}
-					enableDamping={true}
-					dampingFactor={0.05}
-				/>
 			</Canvas>
 		</div>
 	);
