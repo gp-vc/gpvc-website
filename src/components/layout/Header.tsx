@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
+import Image from 'next/image';
 
 interface HeaderProps {
 	locale: Locale;
@@ -63,10 +64,20 @@ export default function Header({ locale }: HeaderProps) {
 	// Don't render until mounted to avoid hydration issues
 	if (!mounted) {
 		return (
-			<header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+			<header className='fixed top-0 left-0 right-0 z-50 bg-transparent'>
 				<nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='flex items-center justify-between h-16 lg:h-20'>
-						<div className='text-2xl lg:text-3xl font-bold text-white'>GPVC</div>
+						<div className='flex-shrink-0'>
+							<div className='w-10 h-10 lg:w-12 lg:h-12 relative'>
+								<Image
+									src='/branding/gpvc-symbol-logo-white.svg'
+									alt='GPVC Logo'
+									fill
+									className='object-contain drop-shadow-lg'
+									sizes='48px'
+								/>
+							</div>
+						</div>
 					</div>
 				</nav>
 			</header>
@@ -76,8 +87,8 @@ export default function Header({ locale }: HeaderProps) {
 	return (
 		<header
 			className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-				isScrolled 
-					? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100' 
+				isScrolled
+					? 'bg-white/95 backdrop-blur-lg shadow-lg border-b border-gray-100'
 					: 'bg-transparent'
 			}`}
 		>
@@ -85,16 +96,28 @@ export default function Header({ locale }: HeaderProps) {
 				<div className='flex items-center justify-between h-16 lg:h-20'>
 					{/* Logo */}
 					<div className='flex-shrink-0'>
-						<a 
-							href={`/${locale}`}
-							className='flex items-center group'
-						>
-							<div className={`text-2xl lg:text-3xl font-bold transition-colors duration-300 ${
-								isScrolled 
-									? 'text-[#bdb9dc] hover:text-[#9590c4]' 
-									: 'text-white hover:text-[#bdb9dc]'
-							}`}>
-								GPVC
+						<a href={`/${locale}`} className='flex items-center group'>
+							<div className='w-10 h-10 lg:w-12 lg:h-12 relative transition-all duration-300 hover:scale-105'>
+								{/* White logo for transparent background */}
+								<Image
+									src='/branding/gpvc-symbol-logo-white.svg'
+									alt='GPVC Logo'
+									fill
+									className={`object-contain drop-shadow-lg transition-opacity duration-300 ${
+										isScrolled ? 'opacity-0' : 'opacity-100'
+									}`}
+									sizes='48px'
+								/>
+								{/* Primary colored logo for scrolled state */}
+								<Image
+									src='/branding/gpvc-symbol-logo-primary.svg'
+									alt='GPVC Logo'
+									fill
+									className={`object-contain drop-shadow-lg transition-opacity duration-300 absolute inset-0 ${
+										isScrolled ? 'opacity-100' : 'opacity-0'
+									}`}
+									sizes='48px'
+								/>
 							</div>
 						</a>
 					</div>
@@ -107,13 +130,19 @@ export default function Header({ locale }: HeaderProps) {
 									key={item.key}
 									onClick={() => handleNavClick(item.href)}
 									className={`px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 relative group ${
-										isScrolled 
-											? 'text-gray-700 hover:text-[#bdb9dc]' 
+										isScrolled
+											? 'text-gray-700 hover:text-[#bdb9dc]'
 											: 'text-white hover:text-[#bdb9dc]'
 									}`}
 								>
-									{navigation[locale][item.key as keyof typeof navigation[typeof locale]]}
-									<span className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#bdb9dc] transition-all duration-300 group-hover:w-full group-hover:left-0`}></span>
+									{
+										navigation[locale][
+											item.key as keyof (typeof navigation)[typeof locale]
+										]
+									}
+									<span
+										className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#bdb9dc] transition-all duration-300 group-hover:w-full group-hover:left-0`}
+									></span>
 								</button>
 							))}
 						</div>
@@ -161,10 +190,14 @@ export default function Header({ locale }: HeaderProps) {
 									onClick={() => handleNavClick(item.href)}
 									className='block w-full text-left px-4 py-3 text-gray-700 hover:text-[#bdb9dc] hover:bg-[#bdb9dc]/5 rounded-xl text-base font-medium transition-all duration-200 hover:translate-x-1'
 								>
-									{navigation[locale][item.key as keyof typeof navigation[typeof locale]]}
+									{
+										navigation[locale][
+											item.key as keyof (typeof navigation)[typeof locale]
+										]
+									}
 								</button>
 							))}
-							
+
 							{/* Mobile Language Toggle */}
 							<div className='border-t border-gray-200 pt-3 mt-3'>
 								<button
