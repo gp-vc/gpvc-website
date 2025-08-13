@@ -31,7 +31,7 @@ export default function Projects({ locale }: ProjectsProps) {
 	const projects = [
 		{
 			id: 1,
-			title: { ko: "Clos de L'Obac Wine", en: "Clos de L'Obac Wine" },
+			title: { ko: "Clos de L'Obac 와이너리", en: "Clos de L'Obac Winery" },
 			imagePath: '/project-images/project-1.png',
 			description: {
 				ko: '설명',
@@ -47,7 +47,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		},
 		{
 			id: 2,
-			title: { ko: '요술램프 포스터(2개)', en: 'Magic Lamp Poster (2pcs)' },
+			title: { ko: '요술램프', en: 'Magic Lamp' },
 			imagePath: '/project-images/project-2.jpeg',
 			description: {
 				ko: '설명',
@@ -63,11 +63,27 @@ export default function Projects({ locale }: ProjectsProps) {
 		},
 		{
 			id: 3,
-			title: {
-				ko: '숏폼드라마 썸네일 경쟁',
-				en: 'Short Drama Thumbnail Competition',
-			},
+			title: { ko: '요술램프', en: 'Magic Lamp' },
 			imagePath: '/project-images/project-3.jpeg',
+			description: {
+				ko: '설명',
+				en: 'Description',
+			},
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '8개월',
+			teamSize: '10명',
+			type: 'poster',
+		},
+		{
+			id: 4,
+			title: {
+				ko: '숏폼드라마 쏘니의 경쟁',
+				en: "Short Drama Sonny's Competition",
+			},
+			imagePath: '/project-images/project-4.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -81,9 +97,9 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'drama',
 		},
 		{
-			id: 4,
-			title: { ko: '웹 에돌 레인보우무+', en: 'Web Episode Rainbow Mu+' },
-			imagePath: '/project-images/project-4.jpeg',
+			id: 5,
+			title: { ko: '웹 예능 레인보우7+', en: 'Web Reality Rainbow7+' },
+			imagePath: '/project-images/project-5.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -97,12 +113,12 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'web',
 		},
 		{
-			id: 5,
+			id: 6,
 			title: {
-				ko: '인피니트 아성열 중국 Fan meeting1,2',
-				en: 'Infinite Lee Seong Yeol China Fan Meeting 1,2',
+				ko: '인피니트 아성열 중국 Fan meeting',
+				en: 'Infinite Lee Seong Yeol China Fan Meeting',
 			},
-			imagePath: '/project-images/project-5.jpeg',
+			imagePath: '/project-images/project-6.jpeg',
 			description: {
 				ko: '설명',
 				en: 'Description',
@@ -116,12 +132,31 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'event',
 		},
 		{
-			id: 6,
+			id: 7,
+			title: {
+				ko: '인피니트 아성열 중국 Fan meeting',
+				en: 'Infinite Lee Seong Yeol China Fan Meeting',
+			},
+			imagePath: '/project-images/project-7.jpeg',
+			description: {
+				ko: '설명',
+				en: 'Description',
+			},
+			category: {
+				ko: '불수있는곳 / 홈페이지 / Etc',
+				en: 'Available places / Homepage / Etc',
+			},
+			duration: '12개월',
+			teamSize: '15명',
+			type: 'cosmetics',
+		},
+		{
+			id: 8,
 			title: {
 				ko: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
 				en: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
 			},
-			imagePath: '/project-images/project-6.jpeg',
+			imagePath: '/project-images/project-8.png',
 			description: {
 				ko: '설명',
 				en: 'Description',

@@ -104,15 +104,6 @@ function FloatingElements() {
 	);
 }
 
-// Loading fallback
-function SceneLoader() {
-	return (
-		<div className='absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800'>
-			<div className='w-8 h-8 border-2 border-[#bdb9dc] border-t-transparent rounded-full animate-spin'></div>
-		</div>
-	);
-}
-
 export default function Scene3D() {
 	return (
 		<div className='fixed inset-0 -z-10 w-full h-full'>

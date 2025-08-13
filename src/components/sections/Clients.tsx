@@ -13,14 +13,12 @@ export default function Clients({ locale }: ClientsProps) {
 
 	const content = {
 		ko: {
-			title: 'Our Clients',
-			subtitle: '파트너사',
+			title: '파트너사',
 			description:
 				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, 이상엔터, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, 하우스오브신세계,",
 		},
 		en: {
-			title: 'Our Clients',
-			subtitle: 'Client Partners',
+			title: 'Partners',
 			description:
 				"MBC Plus, MVC everyone, Tving, Waave, Shortime, Clos De L'obac, Lee Sang Entertainment, Pledis, YG, Inkode, Rain Company, Viu, ViuTV, DatVietVAC, VieON, House of Shinsegae,",
 		},
@@ -105,13 +103,10 @@ export default function Clients({ locale }: ClientsProps) {
 	}, []);
 
 	return (
-		<section id='clients' className='py-16 lg:py-24 bg-[#bdb9dc]'>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-				<div ref={sectionRef} className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
-						{t.title}
-					</h2>
-					<p className='text-xl text-gray-600 mb-8'>{t.subtitle}</p>
+		<section id='clients' className='py-16 lg:py-24 bg-[#ffffff]'>
+			<div ref={sectionRef} className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+				<div className='text-center mb-16'>
+					<h2 className='text-2xl text-[#827bb8] mb-8'>{t.title}</h2>
 				</div>
 
 				{/* Client Logos Section */}
@@ -123,20 +118,14 @@ export default function Clients({ locale }: ClientsProps) {
 									key={index}
 									className='group relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32'
 								>
-									{/* Circular container */}
-									<div className='w-full h-full bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center p-4 group-hover:bg-gray-50'>
-										<div className='relative w-full h-full flex items-center justify-center'>
-											<Image
-												src={logoPath}
-												alt={`Client logo ${index + 1}`}
-												fill
-												className='object-contain'
-												sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, 112px'
-												unoptimized
-											/>
-										</div>
-									</div>
-
+									<Image
+										src={logoPath}
+										alt={`Client logo ${index + 1}`}
+										fill
+										className='object-contain'
+										sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, 112px'
+										unoptimized
+									/>
 									{/* Optional: Subtle animation on hover */}
 									<div className='absolute inset-0 rounded-full border-2 border-transparent group-hover:border-[#bdb9dc] transition-all duration-300 opacity-0 group-hover:opacity-100'></div>
 								</div>
@@ -175,7 +164,7 @@ export default function Clients({ locale }: ClientsProps) {
 				)}
 
 				{/* Additional content section */}
-				<div className='mt-16 text-center'>
+				{/* <div className='mt-16 text-center'>
 					<div className='bg-white rounded-2xl p-8 lg:p-12 shadow-lg'>
 						<h3 className='text-2xl lg:text-3xl font-bold text-gray-900 mb-6'>
 							{locale === 'ko' ? '파트너십' : 'Partnership'}
@@ -185,8 +174,6 @@ export default function Clients({ locale }: ClientsProps) {
 								? '우리는 다양한 지역(미국, 홍콩, 중국, 스페인, 베트남)에 걸쳐 여러 기업과 파트너십을 맺고 있습니다. 우리의 파트너십은 앞으로 전 세계적으로 확장될 것입니다.'
 								: 'We have partnerships with various companies across multiple regions (USA, Hong Kong, China, Spain, Vietnam). Our partnerships will expand globally in the future.'}
 						</p>
-
-						{/* Stats */}
 						<div className='grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12'>
 							<div className='text-center'>
 								<div className='text-3xl lg:text-4xl font-bold text-[#bdb9dc] mb-2'>
@@ -214,7 +201,7 @@ export default function Clients({ locale }: ClientsProps) {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 
 			{/* Background decoration */}

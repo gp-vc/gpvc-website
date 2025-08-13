@@ -1,8 +1,8 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
-import Carousel from '@/components/ui/Carousel';
 
 interface BusinessAreasProps {
 	locale: Locale;
@@ -13,23 +13,22 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 	const content = {
 		ko: {
-			title: 'Business Area',
+			title: '사업분야',
 		},
 		en: {
-			title: 'Business Area',
+			title: 'Business Areas',
 		},
 	};
 
 	const businessAreas = [
 		{
 			id: 1,
-			category: 'Production / Investment',
-			title: { ko: '방송', en: 'Broadcasting' },
+			title: { ko: '프로듀싱/투자', en: 'Production & Investment' },
 			description: {
 				ko: '드라마, 영화, 콘서트, 팬미팅, 공연',
 				en: 'Drama, Film, Concert, Fan meeting, Performance',
 			},
-			image: '/placeholder-production.jpg',
+			image: '/stock-images/production.jpeg',
 			items: [
 				{ ko: '방송', en: 'Broadcasting' },
 				{ ko: '드라마', en: 'Drama' },
@@ -41,13 +40,12 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 		},
 		{
 			id: 2,
-			category: 'IP',
-			title: { ko: 'IP', en: 'IP' },
+			title: { ko: '저작권', en: 'IP' },
 			description: {
 				ko: '방송, 숏폼 드라마, 웹 에둘, 유튜브',
 				en: 'Broadcasting, Short-form Drama, Web Episodes, YouTube',
 			},
-			image: '/placeholder-ip.jpg',
+			image: '/stock-images/ip.jpeg',
 			items: [
 				{ ko: '방송', en: 'Broadcasting' },
 				{ ko: '숏폼 드라마', en: 'Short-form Drama' },
@@ -57,29 +55,27 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 		},
 		{
 			id: 3,
-			category: 'Brand',
-			title: { ko: 'Brand', en: 'Brand' },
+			title: { ko: '브랜드', en: 'Brand' },
 			description: {
-				ko: 'Wine, Cosmetics, Body wipes, Perfume oil',
+				ko: '와인, 화장품, 바디워시, 향유',
 				en: 'Wine, Cosmetics, Body wipes, Perfume oil',
 			},
-			image: '/placeholder-brand.jpg',
+			image: '/stock-images/brand.jpeg',
 			items: [
-				{ ko: 'Wine', en: 'Wine' },
-				{ ko: 'Cosmetics', en: 'Cosmetics' },
-				{ ko: 'Body wipes', en: 'Body wipes' },
-				{ ko: 'Perfume oil', en: 'Perfume oil' },
+				{ ko: '와인', en: 'Wine' },
+				{ ko: '화장품', en: 'Cosmetics' },
+				{ ko: '바디워시', en: 'Body wipes' },
+				{ ko: '향유', en: 'Perfume oil' },
 			],
 		},
 		{
 			id: 4,
-			category: 'Distribution',
-			title: { ko: 'Distribution', en: 'Distribution' },
+			title: { ko: '배포', en: 'Distribution' },
 			description: {
 				ko: '콘텐츠, 음원, MD, 굿즈, etc.',
 				en: 'Contents, Music, MD, Goods, etc.',
 			},
-			image: '/placeholder-distribution.jpg',
+			image: '/stock-images/distribution.jpeg',
 			items: [
 				{ ko: '콘텐츠', en: 'Contents' },
 				{ ko: '음원', en: 'Music' },
@@ -90,17 +86,16 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 		},
 		{
 			id: 5,
-			category: 'Agency',
-			title: { ko: 'Agency', en: 'Agency' },
+			title: { ko: '대행사', en: 'Agency' },
 			description: {
-				ko: 'Artists, Brand, Events',
+				ko: '아티스트, 브랜드, 이벤트',
 				en: 'Artists, Brand, Events',
 			},
-			image: '/placeholder-agency.jpg',
+			image: '/stock-images/agency.jpeg',
 			items: [
-				{ ko: 'Artists', en: 'Artists' },
-				{ ko: 'Brand', en: 'Brand' },
-				{ ko: 'Events', en: 'Events' },
+				{ ko: '아티스트', en: 'Artists' },
+				{ ko: '브랜드', en: 'Brand' },
+				{ ko: '이벤트', en: 'Events' },
 			],
 		},
 	];
@@ -134,25 +129,14 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 			{/* Image with monochrome effect */}
 			<div className='h-64 relative overflow-hidden flex-shrink-0'>
 				{/* Placeholder image with food styling similar to mockup */}
-				<div className='absolute inset-0 bg-gradient-to-br from-gray-300 to-gray-500 group-hover:from-[#bdb9dc] group-hover:to-[#827bb8] transition-all duration-500'>
-					{/* Food styling elements to match mockup */}
-					<div className='absolute inset-0 flex items-center justify-center'>
-						{area.category === 'Brand' && (
-							<div className='relative'>
-								{/* Wine glass and cheese board styling */}
-								<div className='w-16 h-20 bg-white/30 rounded-b-full mx-auto mb-4'></div>
-								<div className='w-24 h-12 bg-white/20 rounded-lg'></div>
-								<div className='absolute top-6 right-2 w-6 h-6 bg-white/25 rounded-full'></div>
-								<div className='absolute bottom-2 left-1 w-4 h-4 bg-white/25 rounded-full'></div>
-							</div>
-						)}
-						{area.category !== 'Brand' && (
-							<div className='w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm'>
-								<div className='w-10 h-10 bg-white/30 rounded-xl'></div>
-							</div>
-						)}
-					</div>
-				</div>
+				<Image
+					src={area.image}
+					alt={area.title[locale]}
+					fill
+					className='object-cover transition-all duration-500'
+					sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
+					priority={area.id <= 3} // Priority for first 3 images
+				/>
 
 				{/* Monochrome overlay that disappears on hover */}
 				<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
@@ -160,13 +144,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 			{/* Content - now fills remaining space */}
 			<div className='p-6 flex-1 flex flex-col'>
-				<div className='mb-3'>
-					<span className='text-xs font-semibold text-[#bdb9dc] uppercase tracking-wide'>
-						{area.category}
-					</span>
-				</div>
-
-				<h3 className='text-xl font-bold text-gray-900 mb-3 group-hover:text-[#bdb9dc] transition-colors duration-300'>
+				<h3 className='text-xl font-bold text-gray-900 mb-3 group-hover:text-[#827bb8] transition-colors duration-300'>
 					{area.title[locale]}
 				</h3>
 
@@ -174,7 +152,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 				<div className='space-y-2 mb-4 flex-1'>
 					{area.items.map((item, itemIndex) => (
 						<div key={itemIndex} className='flex items-center space-x-2'>
-							<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full flex-shrink-0'></div>
+							<div className='w-1.5 h-1.5 bg-[#a8a4d0] rounded-full flex-shrink-0'></div>
 							<span className='text-sm text-gray-600'>{item[locale]}</span>
 						</div>
 					))}
@@ -182,7 +160,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 				{/* Button - always at bottom */}
 				<div className='mt-auto'>
-					<button className='flex items-center space-x-2 text-[#bdb9dc] hover:text-[#827bb8] transition-colors duration-300 group/btn'>
+					<button className='flex items-center space-x-2 text-[#a8a4d0] hover:text-[#827bb8] transition-colors duration-300 group/btn'>
 						<span className='text-sm font-medium'>
 							{locale === 'ko' ? '자세히 보기' : 'Learn More'}
 						</span>
@@ -197,27 +175,23 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	);
 
 	return (
-		<section id='business' className='py-16 lg:py-24 bg-white'>
-			<div ref={sectionRef} className='text-center mb-16'>
-				<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
-					{t.title}
-				</h2>
-			</div>
+		<section
+			id='business'
+			className='py-16 lg:py-24 bg-white mx-auto px-4 sm:px-6 lg:px-8'
+		>
+			<div ref={sectionRef}>
+				<div className='text-center mb-16'>
+					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
+						{t.title}
+					</h2>
+				</div>
 
-			{/* Carousel with consistent card heights */}
-			<div className='relative'>
-				<style jsx>{`
-					.business-carousel .swiper-slide {
-						height: auto;
-						display: flex;
-					}
-					.business-carousel .swiper-slide > div {
-						height: 100%;
-						min-height: 400px;
-					}
-				`}</style>
-				<div className='business-carousel'>
-					<Carousel items={businessAreas} renderItem={renderBusinessCard} />
+				{/* Carousel with consistent card heights */}
+				<div className='relative'>
+					{/* Static Grid Layout */}
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8'>
+						{businessAreas.map((area) => renderBusinessCard(area))}
+					</div>
 				</div>
 			</div>
 		</section>

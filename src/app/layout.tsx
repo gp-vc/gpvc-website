@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-	title: 'GPVC - Global Content Media Group',
+	title: 'GPVC',
 	description:
 		'Global Content Media Group providing innovative solutions across various fields',
 };

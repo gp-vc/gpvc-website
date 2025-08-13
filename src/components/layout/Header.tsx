@@ -24,7 +24,7 @@ export default function Header({ locale }: HeaderProps) {
 	const navigation = {
 		ko: {
 			about: '회사소개',
-			business: '사업영역',
+			business: '사업분야',
 			projects: '프로젝트',
 			contact: '연락처',
 		},

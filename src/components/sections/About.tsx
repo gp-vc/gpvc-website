@@ -181,12 +181,6 @@ export default function About({ locale }: AboutProps) {
 					</div>
 				</div>
 			</div>
-
-			{/* Background decoration */}
-			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-				<div className='absolute top-1/4 -left-20 w-40 h-40 bg-[#bdb9dc]/5 rounded-full blur-3xl'></div>
-				<div className='absolute bottom-1/4 -right-20 w-32 h-32 bg-[#a8a4d0]/5 rounded-full blur-3xl'></div>
-			</div>
 		</section>
 	);
 }

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Mail, Phone, MapPin, Globe } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 
@@ -8,22 +9,21 @@ interface FooterProps {
 export default function Footer({ locale }: FooterProps) {
 	const content = {
 		ko: {
-			company: 'GPVC',
-			description: '혁신적인 기술로 미래를 선도하는 글로벌 기업',
+			description:
+				'다양한 문화와 언어를 통해 모두에게 의미 있는 콘텐츠를 연결하는 글로벌 콘텐츠 미디어 그룹',
 			contact: '연락처',
-			address: '서울 강남구 언주로157길 6',
+			address: '서울 강남구 언주로157길 6, 3층',
 			phone: '+82-2-1234-5678',
-			email: 'info@gpvc.com',
+			email: 'info@gp-vc.com',
 			copyright: '© 2025 GPVC. 모든 권리 보유.',
 		},
 		en: {
-			company: 'GPVC',
 			description:
-				'A global company leading the future with innovative technology',
+				'Global content media group connecting meaningful content with audiences across culture and languages',
 			contact: 'Contact Info',
-			address: '157 Eonju-ro 6, Gangnam-gu, Seoul, South Korea',
+			address: '157 Eonju-ro 6, Floor 3, Gangnam-gu, Seoul, South Korea',
 			phone: '+82-2-1234-5678',
-			email: 'info@gpvc.com',
+			email: 'info@gp-vc.com',
 			copyright: '© 2025 GPVC. All rights reserved.',
 		},
 	};
@@ -36,14 +36,29 @@ export default function Footer({ locale }: FooterProps) {
 				<div className='grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12'>
 					{/* Company Info */}
 					<div className='col-span-1'>
-						<div className='mb-6'>
-							<div className='text-3xl font-bold text-[#bdb9dc] mb-4'>
-								{t.company}
+						<div className='mb-6 flex gap-2'>
+							<div className='w-12 h-12 lg:w-28 lg:h-12 relative'>
+								<Image
+									src='/branding/gpvc-text-logo-primary.svg'
+									alt='GPVC'
+									fill
+									className='object-contain drop-shadow-2xl'
+									sizes='256px'
+								/>
 							</div>
+							<div className='w-12 h-12 lg:w-12 lg:h-12 relative'>
+								<Image
+									src='/branding/gpvc-symbol-logo-primary.svg'
+									alt='GPVC Logo'
+									fill
+									className='object-contain drop-shadow-2xl'
+									sizes='256px'
+								/>
+							</div>
+						</div>
 							<p className='text-gray-300 text-sm leading-relaxed max-w-md'>
 								{t.description}
 							</p>
-						</div>
 					</div>
 
 					{/* Contact Info */}

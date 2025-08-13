@@ -1,13 +1,15 @@
 'use client';
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { Send } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
+import Image from 'next/image';
 
 interface ContactProps {
 	locale: Locale;
 }
 
 export default function Contact({ locale }: ContactProps) {
+	const sectionRef = useRef<HTMLDivElement>(null);
 	const [formData, setFormData] = useState({
 		firstName: '',
 		lastName: '',
@@ -25,30 +27,39 @@ export default function Contact({ locale }: ContactProps) {
 			message: '메시지',
 			messagePlaceholder: '질문이나 메시지를 입력하세요',
 			submit: 'Submit',
-			company: 'GPVC Co.,Ltd.',
-			address: '서울 강남구 언주로157길 6',
-			phone: '+82-2-1234-5678',
-			emailAddress: 'info@gpvc.com',
-			copyright: '© 2025 GPVC Co.,Ltd. All rights reserved.',
 		},
 		en: {
 			title: 'Contact Us',
-			subtitle: 'Contact Information',
+			subtitle: 'Get in Touch',
 			firstName: 'First Name',
 			lastName: 'Last Name',
 			email: 'Email Address',
 			message: 'Message',
 			messagePlaceholder: 'Enter your question or message',
 			submit: 'Submit',
-			company: 'GPVC Co.,Ltd.',
-			address: '157 Eonju-ro 6, Gangnam-gu, Seoul, South Korea',
-			phone: '+82-2-1234-5678',
-			emailAddress: 'info@gpvc.com',
-			copyright: '© 2025 GPVC Co.,Ltd. All rights reserved.',
 		},
 	};
 
 	const t = content[locale];
+
+	useEffect(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('animate-slide-up');
+					}
+				});
+			},
+			{ threshold: 0.1 }
+		);
+
+		if (sectionRef.current) {
+			observer.observe(sectionRef.current);
+		}
+
+		return () => observer.disconnect();
+	}, []);
 
 	const handleInputChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -65,25 +76,28 @@ export default function Contact({ locale }: ContactProps) {
 	return (
 		<section
 			id='contact'
-			className='py-16 lg:py-24 bg-white relative z-10'
-			style={{ backgroundColor: '#ffffff' }}
+			ref={sectionRef}
+			className='py-16 lg:py-24 bg-transparent relative z-10'
 		>
-			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+			{/* Subtle overlay for better text readability */}
+			<div className='absolute inset-0 bg-black/10'></div>
+
+			<div className='relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Section Header */}
 				<div className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
+					<h2 className='text-3xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg'>
 						{t.title}
 					</h2>
-					<p className='text-xl text-gray-600 max-w-3xl mx-auto'>
+					{/* <p className='text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md'>
 						{t.subtitle}
-					</p>
+					</p> */}
 				</div>
 
 				{/* Main Content */}
 				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16'>
 					{/* Contact Form */}
-					<div className='bg-white p-8 rounded-2xl shadow-xl border border-gray-100'>
-						<h3 className='text-2xl font-bold text-gray-900 mb-6'>
+					<div className='glass-dark p-8 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-xl'>
+						<h3 className='text-2xl font-bold text-white mb-6'>
 							{locale === 'ko' ? '문의하기' : 'Get in Touch'}
 						</h3>
 
@@ -93,7 +107,7 @@ export default function Contact({ locale }: ContactProps) {
 								<div>
 									<label
 										htmlFor='firstName'
-										className='block text-sm font-medium text-gray-700 mb-2'
+										className='block text-sm font-medium text-white/90 mb-2'
 									>
 										{t.firstName}
 									</label>
@@ -104,14 +118,14 @@ export default function Contact({ locale }: ContactProps) {
 										value={formData.firstName}
 										onChange={handleInputChange}
 										placeholder='Jane'
-										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] bg-white text-gray-900'
+										className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 										required
 									/>
 								</div>
 								<div>
 									<label
 										htmlFor='lastName'
-										className='block text-sm font-medium text-gray-700 mb-2'
+										className='block text-sm font-medium text-white/90 mb-2'
 									>
 										{t.lastName}
 									</label>
@@ -121,8 +135,8 @@ export default function Contact({ locale }: ContactProps) {
 										name='lastName'
 										value={formData.lastName}
 										onChange={handleInputChange}
-										placeholder='Smitherton'
-										className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] bg-white text-gray-900'
+										placeholder='Doe'
+										className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 										required
 									/>
 								</div>
@@ -132,7 +146,7 @@ export default function Contact({ locale }: ContactProps) {
 							<div>
 								<label
 									htmlFor='email'
-									className='block text-sm font-medium text-gray-700 mb-2'
+									className='block text-sm font-medium text-white/90 mb-2'
 								>
 									{t.email}
 								</label>
@@ -142,8 +156,8 @@ export default function Contact({ locale }: ContactProps) {
 									name='email'
 									value={formData.email}
 									onChange={handleInputChange}
-									placeholder='email@janesfakedomain.net'
-									className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] bg-white text-gray-900'
+									placeholder='you@email.com'
+									className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 									required
 								/>
 							</div>
@@ -152,7 +166,7 @@ export default function Contact({ locale }: ContactProps) {
 							<div>
 								<label
 									htmlFor='message'
-									className='block text-sm font-medium text-gray-700 mb-2'
+									className='block text-sm font-medium text-white/90 mb-2'
 								>
 									{t.message}
 								</label>
@@ -163,7 +177,7 @@ export default function Contact({ locale }: ContactProps) {
 									value={formData.message}
 									onChange={handleInputChange}
 									placeholder={t.messagePlaceholder}
-									className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc] resize-vertical bg-white text-gray-900'
+									className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 resize-vertical bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 									required
 								/>
 							</div>
@@ -171,7 +185,7 @@ export default function Contact({ locale }: ContactProps) {
 							{/* Submit Button */}
 							<button
 								type='submit'
-								className='w-full bg-black text-white py-4 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 flex items-center justify-center space-x-2 group'
+								className='w-full bg-[#bdb9dc] hover:bg-[#a8a4d0] text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 group hover:shadow-xl hover:scale-[1.02]'
 							>
 								<span>{t.submit}</span>
 								<Send
@@ -182,92 +196,51 @@ export default function Contact({ locale }: ContactProps) {
 						</form>
 					</div>
 
-					{/* Contact Info & Image */}
-					<div className='space-y-8'>
-						{/* Hero Image */}
-						<div className='aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl'>
-							<div className='w-full h-full bg-gradient-to-br from-[#bdb9dc] to-[#827bb8] relative'>
-								{/* Content overlay */}
-								<div className='absolute inset-0 flex items-end justify-start p-8'>
-									<div className='text-white'>
-										<h3 className='text-2xl font-bold mb-2'>Connect With Us</h3>
-										<p className='text-white/80'>
-											{locale === 'ko'
-												? '글로벌 파트너십을 구축해나가겠습니다'
-												: 'Building global partnerships'}
-										</p>
-									</div>
-								</div>
+					{/* Hero Image - Matches Form Height */}
+					<div className='h-full flex'>
+						{/* Bridge Image - Full Right Section */}
+						<div className='w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer relative'>
+							{/* Image Container with object-fit center */}
+							<div className='relative w-full h-full min-h-[600px]'>
+								<Image
+									src='/stock-images/bridge-highway.jpeg'
+									alt='Bridge Highway'
+									fill
+									className='object-cover object-center transition-all duration-500'
+									sizes='(max-width: 1024px) 100vw, 50vw'
+									priority
+								/>
 
-								{/* Abstract bridge/architecture elements */}
-								<div className='absolute top-1/4 right-1/4 w-32 h-2 bg-white/20 rounded-full transform rotate-12'></div>
-								<div className='absolute top-1/3 right-1/3 w-24 h-2 bg-white/15 rounded-full transform rotate-12'></div>
-								<div className='absolute bottom-1/3 left-1/4 w-40 h-1 bg-white/10 rounded-full transform -rotate-12'></div>
-							</div>
-						</div>
+								{/* Monochrome overlay that disappears on hover */}
+								<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
 
-						{/* Contact Information */}
-						<div className='bg-gray-50 rounded-2xl p-8'>
-							<h3 className='text-xl font-bold text-gray-900 mb-6'>
-								{t.company}
-							</h3>
-
-							<div className='space-y-4'>
-								<div className='flex items-start space-x-3'>
-									<MapPin
-										size={20}
-										className='text-[#bdb9dc] mt-1 flex-shrink-0'
-									/>
-									<span className='text-gray-600 text-sm leading-relaxed'>
-										{t.address}
-									</span>
-								</div>
-
-								<div className='flex items-center space-x-3'>
-									<Phone size={20} className='text-[#bdb9dc] flex-shrink-0' />
-									<span className='text-gray-600 text-sm'>{t.phone}</span>
-								</div>
-
-								<div className='flex items-center space-x-3'>
-									<Mail size={20} className='text-[#bdb9dc] flex-shrink-0' />
-									<span className='text-gray-600 text-sm'>
-										{t.emailAddress}
-									</span>
-								</div>
-							</div>
-
-							{/* Footer Info Grid */}
-							<div className='mt-8 pt-6 border-t border-gray-200'>
-								<div className='grid grid-cols-3 gap-4 text-center text-sm'>
-									<div>
-										<div className='font-medium text-gray-700 mb-1'>
-											{locale === 'ko' ? '주소' : 'Address'}
-										</div>
-										<div className='text-gray-500'>
-											{locale === 'ko' ? '페이지' : 'Page'}
-										</div>
-									</div>
-									<div>
-										<div className='font-medium text-gray-700 mb-1'>
-											{locale === 'ko' ? '주소' : 'Address'}
-										</div>
-										<div className='text-gray-500'>
-											{locale === 'ko' ? '페이지' : 'Page'}
-										</div>
-									</div>
-									<div>
-										<div className='font-medium text-gray-700 mb-1'>
-											{locale === 'ko' ? '주소' : 'Address'}
-										</div>
-										<div className='text-gray-500'>
-											{locale === 'ko' ? '페이지' : 'Page'}
+								{/* Content overlay - Centered */}
+								<div className='absolute inset-0 flex items-center justify-center p-8'>
+									{/* Logo and text container - appears on hover */}
+									<div className='relative opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100'>
+										{/* Large centered logo with text inside */}
+										<div className='w-48 h-48 lg:w-64 lg:h-64 relative mx-auto'>
+											<Image
+												src='/branding/gpvc-symbol-logo-white.svg'
+												alt='GPVC Logo'
+												fill
+												className='object-contain drop-shadow-2xl'
+												sizes='256px'
+											/>
 										</div>
 									</div>
 								</div>
 
-								<div className='mt-6 pt-4 border-t border-gray-200 text-center'>
-									<p className='text-xs text-gray-500'>{t.copyright}</p>
-								</div>
+								{/* Floating decorative elements */}
+								<div className='absolute top-8 right-8 w-12 h-12 bg-white/10 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500'></div>
+								<div
+									className='absolute bottom-8 left-8 w-8 h-8 bg-white/15 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500'
+									style={{ animationDelay: '1s' }}
+								></div>
+								<div
+									className='absolute top-1/4 right-1/4 w-6 h-6 bg-white/12 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500'
+									style={{ animationDelay: '2s' }}
+								></div>
 							</div>
 						</div>
 					</div>

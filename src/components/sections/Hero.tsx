@@ -26,10 +26,12 @@ export default function Hero({ locale }: HeroProps) {
 			title: 'Global Content Media Group GPVC',
 			subtitle1: 'We aim to be a destination for engaging meaningful content',
 			subtitle2: 'that connects with audiences across cultures and languages.',
-			description1: 'We will build a global audience for our content',
-			description2: 'and become a leading force in our industry.',
+			description1:
+				'We will build a global audience for our content and become a leading force in our industry.',
+			description2:
+				'We are also committed to fostering a culture of innovation and collaboration ',
 			description3:
-				'We are also committed to fostering a culture of innovation and collaboration where creative minds come together to produce content that makes a real difference.',
+				'where creative minds come together to produce content that makes a real difference.',
 			scrollDown: 'Learn More',
 		},
 	};
