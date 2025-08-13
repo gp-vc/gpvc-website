@@ -12,7 +12,8 @@ export default function Hero({ locale }: HeroProps) {
 
 	const content = {
 		ko: {
-			title: 'Global Content Media Group GPVC',
+			// title: 'Global Content Media Group GPVC',
+			title: 'GPVC',
 			subtitle1: '우리는 문화와 언어를 넘나들며 관객들과 연결되는 매력적이고',
 			subtitle2: '의미 있는 콘텐츠를 위한 목적지가 되는 것을 목표로 합니다.',
 			description1:
@@ -23,7 +24,8 @@ export default function Hero({ locale }: HeroProps) {
 			scrollDown: '더 알아보기',
 		},
 		en: {
-			title: 'Global Content Media Group GPVC',
+			// title: 'Global Content Media Group GPVC',
+			title: 'GPVC',
 			subtitle1: 'We aim to be a destination for engaging meaningful content',
 			subtitle2: 'that connects with audiences across cultures and languages.',
 			description1:
@@ -78,22 +80,25 @@ export default function Hero({ locale }: HeroProps) {
 			<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
 				<div className='space-y-8'>
 					{/* Main Title */}
-					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight'>
+					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl font-thin text-white leading-tight'>
 						<span className='block'>{t.title}</span>
 					</h1>
+					{/* <h1 className='animate-on-scroll text-md sm:text-lg lg:text-xl font-thin text-white leading-tight'>
+						<span className='block'>global media content group</span>
+					</h1> */}
 
 					{/* Subtitle */}
-					<div className='animate-on-scroll max-w-4xl mx-auto space-y-2'>
+					{/* <div className='animate-on-scroll max-w-4xl mx-auto space-y-2'>
 						<p className='text-xl sm:text-2xl lg:text-3xl text-[#bdb9dc] font-light leading-relaxed'>
 							{t.subtitle1}
 						</p>
 						<p className='text-xl sm:text-2xl lg:text-3xl text-[#bdb9dc] font-light leading-relaxed'>
 							{t.subtitle2}
 						</p>
-					</div>
+					</div> */}
 
 					{/* Description */}
-					<div className='animate-on-scroll max-w-4xl mx-auto space-y-4 pt-8'>
+					{/* <div className='animate-on-scroll max-w-4xl mx-auto space-y-4 pt-8'>
 						<p className='text-base sm:text-lg text-gray-300 leading-relaxed'>
 							{t.description1}
 						</p>
@@ -103,33 +108,25 @@ export default function Hero({ locale }: HeroProps) {
 						<p className='text-base sm:text-lg text-gray-300 leading-relaxed'>
 							{t.description3}
 						</p>
-					</div>
-
-					{/* CTA Button */}
-					<div className='animate-on-scroll pt-12'>
-						<button
-							onClick={scrollToNext}
-							className='group inline-flex items-center space-x-3 bg-[#bdb9dc] hover:bg-[#a8a4d0] text-white px-8 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl'
-						>
-							<span className='font-semibold text-lg'>{t.scrollDown}</span>
-							<ArrowDown
-								size={20}
-								className='group-hover:translate-y-1 transition-transform duration-300'
-							/>
-						</button>
-					</div>
+					</div> */}
 				</div>
 			</div>
 
 			{/* Scroll indicator - Desktop */}
-			<div className='hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'>
+			<div
+				onClick={scrollToNext}
+				className='cursor-pointer hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'
+			>
 				<div className='w-6 h-10 border-2 border-white/30 rounded-full flex justify-center'>
 					<div className='w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse'></div>
 				</div>
 			</div>
 
 			{/* Swipe indicator - Mobile/Tablet */}
-			<div className='lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2'>
+			<div
+				onClick={scrollToNext}
+				className='lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2'
+			>
 				<div className='flex items-center space-x-2 text-white/70 animate-pulse'>
 					<div className='flex space-x-1'>
 						<div className='w-2 h-2 bg-white/50 rounded-full animate-bounce'></div>
