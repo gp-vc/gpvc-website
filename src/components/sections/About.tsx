@@ -69,114 +69,37 @@ export default function About({ locale }: AboutProps) {
 		<section
 			id='about'
 			ref={sectionRef}
-			className='py-16 lg:py-24 bg-white relative overflow-hidden'
+			className='py-16 lg:py-24 bg-transparent relative overflow-hidden'
 		>
 			<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Header */}
-				<div className='animate-on-scroll text-center mb-16'>
-					<h2 className='text-3xl sm:text-4xl lg:text-5xl font-thin text-gray-900 mb-8'>
+				<div className='animate-on-scroll text-left mb-16'>
+					<h2 className='text-3xl sm:text-4xl lg:text-5xl font-thin text-white mb-8 drop-shadow-lg'>
 						{t.title}
 					</h2>
 
-					<div className='max-w-5xl mx-auto space-y-4'>
-						<p className='text-lg sm:text-xl text-gray-700 leading-relaxed font-medium'>
+					<div className='max-w-5xl mx-auto'>
+						<p className='text-lg sm:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md'>
 							{t.subtitle}
 						</p>
-						<p className='text-lg sm:text-xl text-gray-700 leading-relaxed font-medium'>
+						<p className='text-lg sm:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md'>
 							{t.subtitle2}
 						</p>
 					</div>
 				</div>
 
-				{/* Content Grid */}
-				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center'>
-					{/* Left Content */}
+				{/* Content - Single Column */}
+				<div className='max-w-4xl mx-auto'>
 					<div className='animate-on-scroll space-y-6'>
-						<div className='space-y-4'>
-							<p className='text-gray-600 leading-relaxed'>{t.description1}</p>
-							<p className='text-gray-600 leading-relaxed'>{t.description2}</p>
-							<p className='text-gray-600 leading-relaxed'>{t.description3}</p>
+						<div>
+							<p className='text-white/80 leading-relaxed drop-shadow-sm'>{t.description1}</p>
+							<p className='text-white/80 leading-relaxed drop-shadow-sm'>{t.description2}</p>
+							<p className='text-white/80 leading-relaxed drop-shadow-sm'>{t.description3}</p>
 							{t.description4 && (
-								<p className='text-gray-600 leading-relaxed'>
+								<p className='text-white/80 leading-relaxed drop-shadow-sm'>
 									{t.description4}
 								</p>
 							)}
-						</div>
-
-						{/* Mission Statement */}
-						<div className='bg-gradient-to-r from-[#bdb9dc]/10 to-[#a8a4d0]/10 p-6 rounded-2xl border-l-4 border-[#bdb9dc]'>
-							<p className='text-[#827bb8] font-medium leading-relaxed italic text-lg'>
-								{t.mission}
-							</p>
-						</div>
-
-						{/* Stats */}
-						<div className='grid grid-cols-3 gap-6 pt-8'>
-							<div className='text-center'>
-								<div className='text-2xl lg:text-3xl font-thin text-[#bdb9dc] mb-2'>
-									5+
-								</div>
-								<div className='text-sm text-gray-600'>
-									{locale === 'ko' ? '국가' : 'Countries'}
-								</div>
-							</div>
-							<div className='text-center'>
-								<div className='text-2xl lg:text-3xl font-thin text-[#bdb9dc] mb-2'>
-									50+
-								</div>
-								<div className='text-sm text-gray-600'>
-									{locale === 'ko' ? '파트너사' : 'Partners'}
-								</div>
-							</div>
-							<div className='text-center'>
-								<div className='text-2xl lg:text-3xl font-thin text-[#bdb9dc] mb-2'>
-									100+
-								</div>
-								<div className='text-sm text-gray-600'>
-									{locale === 'ko' ? '프로젝트' : 'Projects'}
-								</div>
-							</div>
-						</div>
-					</div>
-
-					{/* Right Content - Visual */}
-					<div className='animate-on-scroll'>
-						<div className='relative'>
-							{/* Main visual placeholder */}
-							<div className='aspect-square bg-gradient-to-br from-[#bdb9dc] to-[#827bb8] rounded-3xl shadow-2xl relative overflow-hidden'>
-								{/* Decorative elements */}
-								<div className='absolute inset-0 bg-gradient-to-t from-black/10 to-transparent'></div>
-
-								{/* Content overlay */}
-								<div className='absolute inset-0 flex items-center justify-center'>
-									<div className='text-center text-white p-8'>
-										<div className='w-20 h-20 bg-white/20 rounded-2xl mx-auto mb-6 flex items-center justify-center backdrop-blur-sm'>
-											<div className='w-10 h-10 bg-white/30 rounded-xl'></div>
-										</div>
-										<h3 className='text-xl font-thin mb-2'>Global Reach</h3>
-										<p className='text-white/80 text-sm'>
-											{locale === 'ko'
-												? '전 세계를 연결하는 콘텐츠'
-												: 'Content Connecting the World'}
-										</p>
-									</div>
-								</div>
-
-								{/* Floating elements */}
-								<div className='absolute top-4 right-4 w-12 h-12 bg-white/10 rounded-full backdrop-blur-sm animate-float'></div>
-								<div
-									className='absolute bottom-6 left-6 w-8 h-8 bg-white/15 rounded-full backdrop-blur-sm animate-float'
-									style={{ animationDelay: '1s' }}
-								></div>
-								<div
-									className='absolute top-1/2 left-4 w-6 h-6 bg-white/12 rounded-full backdrop-blur-sm animate-float'
-									style={{ animationDelay: '2s' }}
-								></div>
-							</div>
-
-							{/* Secondary visual elements */}
-							<div className='absolute -bottom-6 -right-6 w-24 h-24 bg-[#a8a4d0] rounded-2xl shadow-xl opacity-80 transform rotate-12'></div>
-							<div className='absolute -top-4 -left-4 w-16 h-16 bg-[#9590c4] rounded-xl shadow-lg opacity-60 transform -rotate-12'></div>
 						</div>
 					</div>
 				</div>

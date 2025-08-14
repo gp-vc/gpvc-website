@@ -124,18 +124,17 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	const renderBusinessCard = (area: (typeof businessAreas)[0]) => (
 		<div
 			key={area.id}
-			className='group relative bg-white rounded-2xl overflow-hidden hover:shadow-none transition-all duration-500 h-full flex flex-col'
+			className='group relative bg-white/20 backdrop-blur-md rounded-2xl overflow-hidden hover:bg-white/30 hover:shadow-2xl transition-all duration-500 h-full flex flex-col'
 		>
 			{/* Image with monochrome effect */}
 			<div className='h-64 relative overflow-hidden flex-shrink-0'>
-				{/* Placeholder image with food styling similar to mockup */}
 				<Image
 					src={area.image}
 					alt={area.title[locale]}
 					fill
 					className='object-cover transition-all duration-500'
 					sizes='(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw'
-					priority={area.id <= 3} // Priority for first 3 images
+					priority={area.id <= 3}
 				/>
 
 				{/* Monochrome overlay that disappears on hover */}
@@ -144,7 +143,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 			{/* Content - now fills remaining space */}
 			<div className='p-6 flex-1 flex flex-col'>
-				<h3 className='text-xl font-thin text-gray-900 mb-3 group-hover:text-[#827bb8] transition-colors duration-300'>
+				<h3 className='text-xl font-thin text-white mb-3 group-hover:text-[#bdb9dc] transition-colors duration-300 drop-shadow-lg'>
 					{area.title[locale]}
 				</h3>
 
@@ -152,16 +151,18 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 				<div className='space-y-2 mb-4 flex-1'>
 					{area.items.map((item, itemIndex) => (
 						<div key={itemIndex} className='flex items-center space-x-2'>
-							<div className='w-1.5 h-1.5 bg-[#a8a4d0] rounded-full flex-shrink-0'></div>
-							<span className='text-sm text-gray-600'>{item[locale]}</span>
+							<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full flex-shrink-0'></div>
+							<span className='text-sm text-white/90 drop-shadow'>
+								{item[locale]}
+							</span>
 						</div>
 					))}
 				</div>
 
 				{/* Button - always at bottom */}
 				<div className='mt-auto'>
-					<button className='flex items-center space-x-2 text-[#a8a4d0] hover:text-[#827bb8] transition-colors duration-300 group/btn'>
-						<span className='text-sm font-medium'>
+					<button className='flex items-center space-x-2 text-[#bdb9dc] hover:text-white transition-colors duration-300 group/btn'>
+						<span className='text-sm font-medium drop-shadow'>
 							{locale === 'ko' ? '자세히 보기' : 'Learn More'}
 						</span>
 						<ArrowRight
@@ -177,11 +178,11 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	return (
 		<section
 			id='business'
-			className='py-16 lg:py-24 bg-white mx-auto px-4 sm:px-6 lg:px-8'
+			className='py-16 lg:py-24 mx-auto px-4 sm:px-6 lg:px-8'
 		>
 			<div ref={sectionRef}>
 				<div className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-thin text-gray-900 mb-6'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
 					</h2>
 				</div>
