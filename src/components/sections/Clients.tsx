@@ -1,25 +1,8 @@
 'use client';
 import { useRef, useEffect } from 'react';
-import { Locale } from '@/lib/i18n';
 import Image from 'next/image';
-
-// Static import of all logo paths
-// You can add/remove logos here — must match exact file name in /public/client-logos
-const clientLogos = [
-	'/client-logos/shinsegae.svg',
-	'/client-logos/mbc-plus.svg',
-	'/client-logos/mbc-everyone.svg',
-	'/client-logos/tving.svg',
-	'/client-logos/wavve.svg',
-	'/client-logos/shortime.svg',
-	'/client-logos/pledis.svg',
-	'/client-logos/yg.svg',
-	'/client-logos/inkode.svg',
-	'/client-logos/viu.svg',
-	'/client-logos/viu-tv.svg',
-	'/client-logos/dat-viet-vac.svg',
-	'/client-logos/vie-on.svg',
-];
+import { Locale } from '@/lib/i18n';
+import { clientLogos } from '@/assets/logos';
 
 interface ClientsProps {
 	locale: Locale;
@@ -71,36 +54,24 @@ export default function Clients({ locale }: ClientsProps) {
 				</div>
 
 				{/* Client Logos Section */}
-				{clientLogos.length > 0 ? (
-					<div className='mb-8'>
-						<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center'>
-							{clientLogos.map((logoPath, index) => (
-								<div
-									key={index}
-									className='group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 cursor-pointer'
-								>
-									<Image
-										src={logoPath}
-										alt={`Client logo ${index + 1}`}
-										fill
-										className='object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0 group-active:grayscale-0'
-										sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px'
-										unoptimized
-									/>
-								</div>
-							))}
-						</div>
+				<div className='mb-8'>
+					<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center'>
+						{clientLogos.map((logo, index) => (
+							<div
+								key={index}
+								className='group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 cursor-pointer'
+							>
+								<Image
+									src={logo.src}
+									alt={logo.alt}
+									fill
+									className='object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0 group-active:grayscale-0'
+									sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px'
+								/>
+							</div>
+						))}
 					</div>
-				) : (
-					/* Fallback text when no logos are available */
-					<div className='mb-8'>
-						<div className='max-w-5xl mx-auto text-center'>
-							<p className='text-base text-gray-600 leading-relaxed'>
-								{t.description}
-							</p>
-						</div>
-					</div>
-				)}
+				</div>
 			</div>
 
 			{/* Background decoration */}
