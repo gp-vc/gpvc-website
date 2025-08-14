@@ -53,20 +53,23 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'poster',
 		},
 		{
-			id: 3,
-			title: { ko: '요술램프', en: 'Magic Lamp' },
-			imagePath: '/project-images/project-3.jpeg',
+			id: 7,
+			title: {
+				ko: '인피니트 아성열 중국 Fan meeting',
+				en: 'Infinite Lee Seong Yeol China Fan Meeting',
+			},
+			imagePath: '/project-images/project-7.jpeg',
 			description: {
-				ko: '창의적인 콘텐츠 제작과 브랜드 아이덴티티 구축',
-				en: 'Creative content production and brand identity development',
+				ko: '글로벌 팬미팅 이벤트 기획, 진행 및 라이브 스트리밍',
+				en: 'Global fan meeting event planning, execution and live streaming',
 			},
 			category: {
-				ko: '콘텐츠 / 제작 / 기획',
-				en: 'Content / Production / Planning',
+				ko: '이벤트 / 팬미팅 / 글로벌',
+				en: 'Event / Fan Meeting / Global',
 			},
-			duration: '8개월',
-			teamSize: '10명',
-			type: 'poster',
+			duration: '15개월',
+			teamSize: '20명',
+			type: 'event',
 		},
 		{
 			id: 4,
@@ -86,6 +89,41 @@ export default function Projects({ locale }: ProjectsProps) {
 			duration: '6개월',
 			teamSize: '8명',
 			type: 'drama',
+		},
+		{
+			id: 3,
+			title: { ko: '요술램프', en: 'Magic Lamp' },
+			imagePath: '/project-images/project-3.jpeg',
+			description: {
+				ko: '창의적인 콘텐츠 제작과 브랜드 아이덴티티 구축',
+				en: 'Creative content production and brand identity development',
+			},
+			category: {
+				ko: '콘텐츠 / 제작 / 기획',
+				en: 'Content / Production / Planning',
+			},
+			duration: '8개월',
+			teamSize: '10명',
+			type: 'poster',
+		},
+		{
+			id: 8,
+			title: {
+				ko: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
+				en: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
+			},
+			imagePath: '/project-images/project-8.png',
+			description: {
+				ko: '프리미엄 바디케어 제품 라인 개발 및 브랜딩',
+				en: 'Premium body care product line development and branding',
+			},
+			category: {
+				ko: '바디케어 / 제품 개발 / 브랜딩',
+				en: 'Body Care / Product Development / Branding',
+			},
+			duration: '12개월',
+			teamSize: '15명',
+			type: 'cosmetics',
 		},
 		{
 			id: 5,
@@ -121,44 +159,6 @@ export default function Projects({ locale }: ProjectsProps) {
 			duration: '15개월',
 			teamSize: '20명',
 			type: 'event',
-		},
-		{
-			id: 7,
-			title: {
-				ko: '뷰티 브랜드 콜라보레이션',
-				en: 'Beauty Brand Collaboration',
-			},
-			imagePath: '/project-images/project-7.jpeg',
-			description: {
-				ko: '프리미엄 뷰티 브랜드 런칭 및 마케팅 전략',
-				en: 'Premium beauty brand launch and marketing strategy',
-			},
-			category: {
-				ko: '뷰티 / 브랜드 / 마케팅',
-				en: 'Beauty / Brand / Marketing',
-			},
-			duration: '12개월',
-			teamSize: '15명',
-			type: 'cosmetics',
-		},
-		{
-			id: 8,
-			title: {
-				ko: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
-				en: 'CLNL Body wipes, DNS Perfume Oil, Mas Den Bruno',
-			},
-			imagePath: '/project-images/project-8.png',
-			description: {
-				ko: '프리미엄 바디케어 제품 라인 개발 및 브랜딩',
-				en: 'Premium body care product line development and branding',
-			},
-			category: {
-				ko: '바디케어 / 제품 개발 / 브랜딩',
-				en: 'Body Care / Product Development / Branding',
-			},
-			duration: '12개월',
-			teamSize: '15명',
-			type: 'cosmetics',
 		},
 	];
 

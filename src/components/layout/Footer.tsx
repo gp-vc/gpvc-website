@@ -21,7 +21,7 @@ export default function Footer({ locale }: FooterProps) {
 			description:
 				'Global content media group connecting meaningful content with audiences across culture and languages',
 			contact: 'Contact Info',
-			address: '157 Eonju-ro 6, Floor 3, Gangnam-gu, Seoul, South Korea',
+			address: 'Floor 3, 157 Eonju-ro 6, Gangnam-gu, Seoul, South Korea',
 			phone: '+82-1600-1228',
 			email: 'info@gp-vc.com',
 			copyright: '© 2025 GPVC. All rights reserved.',
