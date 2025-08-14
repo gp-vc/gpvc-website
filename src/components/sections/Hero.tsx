@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef } from 'react';
-import { ArrowDown } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 
 interface HeroProps {
@@ -12,8 +11,7 @@ export default function Hero({ locale }: HeroProps) {
 
 	const content = {
 		ko: {
-			// title: 'Global Content Media Group GPVC',
-			title: 'GPVC',
+			title: 'Global Media Content Group GPVC',
 			subtitle1: '우리는 문화와 언어를 넘나들며 관객들과 연결되는 매력적이고',
 			subtitle2: '의미 있는 콘텐츠를 위한 목적지가 되는 것을 목표로 합니다.',
 			description1:
@@ -24,8 +22,7 @@ export default function Hero({ locale }: HeroProps) {
 			scrollDown: '더 알아보기',
 		},
 		en: {
-			// title: 'Global Content Media Group GPVC',
-			title: 'GPVC',
+			title: 'Global Media Content Group GPVC',
 			subtitle1: 'We aim to be a destination for engaging meaningful content',
 			subtitle2: 'that connects with audiences across cultures and languages.',
 			description1:
@@ -61,9 +58,9 @@ export default function Hero({ locale }: HeroProps) {
 	}, []);
 
 	const scrollToNext = () => {
-		const aboutSection = document.getElementById('about');
-		if (aboutSection) {
-			aboutSection.scrollIntoView({ behavior: 'smooth' });
+		const businessSection = document.getElementById('business');
+		if (businessSection) {
+			businessSection.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
 
@@ -71,71 +68,42 @@ export default function Hero({ locale }: HeroProps) {
 		<section
 			id='hero'
 			ref={heroRef}
-			className='min-h-screen flex items-center justify-center relative overflow-hidden bg-transparent'
+			className='min-h-screen flex items-center justify-center relative'
 		>
-			{/* Background overlay */}
-			<div className='absolute inset-0 bg-black/20'></div>
-
 			{/* Content */}
 			<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
 				<div className='space-y-8'>
 					{/* Main Title */}
-					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl font-thin text-white leading-tight'>
+					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl font-thin text-white leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.title}</span>
 					</h1>
-					{/* <h1 className='animate-on-scroll text-md sm:text-lg lg:text-xl font-thin text-white leading-tight'>
-						<span className='block'>global media content group</span>
-					</h1> */}
-
-					{/* Subtitle */}
-					{/* <div className='animate-on-scroll max-w-4xl mx-auto space-y-2'>
-						<p className='text-xl sm:text-2xl lg:text-3xl text-[#bdb9dc] font-light leading-relaxed'>
-							{t.subtitle1}
-						</p>
-						<p className='text-xl sm:text-2xl lg:text-3xl text-[#bdb9dc] font-light leading-relaxed'>
-							{t.subtitle2}
-						</p>
-					</div> */}
-
-					{/* Description */}
-					{/* <div className='animate-on-scroll max-w-4xl mx-auto space-y-4 pt-8'>
-						<p className='text-base sm:text-lg text-gray-300 leading-relaxed'>
-							{t.description1}
-						</p>
-						<p className='text-base sm:text-lg text-gray-300 leading-relaxed'>
-							{t.description2}
-						</p>
-						<p className='text-base sm:text-lg text-gray-300 leading-relaxed'>
-							{t.description3}
-						</p>
-					</div> */}
 				</div>
 			</div>
 
 			{/* Scroll indicator - Desktop */}
 			<div
 				onClick={scrollToNext}
-				className='cursor-pointer hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce'
+				className='cursor-pointer hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20'
 			>
-				<div className='w-6 h-10 border-2 border-white/30 rounded-full flex justify-center'>
-					<div className='w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse'></div>
+				<div className='w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm'>
+					<div className='w-1 h-3 bg-white/70 rounded-full mt-2 animate-pulse'></div>
 				</div>
 			</div>
 
 			{/* Swipe indicator - Mobile/Tablet */}
 			<div
 				onClick={scrollToNext}
-				className='lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2'
+				className='lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20'
 			>
-				<div className='flex items-center space-x-2 text-white/70 animate-pulse'>
+				<div className='flex items-center space-x-2 text-white/80 animate-pulse'>
 					<div className='flex space-x-1'>
-						<div className='w-2 h-2 bg-white/50 rounded-full animate-bounce'></div>
+						<div className='w-2 h-2 bg-white/60 rounded-full animate-bounce'></div>
 						<div
-							className='w-2 h-2 bg-white/50 rounded-full animate-bounce'
+							className='w-2 h-2 bg-white/60 rounded-full animate-bounce'
 							style={{ animationDelay: '0.1s' }}
 						></div>
 						<div
-							className='w-2 h-2 bg-white/50 rounded-full animate-bounce'
+							className='w-2 h-2 bg-white/60 rounded-full animate-bounce'
 							style={{ animationDelay: '0.2s' }}
 						></div>
 					</div>

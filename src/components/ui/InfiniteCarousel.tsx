@@ -44,7 +44,7 @@ export default function InfiniteCarousel({
 	) => (
 		<div
 			key={`${item.id}-${setIndex}-${index}`}
-			className='group relative bg-white shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 cursor-pointer flex-shrink-0 rounded-lg'
+			className='group relative bg-white/10 backdrop-blur-md shadow-lg overflow-hidden hover:bg-white/20 hover:shadow-2xl transition-all duration-500 cursor-pointer flex-shrink-0 rounded-lg'
 			style={{
 				width: itemWidth,
 				height: itemHeight,
@@ -70,18 +70,18 @@ export default function InfiniteCarousel({
 			{/* Overlay content */}
 			<div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-4 text-center'>
 				<div className='text-white'>
-					<h3 className='text-sm font-thin mb-2 leading-tight'>
+					<h3 className='text-sm font-thin mb-2 leading-tight drop-shadow-lg'>
 						{item.title?.[locale] || item.title || 'Project'}
 					</h3>
 
 					{item.category && (
-						<p className='text-xs text-white/90 font-medium mb-2'>
+						<p className='text-xs text-white/90 font-medium mb-2 drop-shadow'>
 							{item.category[locale] || item.category}
 						</p>
 					)}
 
 					{item.description && (
-						<p className='text-white/80 text-xs mb-3 leading-relaxed line-clamp-3'>
+						<p className='text-white/80 text-xs mb-3 leading-relaxed line-clamp-3 drop-shadow'>
 							{item.description[locale] || item.description}
 						</p>
 					)}
@@ -92,13 +92,13 @@ export default function InfiniteCarousel({
 							{item.duration && (
 								<div className='flex items-center space-x-1'>
 									<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full'></div>
-									<span>{item.duration}</span>
+									<span className='drop-shadow'>{item.duration}</span>
 								</div>
 							)}
 							{item.teamSize && (
 								<div className='flex items-center space-x-1'>
 									<div className='w-1.5 h-1.5 bg-[#a8a4d0] rounded-full'></div>
-									<span>{item.teamSize}</span>
+									<span className='drop-shadow'>{item.teamSize}</span>
 								</div>
 							)}
 						</div>
@@ -145,7 +145,7 @@ export default function InfiniteCarousel({
 				`
 					: ''}
 
-				/* Gradient overlays for smooth edges */
+				/* Gradient overlays for smooth edges - updated for transparent background */
 				.seamless-scroll-container::before,
 				.seamless-scroll-container::after {
 					content: '';
@@ -161,9 +161,9 @@ export default function InfiniteCarousel({
 					left: 0;
 					background: linear-gradient(
 						to right,
-						rgba(248, 250, 252, 1) 0%,
-						rgba(248, 250, 252, 0.8) 30%,
-						rgba(248, 250, 252, 0) 100%
+						rgba(0, 0, 0, 0.3) 0%,
+						rgba(0, 0, 0, 0.1) 30%,
+						rgba(0, 0, 0, 0) 100%
 					);
 				}
 
@@ -171,9 +171,9 @@ export default function InfiniteCarousel({
 					right: 0;
 					background: linear-gradient(
 						to left,
-						rgba(248, 250, 252, 1) 0%,
-						rgba(248, 250, 252, 0.8) 30%,
-						rgba(248, 250, 252, 0) 100%
+						rgba(0, 0, 0, 0.3) 0%,
+						rgba(0, 0, 0, 0.1) 30%,
+						rgba(0, 0, 0, 0) 100%
 					);
 				}
 			`}</style>

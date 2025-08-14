@@ -94,26 +94,27 @@ export default function HeaderV2({ locale }: HeaderProps) {
 							<div className='relative transition-all duration-500 hover:scale-105'>
 								{/* Symbol logo for initial state */}
 								<div
-									className={`w-12 h-12 lg:w-14 lg:h-14 relative transition-opacity duration-500 ${
+									className={`w-20 h-12 lg:w-24 lg:h-14 relative transition-opacity duration-500 ${
 										isScrolled ? 'opacity-0' : 'opacity-100'
 									}`}
 								>
 									<Image
-										src='/branding/gpvc-symbol-logo-white.svg'
+										src='/branding/gpvc-text-logo-white.svg'
+										priority
 										alt='GPVC Logo'
 										fill
-										className='object-contain drop-shadow-lg'
+										className='object-contain drop-shadow-2xl'
 										sizes='56px'
 									/>
 								</div>
 								{/* Text logo for scrolled state */}
 								<div
-									className={`w-20 h-10 lg:w-24 lg:h-12 absolute top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-500 ${
+									className={`w-12 h-10 lg:w-14 lg:h-12 absolute top-1/2 left-0 transform -translate-y-1/2 transition-opacity duration-500 ${
 										isScrolled ? 'opacity-100' : 'opacity-0'
 									}`}
 								>
 									<Image
-										src='/branding/gpvc-text-logo-primary.svg'
+										src='/branding/gpvc-symbol-logo-primary.svg'
 										alt='GPVC Logo'
 										fill
 										className='object-contain drop-shadow-lg'

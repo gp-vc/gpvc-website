@@ -184,23 +184,14 @@ export default function Projects({ locale }: ProjectsProps) {
 	}, []);
 
 	return (
-		<section
-			id='projects'
-			className='py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden'
-		>
-			{/* Background decoration */}
-			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-				<div className='absolute top-1/4 -left-20 w-40 h-40 bg-[#bdb9dc]/5 rounded-full blur-3xl'></div>
-				<div className='absolute bottom-1/4 -right-20 w-32 h-32 bg-[#a8a4d0]/5 rounded-full blur-3xl'></div>
-			</div>
-
+		<section id='projects' className='py-16 lg:py-24 relative overflow-hidden'>
 			<div className='relative z-10'>
 				{/* Section Header */}
 				<div
 					ref={sectionRef}
 					className='text-center mb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
 				>
-					<h2 className='text-3xl lg:text-5xl font-thin text-gray-900 mb-6'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
 					</h2>
 				</div>
@@ -209,11 +200,10 @@ export default function Projects({ locale }: ProjectsProps) {
 				<div className='relative'>
 					<InfiniteCarousel
 						items={projects}
-						speed={40} // Adjust speed as needed (lower = faster)
-						// direction='left'
+						speed={40}
 						pauseOnHover={true}
-						itemWidth={240} // Portrait width
-						itemHeight={360} // Portrait height (3:2 aspect ratio)
+						itemWidth={240}
+						itemHeight={360}
 						gap={24}
 						locale={locale}
 						className='py-8'

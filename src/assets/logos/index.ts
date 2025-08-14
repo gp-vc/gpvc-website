@@ -2,7 +2,7 @@
 // This file exports all logo imports for easy management
 
 // Import all SVG files as static assets
-import shinsegaeLogo from './shinsegae.svg';
+import shinsegaeLogo from './house-of-shinsegae.png';
 import mbcPlusLogo from './mbc-plus.svg';
 import mbcEveryoneLogo from './mbc-everyone.svg';
 import tvingLogo from './tving.svg';
@@ -15,7 +15,7 @@ import viuLogo from './viu.svg';
 import viuTvLogo from './viu-tv.svg';
 import datVietVacLogo from './dat-viet-vac.svg';
 import vieOnLogo from './vie-on.svg';
-import management from './management.jpeg';
+import management from './management.png';
 import rainCompany from './rain-company.png';
 import closDeLobac from './clos-de-lobac.svg'
 import echoHk from './echo-hk.svg'

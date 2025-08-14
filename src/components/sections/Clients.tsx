@@ -47,18 +47,18 @@ export default function Clients({ locale }: ClientsProps) {
 	}, []);
 
 	return (
-		<section id='clients' className='py-16 lg:py-24 bg-[#ffffff]'>
+		<section id='clients' className='py-16 lg:py-24'>
 			<div ref={sectionRef} className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Section Header */}
 				<div className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-thin text-black mb-6 drop-shadow-lg'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
 					</h2>
 				</div>
 
 				{/* Client Logos Section */}
 				<div className='mb-8'>
-					<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center'>
+					<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center p-8 lg:p-12'>
 						{clientLogos.map((logo, index) => (
 							<div
 								key={index}
@@ -68,7 +68,7 @@ export default function Clients({ locale }: ClientsProps) {
 									src={logo.src}
 									alt={logo.alt}
 									fill
-									className='object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0 group-active:grayscale-0'
+									className='object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0 group-active:grayscale-0 brightness-0 invert group-hover:brightness-100 group-hover:invert-0'
 									sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px'
 								/>
 							</div>
@@ -77,18 +77,12 @@ export default function Clients({ locale }: ClientsProps) {
 				</div>
 			</div>
 
-			{/* Background decoration */}
-			<div className='absolute inset-0 overflow-hidden pointer-events-none'>
-				<div className='absolute top-1/4 -left-20 w-40 h-40 bg-[#bdb9dc]/5 rounded-full blur-3xl'></div>
-				<div className='absolute bottom-1/4 -right-20 w-32 h-32 bg-[#a8a4d0]/5 rounded-full blur-3xl'></div>
-			</div>
-
 			{/* Custom styles for touch interactions on mobile/tablet */}
 			<style jsx>{`
 				@media (max-width: 1023px) {
 					.group:active img,
 					.group:active .filter {
-						filter: grayscale(0) !important;
+						filter: grayscale(0) brightness(100%) invert(0) !important;
 					}
 				}
 			`}</style>

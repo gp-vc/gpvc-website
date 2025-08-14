@@ -52,10 +52,7 @@ export default function Contact({ locale }: ContactProps) {
 	const address = '157 Eonju-ro 6, Floor 3, Gangnam-gu, Seoul, South Korea';
 	const encodedAddress = encodeURIComponent(address);
 
-	// Method 1: Simple Google Maps embed (no API key required)
-	const googleMapsEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.1234567890!2d127.0276368!3d37.5173918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca159b09d6b5d%3A0x1234567890abcdef!2s${encodedAddress}!5e0!3m2!1sen!2skr!4v1234567890123!5m2!1sen!2skr`;
-
-	// Method 2: Alternative embed URL format
+	// Alternative embed URL format
 	const alternativeEmbedUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
 
 	// External Google Maps links
@@ -102,14 +99,11 @@ export default function Contact({ locale }: ContactProps) {
 	};
 
 	return (
-		<section id='contact' className='py-16 lg:py-24 bg-[#bdb9dc] relative z-10'>
-			{/* Subtle overlay for better text readability */}
-			<div className='absolute inset-0 bg-black/10'></div>
-
+		<section id='contact' className='py-16 lg:py-24 relative z-10'>
 			<div className='relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Section Header */}
 				<div className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-lg'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
 					</h2>
 				</div>
@@ -117,8 +111,8 @@ export default function Contact({ locale }: ContactProps) {
 				{/* Main Content */}
 				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16'>
 					{/* Contact Form */}
-					<div className='glass-dark p-8 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-xl'>
-						<h3 className='text-2xl font-thin text-white mb-6'>
+					<div className='bg-white/10 backdrop-blur-xl p-8 rounded-2xl shadow-2xl'>
+						<h3 className='text-2xl font-thin text-white mb-6 drop-shadow'>
 							{locale === 'ko' ? '문의하기' : 'Get in Touch'}
 						</h3>
 
@@ -128,7 +122,7 @@ export default function Contact({ locale }: ContactProps) {
 								<div>
 									<label
 										htmlFor='firstName'
-										className='block text-sm font-medium text-white/90 mb-2'
+										className='block text-sm font-medium text-white/90 mb-2 drop-shadow'
 									>
 										{t.firstName}
 									</label>
@@ -139,14 +133,14 @@ export default function Contact({ locale }: ContactProps) {
 										value={formData.firstName}
 										onChange={handleInputChange}
 										placeholder='Jane'
-										className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
+										className='w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 										required
 									/>
 								</div>
 								<div>
 									<label
 										htmlFor='lastName'
-										className='block text-sm font-medium text-white/90 mb-2'
+										className='block text-sm font-medium text-white/90 mb-2 drop-shadow'
 									>
 										{t.lastName}
 									</label>
@@ -157,7 +151,7 @@ export default function Contact({ locale }: ContactProps) {
 										value={formData.lastName}
 										onChange={handleInputChange}
 										placeholder='Doe'
-										className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
+										className='w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 										required
 									/>
 								</div>
@@ -167,7 +161,7 @@ export default function Contact({ locale }: ContactProps) {
 							<div>
 								<label
 									htmlFor='email'
-									className='block text-sm font-medium text-white/90 mb-2'
+									className='block text-sm font-medium text-white/90 mb-2 drop-shadow'
 								>
 									{t.email}
 								</label>
@@ -178,7 +172,7 @@ export default function Contact({ locale }: ContactProps) {
 									value={formData.email}
 									onChange={handleInputChange}
 									placeholder='you@email.com'
-									className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
+									className='w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 									required
 								/>
 							</div>
@@ -187,7 +181,7 @@ export default function Contact({ locale }: ContactProps) {
 							<div>
 								<label
 									htmlFor='message'
-									className='block text-sm font-medium text-white/90 mb-2'
+									className='block text-sm font-medium text-white/90 mb-2 drop-shadow'
 								>
 									{t.message}
 								</label>
@@ -198,7 +192,7 @@ export default function Contact({ locale }: ContactProps) {
 									value={formData.message}
 									onChange={handleInputChange}
 									placeholder={t.messagePlaceholder}
-									className='w-full px-4 py-3 border border-white/20 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 resize-vertical bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
+									className='w-full px-4 py-3 rounded-lg focus:ring-2 focus:ring-[#bdb9dc] focus:border-transparent transition-all duration-200 hover:border-[#bdb9dc]/50 resize-vertical bg-white/10 backdrop-blur-sm text-white placeholder-white/60'
 									required
 								/>
 							</div>
@@ -206,7 +200,7 @@ export default function Contact({ locale }: ContactProps) {
 							{/* Submit Button */}
 							<button
 								type='submit'
-								className='w-full bg-[#bdb9dc] hover:bg-[#a8a4d0] text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 group hover:shadow-xl hover:scale-[1.02]'
+								className='w-full bg-[#bdb9dc]/80 hover:bg-[#bdb9dc] backdrop-blur-sm text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 group hover:shadow-xl hover:scale-[1.02]'
 							>
 								<span>{t.submit}</span>
 								<Send
@@ -217,12 +211,12 @@ export default function Contact({ locale }: ContactProps) {
 						</form>
 					</div>
 
-					{/* Google Maps Section - No API Key Required */}
+					{/* Google Maps Section */}
 					<div className='h-full flex'>
 						<div className='w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer relative'>
-							{/* Google Maps Embed Container */}
+							{/* Google Maps iframe Container */}
 							<div className='relative w-full h-full min-h-[600px]'>
-								{/* Google Maps iframe - No API key needed */}
+								{/* Google Maps iframe */}
 								<iframe
 									src={alternativeEmbedUrl}
 									width='100%'
@@ -237,7 +231,7 @@ export default function Contact({ locale }: ContactProps) {
 
 								{/* Overlay with address info and action buttons - appears on hover */}
 								<div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-8 text-center'>
-									<div className='text-white glass-dark p-6 rounded-xl backdrop-blur-sm border border-white/20 max-w-sm'>
+									<div className='text-white bg-white/10 backdrop-blur-xl p-6 rounded-xl max-w-sm'>
 										{/* GPVC Logo */}
 										<div className='w-20 h-20 lg:w-24 lg:h-24 relative mx-auto mb-4'>
 											<Image
@@ -253,9 +247,11 @@ export default function Contact({ locale }: ContactProps) {
 										<div className='space-y-4'>
 											<div className='flex items-center justify-center space-x-2 text-[#bdb9dc]'>
 												<MapPin size={18} />
-												<span className='font-semibold'>Office Location</span>
+												<span className='font-semibold drop-shadow'>
+													Office Location
+												</span>
 											</div>
-											<p className='text-white/90 text-sm leading-relaxed'>
+											<p className='text-white/90 text-sm leading-relaxed drop-shadow'>
 												{t.address}
 											</p>
 
@@ -263,7 +259,7 @@ export default function Contact({ locale }: ContactProps) {
 											<div className='flex flex-col space-y-3 mt-6'>
 												<button
 													onClick={openInMaps}
-													className='flex items-center justify-center space-x-2 bg-[#bdb9dc]/20 hover:bg-[#bdb9dc]/30 text-white py-2 px-4 rounded-lg transition-colors duration-300 border border-white/20'
+													className='flex items-center justify-center space-x-2 bg-[#bdb9dc]/20 hover:bg-[#bdb9dc]/30 text-white py-2 px-4 rounded-lg transition-colors duration-300 backdrop-blur-sm'
 												>
 													<ExternalLink size={16} />
 													<span className='text-sm font-medium'>
@@ -272,7 +268,7 @@ export default function Contact({ locale }: ContactProps) {
 												</button>
 												<button
 													onClick={openDirections}
-													className='flex items-center justify-center space-x-2 bg-[#a8a4d0]/20 hover:bg-[#a8a4d0]/30 text-white py-2 px-4 rounded-lg transition-colors duration-300 border border-white/20'
+													className='flex items-center justify-center space-x-2 bg-[#a8a4d0]/20 hover:bg-[#a8a4d0]/30 text-white py-2 px-4 rounded-lg transition-colors duration-300 backdrop-blur-sm'
 												>
 													<Navigation size={16} />
 													<span className='text-sm font-medium'>
@@ -283,13 +279,6 @@ export default function Contact({ locale }: ContactProps) {
 										</div>
 									</div>
 								</div>
-
-								{/* Floating decorative elements */}
-								<div className='absolute top-8 right-8 w-12 h-12 bg-white/10 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none'></div>
-								<div
-									className='absolute bottom-8 left-8 w-8 h-8 bg-white/15 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none'
-									style={{ animationDelay: '1s' }}
-								></div>
 							</div>
 						</div>
 					</div>
