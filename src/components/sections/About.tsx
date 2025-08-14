@@ -13,7 +13,7 @@ export default function About({ locale }: AboutProps) {
 		ko: {
 			title: 'Our Story',
 			subtitle:
-				'GPVC는 콘텐츠 제작/투자/유통을 하고 있으며, 국내 유수의 제작진과 비즈니스를 활동 범위를 넓어,',
+				'GPVC는 콘텐츠 제작/투자/유통을 하고 있으며, 국내 유수의 제작진과 비즈니스를 활동 범위를 넓혀,',
 			subtitle2:
 				'당사의 강점인 미디어 & 콘텐츠 엘리베이션으로 글로벌 비즈니스를 지향합니다.',
 			description1:
@@ -28,17 +28,17 @@ export default function About({ locale }: AboutProps) {
 		en: {
 			title: 'Our Story',
 			subtitle:
-				'GPVC is engaged in content production/investment/distribution, and with the expansion of business activities with leading domestic production teams,',
+				'GPVC specializes in content production, investment and distribution with an emphasis on culture.',
 			subtitle2:
-				"we aim for global business through media & content elevation, which is our company's strength.",
+				'We aim to expand globally by elevating media & content and engaging with leading domestic production teams.',
 			description1:
 				'We have partnerships with various companies across multiple regions (USA, Hong Kong, China, Spain, Vietnam).',
-			description2: 'Our partnerships will expand globally in the future.',
+			// description2: 'Our partnerships will expand globally in the future.',
 			description3:
-				'We aim to be a destination for engaging meaningful content that connects with audiences across cultures and languages.',
+				'Our team is building a destination for meaningful content that connects with audiences across cultures and languages.',
 			description4: '',
 			mission:
-				'We aim to be a destination for engaging meaningful content that connects with audiences across cultures and languages.',
+				'Our team is building a destination for meaningful content that connects with audiences across cultures and languages.',
 		},
 	};
 

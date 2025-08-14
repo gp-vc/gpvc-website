@@ -31,28 +31,28 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 			image: '/stock-images/production.jpeg',
 			items: [
 				{ ko: '방송', en: 'Broadcasting' },
-				{ ko: '드라마', en: 'Drama' },
+				{ ko: '드라마 / 숏폼 드라마', en: 'Drama / Short-form Drama' },
 				{ ko: '영화', en: 'Film' },
-				{ ko: '콘서트', en: 'Concert' },
-				{ ko: '팬미팅', en: 'Fan meeting' },
+				{ ko: '웹예능', en: 'Web Episodes' },
+				{ ko: '콘서트 / 팬미팅', en: 'Concert / Fan Meeting' },
 				{ ko: '공연', en: 'Performance' },
 			],
 		},
-		{
-			id: 2,
-			title: { ko: '저작권', en: 'IP' },
-			description: {
-				ko: '방송, 숏폼 드라마, 웹 에둘, 유튜브',
-				en: 'Broadcasting, Short-form Drama, Web Episodes, YouTube',
-			},
-			image: '/stock-images/ip.jpeg',
-			items: [
-				{ ko: '방송', en: 'Broadcasting' },
-				{ ko: '숏폼 드라마', en: 'Short-form Drama' },
-				{ ko: '웹 에둘', en: 'Web Episodes' },
-				{ ko: '유튜브', en: 'YouTube' },
-			],
-		},
+		// {
+		// 	id: 2,
+		// 	title: { ko: '저작권', en: 'IP' },
+		// 	description: {
+		// 		ko: '방송, 숏폼 드라마, 웹 에둘, 유튜브',
+		// 		en: 'Broadcasting, Short-form Drama, Web Episodes, YouTube',
+		// 	},
+		// 	image: '/stock-images/ip.jpeg',
+		// 	items: [
+		// 		{ ko: '방송', en: 'Broadcasting' },
+		// 		{ ko: '숏폼 드라마', en: 'Short-form Drama' },
+		// 		{ ko: '웹 예능', en: 'Web Episodes' },
+		// 		{ ko: '유튜브', en: 'YouTube' },
+		// 	],
+		// },
 		{
 			id: 3,
 			title: { ko: '브랜드', en: 'Brand' },
@@ -62,10 +62,10 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 			},
 			image: '/stock-images/brand.jpeg',
 			items: [
-				{ ko: '와인', en: 'Wine' },
 				{ ko: '화장품', en: 'Cosmetics' },
-				{ ko: '바디워시', en: 'Body wipes' },
-				{ ko: '향유', en: 'Perfume oil' },
+				{ ko: '향수', en: 'Perfume' },
+				{ ko: '와인', en: 'Wine' },
+				{ ko: '라이프스타일', en: 'Lifestyle' },
 			],
 		},
 		{
@@ -78,9 +78,9 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 			image: '/stock-images/distribution.jpeg',
 			items: [
 				{ ko: '콘텐츠', en: 'Contents' },
-				{ ko: '음원', en: 'Music' },
-				{ ko: 'MD', en: 'MD' },
-				{ ko: '굿즈', en: 'Goods' },
+				{ ko: '음원유통', en: 'Soundtrack Distribution' },
+				{ ko: '제품', en: '3rd Party Products' },
+				{ ko: 'MD / 굿즈', en: 'Merchandise / Goods' },
 				{ ko: 'etc.', en: 'etc.' },
 			],
 		},
@@ -93,9 +93,10 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 			},
 			image: '/stock-images/agency.jpeg',
 			items: [
-				{ ko: '아티스트', en: 'Artists' },
-				{ ko: '브랜드', en: 'Brand' },
-				{ ko: '이벤트', en: 'Events' },
+				{ ko: '글로벌 아티스트', en: 'Global Artists' },
+				{ ko: '브랜드 협찬', en: 'Brand Sponsorship' },
+				{ ko: '이벤트 프로모션', en: 'Events / Promotion' },
+				{ ko: '광고', en: 'Advertisement' },
 			],
 		},
 	];
@@ -190,7 +191,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 				{/* Carousel with consistent card heights */}
 				<div className='relative'>
 					{/* Static Grid Layout */}
-					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 lg:gap-8'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8'>
 						{businessAreas.map((area) => renderBusinessCard(area))}
 					</div>
 				</div>
