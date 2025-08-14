@@ -33,7 +33,7 @@ export default function About({ locale }: AboutProps) {
 				'We aim to expand globally by elevating media & content and engaging with leading domestic production teams.',
 			description1:
 				'We have partnerships with various companies across multiple regions (USA, Hong Kong, China, Spain, Vietnam).',
-			// description2: 'Our partnerships will expand globally in the future.',
+			description2: '',
 			description3:
 				'Our team is building a destination for meaningful content that connects with audiences across cultures and languages.',
 			description4: '',
