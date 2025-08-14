@@ -38,7 +38,7 @@ export default function Header({ locale }: HeaderProps) {
 	};
 
 	const navItems = [
-		{ key: 'about', href: '#about' },
+		// { key: 'about', href: '#about' },
 		{ key: 'business', href: '#business' },
 		{ key: 'projects', href: '#projects' },
 		{ key: 'contact', href: '#contact' },

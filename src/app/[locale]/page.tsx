@@ -31,7 +31,7 @@ export default async function Home({
 				<Scene3D />
 			</ClientOnly>
 			<Hero locale={locale} />
-			<About locale={locale} />
+			{/* <About locale={locale} /> */}
 			<BusinessAreas locale={locale} />
 			<Projects locale={locale} />
 			<Clients locale={locale} />

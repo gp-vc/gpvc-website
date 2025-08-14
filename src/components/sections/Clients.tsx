@@ -49,8 +49,11 @@ export default function Clients({ locale }: ClientsProps) {
 	return (
 		<section id='clients' className='py-16 lg:py-24 bg-[#ffffff]'>
 			<div ref={sectionRef} className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+				{/* Section Header */}
 				<div className='text-center mb-16'>
-					<h2 className='text-2xl text-[#827bb8] mb-8'>{t.title}</h2>
+					<h2 className='text-3xl lg:text-5xl font-thin text-black mb-6 drop-shadow-lg'>
+						{t.title}
+					</h2>
 				</div>
 
 				{/* Client Logos Section */}

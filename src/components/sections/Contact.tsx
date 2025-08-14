@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { Send } from 'lucide-react';
+import { Send, MapPin, ExternalLink, Navigation } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Image from 'next/image';
 
@@ -27,6 +27,9 @@ export default function Contact({ locale }: ContactProps) {
 			message: '메시지',
 			messagePlaceholder: '질문이나 메시지를 입력하세요',
 			submit: 'Submit',
+			address: '서울 강남구 언주로157길 6, 3층',
+			viewOnMaps: '지도에서 보기',
+			getDirections: '길찾기',
 		},
 		en: {
 			title: 'Contact Us',
@@ -37,10 +40,27 @@ export default function Contact({ locale }: ContactProps) {
 			message: 'Message',
 			messagePlaceholder: 'Enter your question or message',
 			submit: 'Submit',
+			address: '157 Eonju-ro 6, Floor 3, Gangnam-gu, Seoul, South Korea',
+			viewOnMaps: 'View on Maps',
+			getDirections: 'Get Directions',
 		},
 	};
 
 	const t = content[locale];
+
+	// Address for Google Maps
+	const address = '157 Eonju-ro 6, Floor 3, Gangnam-gu, Seoul, South Korea';
+	const encodedAddress = encodeURIComponent(address);
+
+	// Method 1: Simple Google Maps embed (no API key required)
+	const googleMapsEmbedUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.1234567890!2d127.0276368!3d37.5173918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca159b09d6b5d%3A0x1234567890abcdef!2s${encodedAddress}!5e0!3m2!1sen!2skr!4v1234567890123!5m2!1sen!2skr`;
+
+	// Method 2: Alternative embed URL format
+	const alternativeEmbedUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
+
+	// External Google Maps links
+	const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+	const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`;
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -73,31 +93,32 @@ export default function Contact({ locale }: ContactProps) {
 		console.log('Form submitted:', formData);
 	};
 
+	const openInMaps = () => {
+		window.open(googleMapsLink, '_blank', 'noopener,noreferrer');
+	};
+
+	const openDirections = () => {
+		window.open(directionsLink, '_blank', 'noopener,noreferrer');
+	};
+
 	return (
-		<section
-			id='contact'
-			// ref={sectionRef}
-			className='py-16 lg:py-24 bg-[#bdb9dc] relative z-10'
-		>
+		<section id='contact' className='py-16 lg:py-24 bg-[#bdb9dc] relative z-10'>
 			{/* Subtle overlay for better text readability */}
 			<div className='absolute inset-0 bg-black/10'></div>
 
 			<div className='relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Section Header */}
 				<div className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-bold text-white mb-6 drop-shadow-lg'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-lg'>
 						{t.title}
 					</h2>
-					{/* <p className='text-xl text-white/90 max-w-3xl mx-auto drop-shadow-md'>
-						{t.subtitle}
-					</p> */}
 				</div>
 
 				{/* Main Content */}
 				<div className='grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16'>
 					{/* Contact Form */}
 					<div className='glass-dark p-8 rounded-2xl shadow-2xl border border-white/10 backdrop-blur-xl'>
-						<h3 className='text-2xl font-bold text-white mb-6'>
+						<h3 className='text-2xl font-thin text-white mb-6'>
 							{locale === 'ko' ? '문의하기' : 'Get in Touch'}
 						</h3>
 
@@ -196,50 +217,78 @@ export default function Contact({ locale }: ContactProps) {
 						</form>
 					</div>
 
-					{/* Hero Image - Matches Form Height */}
+					{/* Google Maps Section - No API Key Required */}
 					<div className='h-full flex'>
-						{/* Bridge Image - Full Right Section */}
 						<div className='w-full rounded-2xl overflow-hidden shadow-2xl group cursor-pointer relative'>
-							{/* Image Container with object-fit center */}
+							{/* Google Maps Embed Container */}
 							<div className='relative w-full h-full min-h-[600px]'>
-								<Image
-									src='/stock-images/bridge-highway.jpeg'
-									alt='Bridge Highway'
-									fill
-									className='object-cover object-center transition-all duration-500'
-									sizes='(max-width: 1024px) 100vw, 50vw'
-									priority
+								{/* Google Maps iframe - No API key needed */}
+								<iframe
+									src={alternativeEmbedUrl}
+									width='100%'
+									height='100%'
+									style={{ border: 0, minHeight: '600px' }}
+									allowFullScreen
+									loading='lazy'
+									referrerPolicy='no-referrer-when-downgrade'
+									className='rounded-2xl'
+									title={`Map showing ${t.address}`}
 								/>
 
-								{/* Monochrome overlay that disappears on hover */}
-								<div className='absolute inset-0 bg-gray-500/60 group-hover:bg-transparent transition-all duration-500 backdrop-grayscale group-hover:backdrop-grayscale-0'></div>
-
-								{/* Content overlay - Centered */}
-								<div className='absolute inset-0 flex items-center justify-center p-8'>
-									{/* Logo and text container - appears on hover */}
-									<div className='relative opacity-0 group-hover:opacity-100 transition-all duration-500 transform scale-90 group-hover:scale-100'>
-										{/* Large centered logo with text inside */}
-										<div className='w-48 h-48 lg:w-64 lg:h-64 relative mx-auto'>
+								{/* Overlay with address info and action buttons - appears on hover */}
+								<div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-8 text-center'>
+									<div className='text-white glass-dark p-6 rounded-xl backdrop-blur-sm border border-white/20 max-w-sm'>
+										{/* GPVC Logo */}
+										<div className='w-20 h-20 lg:w-24 lg:h-24 relative mx-auto mb-4'>
 											<Image
 												src='/branding/gpvc-symbol-logo-white.svg'
 												alt='GPVC Logo'
 												fill
 												className='object-contain drop-shadow-2xl'
-												sizes='256px'
+												sizes='96px'
 											/>
+										</div>
+
+										{/* Address Information */}
+										<div className='space-y-4'>
+											<div className='flex items-center justify-center space-x-2 text-[#bdb9dc]'>
+												<MapPin size={18} />
+												<span className='font-semibold'>Office Location</span>
+											</div>
+											<p className='text-white/90 text-sm leading-relaxed'>
+												{t.address}
+											</p>
+
+											{/* Action Buttons */}
+											<div className='flex flex-col space-y-3 mt-6'>
+												<button
+													onClick={openInMaps}
+													className='flex items-center justify-center space-x-2 bg-[#bdb9dc]/20 hover:bg-[#bdb9dc]/30 text-white py-2 px-4 rounded-lg transition-colors duration-300 border border-white/20'
+												>
+													<ExternalLink size={16} />
+													<span className='text-sm font-medium'>
+														{t.viewOnMaps}
+													</span>
+												</button>
+												<button
+													onClick={openDirections}
+													className='flex items-center justify-center space-x-2 bg-[#a8a4d0]/20 hover:bg-[#a8a4d0]/30 text-white py-2 px-4 rounded-lg transition-colors duration-300 border border-white/20'
+												>
+													<Navigation size={16} />
+													<span className='text-sm font-medium'>
+														{t.getDirections}
+													</span>
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
 
 								{/* Floating decorative elements */}
-								<div className='absolute top-8 right-8 w-12 h-12 bg-white/10 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500'></div>
+								<div className='absolute top-8 right-8 w-12 h-12 bg-white/10 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none'></div>
 								<div
-									className='absolute bottom-8 left-8 w-8 h-8 bg-white/15 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500'
+									className='absolute bottom-8 left-8 w-8 h-8 bg-white/15 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none'
 									style={{ animationDelay: '1s' }}
-								></div>
-								<div
-									className='absolute top-1/4 right-1/4 w-6 h-6 bg-white/12 rounded-full backdrop-blur-sm animate-float opacity-0 group-hover:opacity-100 transition-all duration-500'
-									style={{ animationDelay: '2s' }}
 								></div>
 							</div>
 						</div>

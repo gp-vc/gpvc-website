@@ -70,7 +70,7 @@ export default function InfiniteCarousel({
 			{/* Overlay content */}
 			<div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-4 text-center'>
 				<div className='text-white'>
-					<h3 className='text-sm font-bold mb-2 leading-tight'>
+					<h3 className='text-sm font-thin mb-2 leading-tight'>
 						{item.title?.[locale] || item.title || 'Project'}
 					</h3>
 

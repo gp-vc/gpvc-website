@@ -74,7 +74,7 @@ export default function About({ locale }: AboutProps) {
 			<div className='max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Header */}
 				<div className='animate-on-scroll text-center mb-16'>
-					<h2 className='text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8'>
+					<h2 className='text-3xl sm:text-4xl lg:text-5xl font-thin text-gray-900 mb-8'>
 						{t.title}
 					</h2>
 
@@ -113,7 +113,7 @@ export default function About({ locale }: AboutProps) {
 						{/* Stats */}
 						<div className='grid grid-cols-3 gap-6 pt-8'>
 							<div className='text-center'>
-								<div className='text-2xl lg:text-3xl font-bold text-[#bdb9dc] mb-2'>
+								<div className='text-2xl lg:text-3xl font-thin text-[#bdb9dc] mb-2'>
 									5+
 								</div>
 								<div className='text-sm text-gray-600'>
@@ -121,7 +121,7 @@ export default function About({ locale }: AboutProps) {
 								</div>
 							</div>
 							<div className='text-center'>
-								<div className='text-2xl lg:text-3xl font-bold text-[#bdb9dc] mb-2'>
+								<div className='text-2xl lg:text-3xl font-thin text-[#bdb9dc] mb-2'>
 									50+
 								</div>
 								<div className='text-sm text-gray-600'>
@@ -129,7 +129,7 @@ export default function About({ locale }: AboutProps) {
 								</div>
 							</div>
 							<div className='text-center'>
-								<div className='text-2xl lg:text-3xl font-bold text-[#bdb9dc] mb-2'>
+								<div className='text-2xl lg:text-3xl font-thin text-[#bdb9dc] mb-2'>
 									100+
 								</div>
 								<div className='text-sm text-gray-600'>
@@ -153,7 +153,7 @@ export default function About({ locale }: AboutProps) {
 										<div className='w-20 h-20 bg-white/20 rounded-2xl mx-auto mb-6 flex items-center justify-center backdrop-blur-sm'>
 											<div className='w-10 h-10 bg-white/30 rounded-xl'></div>
 										</div>
-										<h3 className='text-xl font-bold mb-2'>Global Reach</h3>
+										<h3 className='text-xl font-thin mb-2'>Global Reach</h3>
 										<p className='text-white/80 text-sm'>
 											{locale === 'ko'
 												? '전 세계를 연결하는 콘텐츠'

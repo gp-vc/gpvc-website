@@ -4,7 +4,7 @@ export default function NotFound() {
 	return (
 		<div className='min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800'>
 			<div className='text-center'>
-				<h1 className='text-6xl font-bold text-white mb-4'>404</h1>
+				<h1 className='text-6xl font-thin text-white mb-4'>404</h1>
 				<h2 className='text-2xl font-semibold text-[#bdb9dc] mb-6'>
 					페이지를 찾을 수 없습니다
 				</h2>

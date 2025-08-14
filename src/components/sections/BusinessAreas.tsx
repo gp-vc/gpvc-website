@@ -144,7 +144,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 
 			{/* Content - now fills remaining space */}
 			<div className='p-6 flex-1 flex flex-col'>
-				<h3 className='text-xl font-bold text-gray-900 mb-3 group-hover:text-[#827bb8] transition-colors duration-300'>
+				<h3 className='text-xl font-thin text-gray-900 mb-3 group-hover:text-[#827bb8] transition-colors duration-300'>
 					{area.title[locale]}
 				</h3>
 
@@ -181,7 +181,7 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 		>
 			<div ref={sectionRef}>
 				<div className='text-center mb-16'>
-					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-gray-900 mb-6'>
 						{t.title}
 					</h2>
 				</div>

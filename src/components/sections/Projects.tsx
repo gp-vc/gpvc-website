@@ -200,10 +200,9 @@ export default function Projects({ locale }: ProjectsProps) {
 					ref={sectionRef}
 					className='text-center mb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
 				>
-					<h2 className='text-3xl lg:text-5xl font-bold text-gray-900 mb-6'>
+					<h2 className='text-3xl lg:text-5xl font-thin text-gray-900 mb-6'>
 						{t.title}
 					</h2>
-					<div className='w-24 h-1 bg-gradient-to-r from-[#bdb9dc] to-[#a8a4d0] mx-auto rounded-full'></div>
 				</div>
 
 				{/* Single Infinite Carousel */}

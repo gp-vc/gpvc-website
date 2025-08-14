@@ -15,6 +15,8 @@ import viuLogo from './viu.svg';
 import viuTvLogo from './viu-tv.svg';
 import datVietVacLogo from './dat-viet-vac.svg';
 import vieOnLogo from './vie-on.svg';
+import management from './management.jpeg';
+import rainCompany from './rain-company.png';
 
 // Export all logos with metadata
 export const clientLogos = [
@@ -83,6 +85,16 @@ export const clientLogos = [
 		src: vieOnLogo,
 		alt: 'VieON Logo',
 	},
+	{
+		name: 'Management',
+		src: management,
+		alt: 'Management Logo',
+	},
+	{
+		name: 'RainCompany',
+		src: rainCompany,
+		alt: 'RainCompany Logo',
+	},
 ] as const;
 
 // Optional: Export individual logos if needed elsewhere
@@ -100,4 +112,6 @@ export {
 	viuTvLogo,
 	datVietVacLogo,
 	vieOnLogo,
+	management,
+	rainCompany,
 };
