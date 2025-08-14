@@ -112,22 +112,24 @@ export default function Clients({ locale }: ClientsProps) {
 				{/* Client Logos Section */}
 				{clientLogos.length > 0 ? (
 					<div className='mb-8'>
-						<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 items-center justify-items-center'>
+						{/* Updated grid: 3 columns on mobile, more on larger screens */}
+						<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center'>
 							{clientLogos.map((logoPath, index) => (
 								<div
 									key={index}
-									className='group relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32'
+									className='group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 cursor-pointer'
 								>
+									{/* Logo Image with monochrome filter */}
 									<Image
 										src={logoPath}
 										alt={`Client logo ${index + 1}`}
 										fill
-										className='object-contain'
-										sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, 112px'
+										className='object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0 group-active:grayscale-0'
+										sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px'
 										unoptimized
 									/>
-									{/* Optional: Subtle animation on hover */}
-									<div className='absolute inset-0 rounded-full border-2 border-transparent group-hover:border-[#bdb9dc] transition-all duration-300 opacity-0 group-hover:opacity-100'></div>
+
+									{/* Removed the border hover effect as requested */}
 								</div>
 							))}
 						</div>
@@ -142,66 +144,24 @@ export default function Clients({ locale }: ClientsProps) {
 						</div>
 
 						{/* Placeholder circular containers for demonstration */}
-						<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-8 items-center justify-items-center mt-12'>
+						{/* Updated grid: 3 columns on mobile, more on larger screens */}
+						<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center mt-12'>
 							{Array.from({ length: 12 }).map((_, index) => (
 								<div
 									key={index}
-									className='group relative flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32'
+									className='group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 cursor-pointer'
 								>
-									{/* Circular placeholder container */}
-									<div className='w-full h-full bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center p-4 group-hover:bg-gray-50'>
-										<div className='w-12 h-12 bg-gradient-to-br from-[#bdb9dc]/20 to-[#827bb8]/20 rounded-lg flex items-center justify-center'>
-											<div className='w-6 h-6 bg-[#bdb9dc] rounded opacity-30'></div>
+									{/* Circular placeholder container with monochrome effect */}
+									<div className='w-full h-full bg-white rounded-full shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 flex items-center justify-center p-3 sm:p-4 group-hover:bg-gray-50 filter grayscale group-hover:grayscale-0 group-active:grayscale-0'>
+										<div className='w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-[#bdb9dc]/20 to-[#827bb8]/20 rounded-lg flex items-center justify-center'>
+											<div className='w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 bg-[#bdb9dc] rounded opacity-30'></div>
 										</div>
 									</div>
-
-									{/* Optional: Subtle animation on hover */}
-									<div className='absolute inset-0 rounded-full border-2 border-transparent group-hover:border-[#bdb9dc] transition-all duration-300 opacity-0 group-hover:opacity-100'></div>
 								</div>
 							))}
 						</div>
 					</div>
 				)}
-
-				{/* Additional content section */}
-				{/* <div className='mt-16 text-center'>
-					<div className='bg-white rounded-2xl p-8 lg:p-12 shadow-lg'>
-						<h3 className='text-2xl lg:text-3xl font-bold text-gray-900 mb-6'>
-							{locale === 'ko' ? '파트너십' : 'Partnership'}
-						</h3>
-						<p className='text-lg text-gray-600 max-w-4xl mx-auto leading-relaxed'>
-							{locale === 'ko'
-								? '우리는 다양한 지역(미국, 홍콩, 중국, 스페인, 베트남)에 걸쳐 여러 기업과 파트너십을 맺고 있습니다. 우리의 파트너십은 앞으로 전 세계적으로 확장될 것입니다.'
-								: 'We have partnerships with various companies across multiple regions (USA, Hong Kong, China, Spain, Vietnam). Our partnerships will expand globally in the future.'}
-						</p>
-						<div className='grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12'>
-							<div className='text-center'>
-								<div className='text-3xl lg:text-4xl font-bold text-[#bdb9dc] mb-2'>
-									5+
-								</div>
-								<div className='text-gray-600 font-medium'>
-									{locale === 'ko' ? '국가' : 'Countries'}
-								</div>
-							</div>
-							<div className='text-center'>
-								<div className='text-3xl lg:text-4xl font-bold text-[#bdb9dc] mb-2'>
-									50+
-								</div>
-								<div className='text-gray-600 font-medium'>
-									{locale === 'ko' ? '파트너사' : 'Partners'}
-								</div>
-							</div>
-							<div className='text-center'>
-								<div className='text-3xl lg:text-4xl font-bold text-[#bdb9dc] mb-2'>
-									100+
-								</div>
-								<div className='text-gray-600 font-medium'>
-									{locale === 'ko' ? '프로젝트' : 'Projects'}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> */}
 			</div>
 
 			{/* Background decoration */}
@@ -209,6 +169,16 @@ export default function Clients({ locale }: ClientsProps) {
 				<div className='absolute top-1/4 -left-20 w-40 h-40 bg-[#bdb9dc]/5 rounded-full blur-3xl'></div>
 				<div className='absolute bottom-1/4 -right-20 w-32 h-32 bg-[#a8a4d0]/5 rounded-full blur-3xl'></div>
 			</div>
+
+			{/* Custom styles for touch interactions on mobile/tablet */}
+			<style jsx>{`
+				@media (max-width: 1023px) {
+					.group:active img,
+					.group:active .filter {
+						filter: grayscale(0) !important;
+					}
+				}
+			`}</style>
 		</section>
 	);
 }

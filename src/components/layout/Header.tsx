@@ -68,9 +68,9 @@ export default function Header({ locale }: HeaderProps) {
 				<nav className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 					<div className='flex items-center justify-between h-16 lg:h-20'>
 						<div className='flex-shrink-0'>
-							<div className='w-10 h-10 lg:w-12 lg:h-12 relative'>
+							<div className='w-20 h-10 lg:w-24 lg:h-12 relative'>
 								<Image
-									src='/branding/gpvc-symbol-logo-white.svg'
+									src='/branding/gpvc-text-logo-white.svg'
 									alt='GPVC Logo'
 									fill
 									className='object-contain drop-shadow-lg'
@@ -97,10 +97,10 @@ export default function Header({ locale }: HeaderProps) {
 					{/* Logo */}
 					<div className='flex-shrink-0'>
 						<a href={`/${locale}`} className='flex items-center group'>
-							<div className='w-10 h-10 lg:w-12 lg:h-12 relative transition-all duration-300 hover:scale-105'>
+							<div className='w-20 h-10 lg:w-24 lg:h-12 relative transition-all duration-300 hover:scale-105'>
 								{/* White logo for transparent background */}
 								<Image
-									src='/branding/gpvc-symbol-logo-white.svg'
+									src='/branding/gpvc-text-logo-white.svg'
 									alt='GPVC Logo'
 									fill
 									className={`object-contain drop-shadow-lg transition-opacity duration-300 ${
@@ -110,7 +110,7 @@ export default function Header({ locale }: HeaderProps) {
 								/>
 								{/* Primary colored logo for scrolled state */}
 								<Image
-									src='/branding/gpvc-symbol-logo-primary.svg'
+									src='/branding/gpvc-text-logo-primary.svg'
 									alt='GPVC Logo'
 									fill
 									className={`object-contain drop-shadow-lg transition-opacity duration-300 absolute inset-0 ${

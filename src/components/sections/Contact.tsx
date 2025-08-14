@@ -76,8 +76,8 @@ export default function Contact({ locale }: ContactProps) {
 	return (
 		<section
 			id='contact'
-			ref={sectionRef}
-			className='py-16 lg:py-24 bg-transparent relative z-10'
+			// ref={sectionRef}
+			className='py-16 lg:py-24 bg-[#bdb9dc] relative z-10'
 		>
 			{/* Subtle overlay for better text readability */}
 			<div className='absolute inset-0 bg-black/10'></div>
