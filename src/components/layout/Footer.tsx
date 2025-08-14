@@ -46,15 +46,6 @@ export default function Footer({ locale }: FooterProps) {
 									sizes='256px'
 								/>
 							</div>
-							<div className='w-12 h-12 lg:w-12 lg:h-12 relative'>
-								<Image
-									src='/branding/gpvc-symbol-logo-primary.svg'
-									alt='GPVC Logo'
-									fill
-									className='object-contain drop-shadow-2xl'
-									sizes='256px'
-								/>
-							</div>
 						</div>
 							<p className='text-gray-300 text-sm leading-relaxed max-w-md'>
 								{t.description}

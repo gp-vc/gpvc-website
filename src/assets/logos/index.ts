@@ -17,23 +17,26 @@ import datVietVacLogo from './dat-viet-vac.svg';
 import vieOnLogo from './vie-on.svg';
 import management from './management.jpeg';
 import rainCompany from './rain-company.png';
+import closDeLobac from './clos-de-lobac.svg'
+import echoHk from './echo-hk.svg'
+import masDenBruno from './mas-den-bruno.svg'
 
 // Export all logos with metadata
 export const clientLogos = [
 	{
-		name: 'Shinsegae',
-		src: shinsegaeLogo,
-		alt: 'Shinsegae Logo',
+		name: 'Pledis',
+		src: pledisLogo,
+		alt: 'Pledis Entertainment Logo',
 	},
 	{
-		name: 'MBC Plus',
-		src: mbcPlusLogo,
-		alt: 'MBC Plus Logo',
+		name: 'YG',
+		src: ygLogo,
+		alt: 'YG Entertainment Logo',
 	},
 	{
-		name: 'MBC Everyone',
-		src: mbcEveryoneLogo,
-		alt: 'MBC Everyone Logo',
+		name: 'Inkode',
+		src: inkodeLogo,
+		alt: 'Inkode Logo',
 	},
 	{
 		name: 'TVING',
@@ -49,21 +52,6 @@ export const clientLogos = [
 		name: 'Shortime',
 		src: shortimeLogo,
 		alt: 'Shortime Logo',
-	},
-	{
-		name: 'Pledis',
-		src: pledisLogo,
-		alt: 'Pledis Entertainment Logo',
-	},
-	{
-		name: 'YG',
-		src: ygLogo,
-		alt: 'YG Entertainment Logo',
-	},
-	{
-		name: 'Inkode',
-		src: inkodeLogo,
-		alt: 'Inkode Logo',
 	},
 	{
 		name: 'Viu',
@@ -86,14 +74,44 @@ export const clientLogos = [
 		alt: 'VieON Logo',
 	},
 	{
-		name: 'Management',
-		src: management,
-		alt: 'Management Logo',
-	},
-	{
 		name: 'RainCompany',
 		src: rainCompany,
 		alt: 'RainCompany Logo',
+	},
+	{
+		name: 'Echo HK',
+		src: echoHk,
+		alt: 'Echo HK Logo',
+	},
+	{
+		name: 'Shinsegae',
+		src: shinsegaeLogo,
+		alt: 'Shinsegae Logo',
+	},
+	{
+		name: "Clos de L'obac",
+		src: closDeLobac,
+		alt: "Clos de L'obac Logo",
+	},
+	{
+		name: 'Mas den Bruno',
+		src: masDenBruno,
+		alt: 'Mas den Bruno Logo',
+	},
+	{
+		name: 'MBC Plus',
+		src: mbcPlusLogo,
+		alt: 'MBC Plus Logo',
+	},
+	{
+		name: 'MBC Everyone',
+		src: mbcEveryoneLogo,
+		alt: 'MBC Everyone Logo',
+	},
+	{
+		name: 'Management',
+		src: management,
+		alt: 'Management Logo',
 	},
 ] as const;
 
