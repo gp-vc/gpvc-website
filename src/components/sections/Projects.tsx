@@ -86,6 +86,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			type: 'tv-variety',
 		},
+		// Don't remove below, waiting for assets
 		// {
 		// 	id: 5,
 		// 	title: { ko: 'CLNL', en: 'CLNL' },

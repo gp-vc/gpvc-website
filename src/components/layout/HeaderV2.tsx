@@ -30,7 +30,7 @@ export default function HeaderV2({ locale }: HeaderProps) {
 			contact: '연락처',
 		},
 		en: {
-			about: 'Our Story',
+			about: 'Our Vision',
 			business: 'Industry Expertise',
 			projects: 'Projects',
 			contact: 'Contact Us',
@@ -38,7 +38,7 @@ export default function HeaderV2({ locale }: HeaderProps) {
 	};
 
 	const navItems = [
-		// { key: 'about', href: '#about' },
+		{ key: 'about', href: '#about' },
 		{ key: 'business', href: '#business' },
 		{ key: 'projects', href: '#projects' },
 		{ key: 'contact', href: '#contact' },
