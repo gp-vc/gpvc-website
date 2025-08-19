@@ -11,27 +11,12 @@ export default function Hero({ locale }: HeroProps) {
 
 	const content = {
 		ko: {
-			title: 'Global Media Content Group GPVC',
-			subtitle1: '우리는 문화와 언어를 넘나들며 관객들과 연결되는 매력적이고',
-			subtitle2: '의미 있는 콘텐츠를 위한 목적지가 되는 것을 목표로 합니다.',
-			description1:
-				'우리의 컨텐츠에 대한 글로벌 고객을 구축하고 업계의 선도적인 힘이 될 것입니다.',
-			description2:
-				'또한 창의적인 마인드가 모여 전성한 차이를 만드는 콘텐츠를 제작할 수 있는',
-			description3: '혁신과 협업의 문화를 조성하기 위해 노력하고 있습니다.',
-			scrollDown: '더 알아보기',
+			title: 'GPVC',
+			subtitle1: '글로벌 시장과 아이디어를 아우르며',
 		},
 		en: {
-			title: 'Global Media Content Group GPVC',
-			subtitle1: 'We aim to be a destination for engaging meaningful content',
-			subtitle2: 'that connects with audiences across cultures and languages.',
-			description1:
-				'We will build a global audience for our content and become a leading force in our industry.',
-			description2:
-				'We are also committed to fostering a culture of innovation and collaboration ',
-			description3:
-				'where creative minds come together to produce content that makes a real difference.',
-			scrollDown: 'Learn More',
+			title: 'GPVC',
+			subtitle1: 'Across markets & ideas',
 		},
 	};
 
@@ -76,6 +61,10 @@ export default function Hero({ locale }: HeroProps) {
 					{/* Main Title */}
 					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl font-thin text-white leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.title}</span>
+					</h1>
+					{/* Sub Title */}
+					<h1 className='animate-on-scroll text-xl sm:text-2xl lg:text-4xl font-thin text-white leading-tight drop-shadow-2xl'>
+						<span className='block'>{t.subtitle1}</span>
 					</h1>
 				</div>
 			</div>

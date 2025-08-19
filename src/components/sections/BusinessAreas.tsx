@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 
 interface BusinessAreasProps {
@@ -23,80 +23,134 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 	const businessAreas = [
 		{
 			id: 1,
-			title: { ko: '프로듀싱/투자', en: 'Production & Investment' },
+			title: {
+				ko: '엔터테인먼트, 콘텐츠, 그 너머',
+				en: 'Entertainment, Content, and Experiences',
+			},
 			description: {
-				ko: '드라마, 영화, 콘서트, 팬미팅, 공연',
-				en: 'Drama, Film, Concert, Fan meeting, Performance',
+				ko: '제작/투자 및 에이전시 서비스',
+				en: 'Production/Investment and Agency Services',
 			},
 			image: '/stock-images/production.jpeg',
-			items: [
-				{ ko: '방송', en: 'Broadcasting' },
-				{ ko: '드라마 / 숏폼 드라마', en: 'Drama / Short-form Drama' },
-				{ ko: '영화', en: 'Film' },
-				{ ko: '웹예능', en: 'Web Episodes' },
-				{ ko: '콘서트 / 팬미팅', en: 'Concert / Fan Meeting' },
-				{ ko: '공연', en: 'Performance' },
+			categories: [
+				{
+					title: { ko: '제작/투자', en: 'Production & Investment' },
+					items: [
+						{ ko: '영화', en: 'Feature Films' },
+						{ ko: '드라마 및 숏폼 드라마', en: 'Dramas & Short-Form Dramas' },
+						{ ko: '시리즈물', en: 'Series' },
+						{ ko: '디지털 콘텐츠', en: 'Digital Contents' },
+						{
+							ko: '콘서트 와 라이브 퍼포먼스',
+							en: 'Concerts, Theatres & Live Performances',
+						},
+						{
+							ko: '요술램프',
+							en: 'Magic Lamp',
+							link: 'https://mbcplus.com/web/program/contentList.do?programInfoSeq=262',
+						},
+						{
+							ko: 'rainbow7+',
+							en: 'rainbow7+',
+							link: 'https://youtube.com/@love_bridge7',
+						},
+					],
+				},
+				{
+					title: { ko: '에이전시', en: 'Agency' },
+					items: [
+						{ ko: 'K-Pop 및 글로벌 아티스트', en: 'K-Pop and Global Artists' },
+						{ ko: '브랜드 스폰서쉽', en: 'Brand Sponsorships' },
+						{ ko: '이벤트/ 프로모션', en: 'Events/ Promotions' },
+						{ ko: '광고/ PPL', en: 'Advertisement/ PPL' },
+					],
+				},
 			],
 		},
-		// {
-		// 	id: 2,
-		// 	title: { ko: '저작권', en: 'IP' },
-		// 	description: {
-		// 		ko: '방송, 숏폼 드라마, 웹 에둘, 유튜브',
-		// 		en: 'Broadcasting, Short-form Drama, Web Episodes, YouTube',
-		// 	},
-		// 	image: '/stock-images/ip.jpeg',
-		// 	items: [
-		// 		{ ko: '방송', en: 'Broadcasting' },
-		// 		{ ko: '숏폼 드라마', en: 'Short-form Drama' },
-		// 		{ ko: '웹 예능', en: 'Web Episodes' },
-		// 		{ ko: '유튜브', en: 'YouTube' },
-		// 	],
-		// },
 		{
-			id: 3,
-			title: { ko: '브랜드', en: 'Brand' },
+			id: 2,
+			title: { ko: '코스메틱스', en: 'Cosmetics' },
 			description: {
-				ko: '와인, 화장품, 바디워시, 향유',
-				en: 'Wine, Cosmetics, Body wipes, Perfume oil',
+				ko: '프리미엄 뷰티 브랜드',
+				en: 'Premium Beauty Brands',
 			},
 			image: '/stock-images/brand.jpeg',
-			items: [
-				{ ko: '화장품', en: 'Cosmetics' },
-				{ ko: '향수', en: 'Perfume' },
-				{ ko: '와인', en: 'Wine' },
-				{ ko: '라이프스타일', en: 'Lifestyle' },
+			categories: [
+				{
+					title: { ko: 'CLNL', en: 'CLNL' },
+					items: [
+						{
+							ko: '소개/ 제품소개+ 링크',
+							en: 'Introduction/ Product Overview + Link',
+						},
+					],
+				},
+				{
+					title: { ko: 'donotstare co.', en: 'donotstare co.' },
+					items: [
+						{
+							ko: '소개/ 제품소개 + 링크',
+							en: 'Introduction/ Product Overview + Link',
+						},
+					],
+				},
+			],
+		},
+		{
+			id: 3,
+			title: { ko: '글로벌 소싱', en: 'Global Sourcing' },
+			description: {
+				ko: '엄선된 글로벌 프리미엄 제품',
+				en: 'Curated Global Premium Products',
+			},
+			image: '/stock-images/brand.jpeg',
+			categories: [
+				{
+					title: {
+						ko: '컬트 와인/ 소량생산 프리미엄 와인',
+						en: 'Artisan Wines',
+					},
+					items: [
+						{
+							ko: "Clos de L'Obac",
+							en: "Clos de L'Obac",
+							link: 'https://obac.es/en_US',
+						},
+						{
+							ko: 'Bodega El Capricho',
+							en: 'Bodega El Capricho',
+							link: 'https://bodegaelcapricho.com/en/',
+						},
+					],
+				},
+				{
+					title: {
+						ko: '엄선된 글로벌 셀렉션',
+						en: 'Curated Provisions or Global Finds',
+					},
+					items: [],
+				},
 			],
 		},
 		{
 			id: 4,
-			title: { ko: '배포', en: 'Distribution' },
+			title: { ko: '유통', en: 'Distribution' },
 			description: {
-				ko: '콘텐츠, 음원, MD, 굿즈, etc.',
-				en: 'Contents, Music, MD, Goods, etc.',
+				ko: '콘텐츠 및 상품 유통',
+				en: 'Content and Product Distribution',
 			},
 			image: '/stock-images/distribution.jpeg',
-			items: [
-				{ ko: '콘텐츠', en: 'Contents' },
-				{ ko: '음원유통', en: 'Soundtrack Distribution' },
-				{ ko: '제품', en: '3rd Party Products' },
-				{ ko: 'MD / 굿즈', en: 'Merchandise / Goods' },
-				{ ko: 'etc.', en: 'etc.' },
-			],
-		},
-		{
-			id: 5,
-			title: { ko: '대행사', en: 'Agency' },
-			description: {
-				ko: '아티스트, 브랜드, 이벤트',
-				en: 'Artists, Brand, Events',
-			},
-			image: '/stock-images/agency.jpeg',
-			items: [
-				{ ko: '글로벌 아티스트', en: 'Global Artists' },
-				{ ko: '브랜드 협찬', en: 'Brand Sponsorship' },
-				{ ko: '이벤트 프로모션', en: 'Events / Promotion' },
-				{ ko: '광고', en: 'Advertisement' },
+			categories: [
+				{
+					title: { ko: '유통 서비스', en: 'Distribution Services' },
+					items: [
+						{ ko: '콘텐츠', en: 'Contents' },
+						{ ko: '사운드트랙 OST', en: 'Soundtracks' },
+						{ ko: '외부 협력 제품', en: 'External Products' },
+						{ ko: '굿즈 상품', en: 'Merchandise/ Goods' },
+						{ ko: 'and more.', en: 'and more.' },
+					],
+				},
 			],
 		},
 	];
@@ -148,14 +202,50 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 					{area.title[locale]}
 				</h3>
 
-				{/* Items list - with consistent spacing */}
-				<div className='space-y-2 mb-4 flex-1'>
-					{area.items.map((item, itemIndex) => (
-						<div key={itemIndex} className='flex items-center space-x-2'>
-							<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full flex-shrink-0'></div>
-							<span className='text-sm text-white/90 drop-shadow'>
-								{item[locale]}
-							</span>
+				{/* Categories and Items list - with consistent spacing */}
+				<div className='space-y-4 mb-4 flex-1 overflow-y-auto'>
+					{area.categories.map((category, categoryIndex) => (
+						<div key={categoryIndex} className='space-y-2'>
+							{/* Category title */}
+							<h4 className='text-sm font-medium text-[#bdb9dc] drop-shadow'>
+								{category.title[locale]}
+							</h4>
+
+							{/* Category items */}
+							{category.items.length > 0 && (
+								<div className='space-y-1 ml-2'>
+									{category.items.map((item, itemIndex) => {
+										const hasLink = item.link;
+										const ItemComponent = hasLink ? 'a' : 'div';
+										const itemProps = hasLink
+											? {
+													href: item.link,
+													target: '_blank',
+													rel: 'noopener noreferrer',
+													className:
+														'flex items-start space-x-2 hover:text-[#bdb9dc] transition-colors duration-200 cursor-pointer group/item',
+											  }
+											: {
+													className: 'flex items-start space-x-2',
+											  };
+
+										return (
+											<ItemComponent key={itemIndex} {...itemProps}>
+												<div className='w-1 h-1 bg-white/70 rounded-full flex-shrink-0 mt-2 group-hover/item:bg-[#bdb9dc] transition-colors duration-200'></div>
+												<span className='text-xs text-white/90 drop-shadow leading-relaxed flex items-center gap-1'>
+													{item[locale]}
+													{hasLink && (
+														<ExternalLink
+															size={10}
+															className='opacity-60 group-hover/item:opacity-100 transition-opacity duration-200'
+														/>
+													)}
+												</span>
+											</ItemComponent>
+										);
+									})}
+								</div>
+							)}
 						</div>
 					))}
 				</div>
@@ -188,10 +278,9 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 					</h2>
 				</div>
 
-				{/* Carousel with consistent card heights */}
+				{/* Grid Layout for Business Cards */}
 				<div className='relative'>
-					{/* Static Grid Layout */}
-					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8'>
 						{businessAreas.map((area) => renderBusinessCard(area))}
 					</div>
 				</div>

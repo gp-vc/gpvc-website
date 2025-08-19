@@ -69,39 +69,27 @@ export default function InfiniteCarousel({
 
 			{/* Overlay content */}
 			<div className='absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-center items-center p-4 text-center'>
-				<div className='text-white'>
+				<div className='text-white space-y-2'>
 					<h3 className='text-sm font-thin mb-2 leading-tight drop-shadow-lg'>
 						{item.title?.[locale] || item.title || 'Project'}
 					</h3>
 
+					{item.year && (
+						<p className='text-xs text-[#bdb9dc] font-medium drop-shadow'>
+							{item.year[locale] || item.year}
+						</p>
+					)}
+
 					{item.category && (
-						<p className='text-xs text-white/90 font-medium mb-2 drop-shadow'>
+						<p className='text-xs text-white/90 font-medium drop-shadow'>
 							{item.category[locale] || item.category}
 						</p>
 					)}
 
-					{item.description && (
-						<p className='text-white/80 text-xs mb-3 leading-relaxed line-clamp-3 drop-shadow'>
-							{item.description[locale] || item.description}
+					{item.platforms && (
+						<p className='text-white/80 text-xs leading-relaxed drop-shadow px-2'>
+							{item.platforms[locale] || item.platforms}
 						</p>
-					)}
-
-					{/* Project Details */}
-					{(item.duration || item.teamSize) && (
-						<div className='flex items-center justify-center space-x-3 text-xs'>
-							{item.duration && (
-								<div className='flex items-center space-x-1'>
-									<div className='w-1.5 h-1.5 bg-[#bdb9dc] rounded-full'></div>
-									<span className='drop-shadow'>{item.duration}</span>
-								</div>
-							)}
-							{item.teamSize && (
-								<div className='flex items-center space-x-1'>
-									<div className='w-1.5 h-1.5 bg-[#a8a4d0] rounded-full'></div>
-									<span className='drop-shadow'>{item.teamSize}</span>
-								</div>
-							)}
-						</div>
 					)}
 				</div>
 			</div>

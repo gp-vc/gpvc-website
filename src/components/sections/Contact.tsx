@@ -49,7 +49,8 @@ export default function Contact({ locale }: ContactProps) {
 	const t = content[locale];
 
 	// Address for Google Maps
-	const address = '157 Eonju-ro 6, Floor 3, Gangnam-gu, Seoul, South Korea';
+	const address =
+		'6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea 06024';
 	const encodedAddress = encodeURIComponent(address);
 
 	// Alternative embed URL format

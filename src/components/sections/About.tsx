@@ -11,34 +11,27 @@ export default function About({ locale }: AboutProps) {
 
 	const content = {
 		ko: {
-			title: 'Our Story',
-			subtitle:
-				'GPVC는 콘텐츠 제작/투자/유통을 하고 있으며, 국내 유수의 제작진과 비즈니스를 활동 범위를 넓혀,',
-			subtitle2:
-				'당사의 강점인 미디어 & 콘텐츠 엘리베이션으로 글로벌 비즈니스를 지향합니다.',
-			description1:
-				'우리는 다양한 지역(미국, 홍콩, 중국, 스페인, 베트남)에 걸쳐 여러 기업과 파트너십을 맺고 있습니다.',
-			description2: '우리의 파트너십은 앞으로 전 세계적으로 확장될 것 입니다.',
-			description3:
-				'우리는 문화와 언어를 넘나들며 관객들과 연결되는 매력적이고 의미 있는 콘텐츠를 위한 목적지가 되는',
-			description4: '것을 목표로 합니다.',
-			mission:
-				'We aim to be a destination for engaging meaningful content that connects with audiences across cultures and languages.',
+			title: 'Our Vision',
+			subtitle: '컬처·아이디어·글로벌 영감을 엮어—경계를 넘어 연결합니다.',
+			// subtitle2:
+			// 	'당사의 강점인 미디어 & 콘텐츠 엘리베이션으로 글로벌 비즈니스를 지향합니다.',
+			description1: '컬처에서 시작해 아이디어로 빚고, 세계와 나눕니다.',
+			description2: '찾고. 만들고. 선보입니다.',
+			// description3:
+			// 	'우리는 문화와 언어를 넘나들며 관객들과 연결되는 매력적이고 의미 있는 콘텐츠를 위한 목적지가 되는',
 		},
 		en: {
-			title: 'Our Story',
+			title: 'Our Vision',
 			subtitle:
-				'GPVC specializes in content production, investment and distribution with an emphasis on culture.',
-			subtitle2:
-				'We aim to expand globally by elevating media & content and engaging with leading domestic production teams.',
+				'Blending culture, innovation, and global inspiration, creating connections that span continents.',
+			// subtitle2:
+			// 	'We aim to expand globally by elevating media & content and engaging with leading domestic production teams.',
 			description1:
-				'We have partnerships with various companies across multiple regions (USA, Hong Kong, China, Spain, Vietnam).',
-			// description2: 'Our partnerships will expand globally in the future.',
-			description3:
-				'Our team is building a destination for meaningful content that connects with audiences across cultures and languages.',
-			description4: '',
-			mission:
-				'Our team is building a destination for meaningful content that connects with audiences across cultures and languages.',
+				'We discover what resonates, craft it with care, and share it widely. From screen to shelf.',
+			description2:
+				'We explore, we create, we showcase. For audiences everywhere.',
+			// description3:
+			// 	'Our team is building a destination for meaningful content that connects with audiences across cultures and languages.',
 		},
 	};
 
@@ -82,9 +75,9 @@ export default function About({ locale }: AboutProps) {
 						<p className='text-lg sm:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md'>
 							{t.subtitle}
 						</p>
-						<p className='text-lg sm:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md'>
+						{/* <p className='text-lg sm:text-xl text-white/90 leading-relaxed font-medium drop-shadow-md'>
 							{t.subtitle2}
-						</p>
+						</p> */}
 					</div>
 				</div>
 
@@ -92,14 +85,17 @@ export default function About({ locale }: AboutProps) {
 				<div className='max-w-4xl mx-auto'>
 					<div className='animate-on-scroll space-y-6'>
 						<div>
-							<p className='text-white/80 leading-relaxed drop-shadow-sm'>{t.description1}</p>
-							<p className='text-white/80 leading-relaxed drop-shadow-sm'>{t.description2}</p>
-							<p className='text-white/80 leading-relaxed drop-shadow-sm'>{t.description3}</p>
-							{t.description4 && (
+							<p className='text-white/80 leading-relaxed drop-shadow-sm'>
+								{t.description1}
+							</p>
+							<p className='text-white/80 leading-relaxed drop-shadow-sm'>
+								{t.description2}
+							</p>
+							{/* {t.description3 && (
 								<p className='text-white/80 leading-relaxed drop-shadow-sm'>
-									{t.description4}
+									{t.description3}
 								</p>
-							)}
+							)} */}
 						</div>
 					</div>
 				</div>

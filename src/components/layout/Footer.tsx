@@ -11,7 +11,6 @@ export default function Footer({ locale }: FooterProps) {
 		ko: {
 			description:
 				'다양한 문화와 언어를 통해 모두에게 의미 있는 콘텐츠를 연결하는 글로벌 콘텐츠 미디어 그룹',
-			contact: '연락처',
 			address: '서울 강남구 언주로157길 6, 3층',
 			phone: '+82-1600-1228',
 			email: 'info@gp-vc.com',
@@ -20,8 +19,8 @@ export default function Footer({ locale }: FooterProps) {
 		en: {
 			description:
 				'Global content media group connecting meaningful content with audiences across culture and languages',
-			contact: 'Contact Info',
-			address: 'Floor 3, 157 Eonju-ro 6, Gangnam-gu, Seoul, South Korea',
+			address:
+				'3F, 6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea 06024',
 			phone: '+82-1600-1228',
 			email: 'info@gp-vc.com',
 			copyright: '© 2025 GPVC. All rights reserved.',
@@ -54,9 +53,6 @@ export default function Footer({ locale }: FooterProps) {
 
 					{/* Contact Info */}
 					<div>
-						<h3 className='text-lg font-semibold mb-4 text-[#bdb9dc]'>
-							{t.contact}
-						</h3>
 						<div className='space-y-3'>
 							<div className='flex items-start space-x-3'>
 								<MapPin
