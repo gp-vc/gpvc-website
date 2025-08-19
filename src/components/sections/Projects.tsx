@@ -74,6 +74,18 @@ export default function Projects({ locale }: ProjectsProps) {
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
 			type: 'fan-meeting',
 		},
+		{
+			id: 5,
+			title: { ko: '요술램프', en: 'Magic Lamp' },
+			imagePath: '/project-images/project-3.jpeg',
+			year: { ko: '2023년 제작', en: 'Produced 2023' },
+			category: { ko: 'TV예능', en: 'TV Variety Show' },
+			platforms: {
+				ko: 'MBCevery1, Tving, Wavve 방영',
+				en: 'Aired on MBCevery1, Tving, Wavve',
+			},
+			type: 'tv-variety',
+		},
 		// {
 		// 	id: 5,
 		// 	title: { ko: 'CLNL', en: 'CLNL' },
@@ -96,16 +108,31 @@ export default function Projects({ locale }: ProjectsProps) {
 		// 	type: 'perfume-brand',
 		// },
 		{
-			id: 7,
+			id: 6,
 			title: { ko: "Clos de L'obac winery", en: "Clos de L'Obac Winery" },
 			imagePath: '/project-images/project-1.png',
 			year: { ko: 'Spain, Priorat 지방', en: 'Spain, Priorat Region' },
 			category: { ko: '와인 수입', en: 'Wine Import' },
 			platforms: {
-				ko: "Clos de L'obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart 와인",
-				en: "Clos de L'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart Wines",
+				ko: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart 와인",
+				en: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart Wines",
 			},
 			type: 'wine-import',
+		},
+		{
+			id: 7,
+			title: {
+				ko: '인피니트 이성열 팬미팅 이벤트',
+				en: 'INFINITE Lee Seong Yeol Fan Meeting Event',
+			},
+			imagePath: '/project-images/project-7.jpeg',
+			year: {
+				ko: '2025년 7월 상해, 2025년 8월 광저우',
+				en: 'July 2025 Shanghai, August 2025 Guangzhou',
+			},
+			category: { ko: '팬미팅 이벤트', en: 'Fan Meeting Event' },
+			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
+			type: 'fan-meeting',
 		},
 	];
 
