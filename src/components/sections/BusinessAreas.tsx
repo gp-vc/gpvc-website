@@ -74,14 +74,14 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 				ko: '프리미엄 뷰티 브랜드',
 				en: 'Premium Beauty Brands',
 			},
-			image: '/stock-images/brand.jpeg',
+			image: '/stock-images/cosmetics.jpeg',
 			categories: [
 				{
 					title: { ko: 'CLNL', en: 'CLNL' },
 					items: [
 						{
-							ko: '소개/ 제품소개+ 링크',
-							en: 'Introduction/ Product Overview + Link',
+							ko: '소개 / 제품소개',
+							en: 'Introduction / Product Overview',
 						},
 					],
 				},
@@ -89,8 +89,8 @@ export default function BusinessAreas({ locale }: BusinessAreasProps) {
 					title: { ko: 'donotstare co.', en: 'donotstare co.' },
 					items: [
 						{
-							ko: '소개/ 제품소개 + 링크',
-							en: 'Introduction/ Product Overview + Link',
+							ko: '소개 / 제품소개 ',
+							en: 'Introduction / Product Overview',
 						},
 					],
 				},
