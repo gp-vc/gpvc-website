@@ -104,7 +104,7 @@ export default function Contact({ locale }: ContactProps) {
 		<section id='contact' className='py-16 lg:py-24 relative z-10'>
 			<div className='relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Section Header */}
-				<div className='text-center mb-16'>
+				<div className='text-center mb-12 lg:mb-16'>
 					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
 					</h2>

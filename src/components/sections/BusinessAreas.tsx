@@ -146,8 +146,8 @@ export default function Domains({ locale }: DomainsProps) {
 							ko: 'donotstare co.',
 							en: 'donotstare co.',
 							description: {
-								ko: '설명 추가 예정',
-								en: 'Description TBD',
+								ko: '아름다움은 크게 말하지 않습니다. 향·결·톤의 조용한 힘으로 존재감을 남깁니다. 소음은 줄이고, 분명하게, 흔들림 없이.',
+								en: 'Beauty—hinted, not shouted. A house devoted to the quiet power of scent · texture · tone. Presence without noise. Unmistakable. Unbothered.',
 							},
 							links: {
 								instagram: '#',
@@ -165,7 +165,7 @@ export default function Domains({ locale }: DomainsProps) {
 				ko: '원산지와 다이렉트한 연결을 통해 뛰어난 생산자와 엄선된 제품을 큐레이션합니다.',
 				en: 'Curating world-class producers and products, direct from origin.',
 			},
-			image: '/stock-images/brand.jpeg',
+			image: '/stock-images/global-sourcing.jpeg',
 			shortCategories: [
 				{
 					title: {
@@ -347,7 +347,7 @@ export default function Domains({ locale }: DomainsProps) {
 				className='py-16 lg:py-24 mx-auto px-4 sm:px-6 lg:px-8'
 			>
 				<div ref={sectionRef}>
-					<div className='text-center mb-16'>
+					<div className='text-center mb-12 lg:mb-16'>
 						<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 							{t.title}
 						</h2>

@@ -8,16 +8,8 @@ interface AboutProps {
 
 export default function About({ locale }: AboutProps) {
 	const sectionRef = useRef<HTMLDivElement>(null);
-	const iframeRef = useRef<HTMLIFrameElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
 	const [isVideoInView, setIsVideoInView] = useState(false);
-
-	// Extract video ID from YouTube URL
-	const videoId = 'CRPDP6IxpnI';
-
-	// YouTube embed URL with autoplay parameters
-	const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=1&enablejsapi=1&origin=${
-		typeof window !== 'undefined' ? window.location.origin : ''
-	}`;
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -29,11 +21,20 @@ export default function About({ locale }: AboutProps) {
 						// If this is the video section, trigger autoplay
 						if (entry.target === sectionRef.current) {
 							setIsVideoInView(true);
+							// Start playing the video when it comes into view
+							if (videoRef.current) {
+								videoRef.current.play().catch((error) => {
+									console.log('Video autoplay failed:', error);
+								});
+							}
 						}
 					} else {
-						// Optional: Pause video when out of view
+						// Pause video when out of view
 						if (entry.target === sectionRef.current) {
 							setIsVideoInView(false);
+							if (videoRef.current) {
+								videoRef.current.pause();
+							}
 						}
 					}
 				});
@@ -51,21 +52,6 @@ export default function About({ locale }: AboutProps) {
 		return () => observer.disconnect();
 	}, []);
 
-	// Handle iframe load and send autoplay command
-	useEffect(() => {
-		if (isVideoInView && iframeRef.current) {
-			// Send play command to YouTube iframe
-			try {
-				iframeRef.current.contentWindow?.postMessage(
-					'{"event":"command","func":"playVideo","args":""}',
-					'*'
-				);
-			} catch (error) {
-				console.log('YouTube autoplay command failed:', error);
-			}
-		}
-	}, [isVideoInView]);
-
 	return (
 		<section
 			id='about'
@@ -73,23 +59,27 @@ export default function About({ locale }: AboutProps) {
 			className='py-8 lg:py-16 bg-transparent relative overflow-hidden'
 		>
 			<div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-				{/* YouTube Video Container */}
+				{/* Local Video Container */}
 				<div className='animate-on-scroll'>
 					<div className='relative w-full bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl'>
-						{/* Responsive iframe container */}
+						{/* Responsive video container */}
 						<div
 							className='relative w-full'
 							style={{ paddingBottom: '56.25%' }} // 16:9 aspect ratio
 						>
-							<iframe
-								ref={iframeRef}
-								src={embedUrl}
-								title='GPVC Company Video'
-								className='absolute inset-0 w-full h-full border-0'
-								allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
-								allowFullScreen
-								loading='lazy'
-							/>
+							<video
+								ref={videoRef}
+								className='absolute inset-0 w-full h-full border-0 object-cover'
+								controls
+								muted
+								loop
+								playsInline
+								preload='metadata'
+								poster='/stock-images/video-poster.jpg' // Optional: add a poster image
+							>
+								<source src='/stock-videos/about.mp4' type='video/mp4' />
+								Your browser does not support the video tag.
+							</video>
 						</div>
 
 						{/* Optional overlay for branding/loading state */}

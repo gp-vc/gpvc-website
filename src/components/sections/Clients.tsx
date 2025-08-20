@@ -50,7 +50,7 @@ export default function Clients({ locale }: ClientsProps) {
 		<section id='clients' className='py-16 lg:py-24'>
 			<div ref={sectionRef} className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
 				{/* Section Header */}
-				<div className='text-center mb-16'>
+				<div className='text-center'>
 					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
 					</h2>

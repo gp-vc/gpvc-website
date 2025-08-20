@@ -67,8 +67,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			imagePath: '/project-images/project-6.jpeg',
 			year: {
-				ko: '2025년 7월 상해, 2025년 8월 광저우',
-				en: 'July 2025 Shanghai, August 2025 Guangzhou',
+				ko: '2025년 7월 상해',
+				en: 'July 2025 Shanghai',
 			},
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meeting Event' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
@@ -128,8 +128,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			imagePath: '/project-images/project-7.jpeg',
 			year: {
-				ko: '2025년 7월 상해, 2025년 8월 광저우',
-				en: 'July 2025 Shanghai, August 2025 Guangzhou',
+				ko: '2025년 8월 광저우',
+				en: 'August 2025 Guangzhou',
 			},
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meeting Event' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
@@ -164,7 +164,7 @@ export default function Projects({ locale }: ProjectsProps) {
 				{/* Section Header */}
 				<div
 					ref={sectionRef}
-					className='text-center mb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
+					className='text-center mb-12 lg:mb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'
 				>
 					<h2 className='text-3xl lg:text-5xl font-thin text-white mb-6 drop-shadow-2xl'>
 						{t.title}
@@ -181,7 +181,7 @@ export default function Projects({ locale }: ProjectsProps) {
 						itemHeight={360}
 						gap={24}
 						locale={locale}
-						className='py-8'
+						className=''
 					/>
 				</div>
 			</div>

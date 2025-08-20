@@ -109,11 +109,35 @@ Article 21 (Designation of Company's Personal Information Protection Manager) 1.
 		return content
 			.trim()
 			.split('\n\n')
-			.map((paragraph, index) => (
-				<p key={index} className='mb-6 leading-relaxed text-gray-800'>
-					{paragraph.trim()}
-				</p>
-			));
+			.map((paragraph, index) => {
+				const trimmedParagraph = paragraph.trim();
+
+				// Check if paragraph starts with article number pattern
+				const koreanPattern = /^(제\d+조\([^)]+\))/;
+				const englishPattern = /^(Article \d+ \([^)]+\))/;
+
+				const match =
+					trimmedParagraph.match(koreanPattern) ||
+					trimmedParagraph.match(englishPattern);
+
+				if (match) {
+					const boldPart = match[1];
+					const restOfText = trimmedParagraph.substring(boldPart.length);
+
+					return (
+						<p key={index} className='mb-6 leading-relaxed text-gray-800'>
+							<strong>{boldPart}</strong>
+							{restOfText}
+						</p>
+					);
+				}
+
+				return (
+					<p key={index} className='mb-6 leading-relaxed text-gray-800'>
+						{trimmedParagraph}
+					</p>
+				);
+			});
 	};
 
 	return (

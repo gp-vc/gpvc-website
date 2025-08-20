@@ -18,7 +18,7 @@ export default function Footer({ locale }: FooterProps) {
 		},
 		en: {
 			address:
-				'3F, 6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea 06024',
+				'3F, 6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea, 06024',
 			phone: '+82-1600-1228',
 			email: 'info@gp-vc.com',
 			copyright: '© 2025 GPVC Co.,Ltd. All rights reserved.',
@@ -35,7 +35,7 @@ export default function Footer({ locale }: FooterProps) {
 					{/* Company Info */}
 					<div className='col-span-1'>
 						<div className='mb-4 flex gap-2'>
-							<div className='w-12 h-12 lg:w-20 lg:h-10 relative'>
+							<div className='w-20 h-10 relative'>
 								<Image
 									src='/branding/gpvc-text-logo-primary.svg'
 									alt='GPVC'

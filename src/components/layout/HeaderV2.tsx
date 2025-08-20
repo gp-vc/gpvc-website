@@ -36,7 +36,6 @@ export default function HeaderV2({ locale }: HeaderProps) {
 	};
 
 	const navItems = [
-		// { key: 'about', href: '#about' },
 		{ key: 'business', href: '#business' },
 		{ key: 'projects', href: '#projects' },
 		{ key: 'contact', href: '#contact' },
@@ -190,33 +189,43 @@ export default function HeaderV2({ locale }: HeaderProps) {
 
 				{/* Mobile/Hamburger Navigation Menu */}
 				{isMenuOpen && (
-					<div className='absolute top-full left-0 right-0 mt-2 mx-2 sm:mx-4'>
-						<div className='px-2 pt-2 pb-3 space-y-1 bg-white/98 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-100 animate-slide-up'>
-							{navItems.map((item) => (
-								<button
-									key={item.key}
-									onClick={() => handleNavClick(item.href)}
-									className='block w-full text-left px-4 py-3 text-gray-700 hover:text-[#bdb9dc] hover:bg-[#bdb9dc]/5 rounded-xl text-base font-medium transition-all duration-200 hover:translate-x-1'
-								>
-									{
-										navigation[locale][
-											item.key as keyof (typeof navigation)[typeof locale]
-										]
-									}
-								</button>
-							))}
+					<div className='fixed inset-0 z-40 flex items-start justify-end pt-20 pr-2 sm:pr-4'>
+						{/* Lighter Backdrop */}
+						<div
+							className='absolute inset-0 bg-black/40'
+							onClick={() => setIsMenuOpen(false)}
+						></div>
 
-							{/* Mobile Language Toggle */}
-							<div className='border-t border-gray-200 pt-3 mt-3'>
-								<button
-									onClick={toggleLanguage}
-									className='flex items-center space-x-2 px-4 py-3 text-gray-700 hover:text-[#bdb9dc] hover:bg-[#bdb9dc]/5 rounded-xl w-full transition-all duration-200'
-								>
-									<Globe size={16} />
-									<span className='text-sm font-medium'>
-										{locale === 'ko' ? 'English' : '한국어'}
-									</span>
-								</button>
+						{/* Menu Content - Heavy Backdrop Blur */}
+						<div className='relative bg-black/20 backdrop-blur-2xl rounded-2xl w-64 shadow-2xl border border-white/20 animate-slide-up'>
+							{/* Navigation Items */}
+							<div className='p-6 space-y-1'>
+								{navItems.map((item) => (
+									<button
+										key={item.key}
+										onClick={() => handleNavClick(item.href)}
+										className='block w-full text-left px-4 py-3 text-white hover:text-[#bdb9dc] hover:bg-white/10 rounded-xl text-base font-medium transition-all duration-200 hover:translate-x-1 drop-shadow'
+									>
+										{
+											navigation[locale][
+												item.key as keyof (typeof navigation)[typeof locale]
+											]
+										}
+									</button>
+								))}
+
+								{/* Mobile Language Toggle */}
+								<div className='border-t border-white/20 pt-3 mt-3'>
+									<button
+										onClick={toggleLanguage}
+										className='flex items-center space-x-2 px-4 py-3 text-white hover:text-[#bdb9dc] hover:bg-white/10 rounded-xl w-full transition-all duration-200 drop-shadow'
+									>
+										<Globe size={16} />
+										<span className='text-sm font-medium'>
+											{locale === 'ko' ? 'English' : '한국어'}
+										</span>
+									</button>
+								</div>
 							</div>
 						</div>
 					</div>
