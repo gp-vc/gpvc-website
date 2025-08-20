@@ -41,7 +41,7 @@ export default function Contact({ locale }: ContactProps) {
 			messagePlaceholder: 'Enter your question or message',
 			submit: 'Submit',
 			address:
-				'3F, 6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea 06024',
+				'3F, 6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea, 06024',
 			viewOnMaps: 'View on Maps',
 			getDirections: 'Get Directions',
 		},

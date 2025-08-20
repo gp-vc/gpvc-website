@@ -43,7 +43,7 @@ export default async function Home({
 			{/* All sections with transparent/glass backgrounds */}
 			<div className='relative z-10'>
 				<Hero locale={locale} />
-				<About locale={locale} />
+				<About />
 				<BusinessAreas locale={locale} />
 				<Projects locale={locale} />
 				<Clients locale={locale} />

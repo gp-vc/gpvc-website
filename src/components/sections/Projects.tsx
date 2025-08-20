@@ -175,7 +175,7 @@ export default function Projects({ locale }: ProjectsProps) {
 				<div className='relative'>
 					<InfiniteCarousel
 						items={projects}
-						speed={40}
+						// speed={60}
 						pauseOnHover={true}
 						itemWidth={240}
 						itemHeight={360}

@@ -35,7 +35,7 @@ export default function Footer({ locale }: FooterProps) {
 					{/* Company Info */}
 					<div className='col-span-1'>
 						<div className='mb-4 flex gap-2'>
-							<div className='w-20 h-10 relative'>
+							<div className='w-28 h-14 relative'>
 								<Image
 									src='/branding/gpvc-text-logo-primary.svg'
 									alt='GPVC'

@@ -37,13 +37,13 @@ export default function InfiniteCarousel({
 	const [isHovered, setIsHovered] = useState(false);
 	const [hasItemActive, setHasItemActive] = useState(false);
 	const [currentOffset, setCurrentOffset] = useState(0);
-	const [resumeFromOffset, setResumeFromOffset] = useState(0);
 	const [hasUserInteracted, setHasUserInteracted] = useState(false);
 	const [isMomentumScrolling, setIsMomentumScrolling] = useState(false);
 
 	const containerRef = useRef<HTMLDivElement>(null);
 	const trackRef = useRef<HTMLDivElement>(null);
-	const animationStartTimeRef = useRef<number>(0);
+	const animationRef = useRef<number | null>(null);
+	const lastTimeRef = useRef<number>(0);
 	const resumeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 	const momentumAnimationRef = useRef<number | null>(null);
 	const velocityTrackingRef = useRef<{
@@ -53,19 +53,18 @@ export default function InfiniteCarousel({
 
 	useEffect(() => {
 		setMounted(true);
-		animationStartTimeRef.current = Date.now();
+		lastTimeRef.current = Date.now();
 	}, []);
 
 	// Calculate the exact width needed for seamless loop
 	const itemTotalWidth = itemWidth + gap;
 	const totalWidth = items.length * itemTotalWidth;
-	const animationDuration = totalWidth / speed;
 
 	// Determine if animation should be paused
 	const shouldPauseAnimation =
 		isDragging ||
 		isMomentumScrolling ||
-		(isHovered && hasUserInteracted && pauseOnHover) ||
+		(isHovered && pauseOnHover) || // Removed hasUserInteracted check here
 		(hasItemActive && hasUserInteracted);
 
 	// Clear resume timeout
@@ -120,14 +119,17 @@ export default function InfiniteCarousel({
 				// Apply friction
 				velocity *= MOMENTUM_CONFIG.friction;
 
-				// Update position with proper infinite loop handling
+				// Update position
 				currentPos += velocity * deltaTime;
 
-				// Use modulo for smooth infinite loop - this works for momentum
-				// because the visual continuity is maintained by the duplicated content
-				const normalizedPos =
-					((currentPos % totalWidth) + totalWidth) % totalWidth;
-				setCurrentOffset(normalizedPos);
+				// Normalize position to keep it within bounds for seamless loop
+				if (currentPos >= totalWidth) {
+					currentPos -= totalWidth;
+				} else if (currentPos < 0) {
+					currentPos += totalWidth;
+				}
+
+				setCurrentOffset(currentPos);
 
 				// Continue if velocity is above threshold
 				if (Math.abs(velocity) > MOMENTUM_CONFIG.minVelocity) {
@@ -135,8 +137,7 @@ export default function InfiniteCarousel({
 				} else {
 					// Momentum finished, resume normal animation
 					setIsMomentumScrolling(false);
-					setResumeFromOffset(normalizedPos);
-					animationStartTimeRef.current = Date.now();
+					lastTimeRef.current = Date.now();
 				}
 			};
 
@@ -168,44 +169,41 @@ export default function InfiniteCarousel({
 		clearResumeTimeout();
 		resumeTimeoutRef.current = setTimeout(() => {
 			setHasItemActive(false);
-			// Resume animation from current position after item becomes inactive
-			setResumeFromOffset(currentOffset);
-			animationStartTimeRef.current = Date.now();
+			lastTimeRef.current = Date.now();
 		}, 3000);
-	}, [clearResumeTimeout, currentOffset]);
+	}, [clearResumeTimeout]);
 
-	// Calculate current animation offset and capture CSS animation position on first interaction
+	// Main animation loop
 	useEffect(() => {
-		if (shouldPauseAnimation) return;
+		if (shouldPauseAnimation || !mounted) return;
 
-		// If user has interacted, use manual positioning, otherwise use automatic animation
-		if (hasUserInteracted) {
-			const updateOffset = () => {
-				const elapsed = (Date.now() - animationStartTimeRef.current) / 1000;
-				const newOffset = resumeFromOffset + elapsed * speed;
-				setCurrentOffset(newOffset);
-			};
+		const animate = () => {
+			const now = Date.now();
+			const deltaTime = (now - lastTimeRef.current) / 1000;
+			lastTimeRef.current = now;
 
-			const interval = setInterval(updateOffset, 16); // ~60fps
-			return () => clearInterval(interval);
-		} else {
-			// Track CSS animation position for potential first interaction
-			const updateCSSOffset = () => {
-				const elapsed = (Date.now() - animationStartTimeRef.current) / 1000;
-				const newOffset = elapsed * speed;
-				setCurrentOffset(newOffset);
-			};
+			setCurrentOffset((prevOffset) => {
+				let newOffset = prevOffset + speed * deltaTime;
 
-			const interval = setInterval(updateCSSOffset, 16); // ~60fps
-			return () => clearInterval(interval);
-		}
-	}, [
-		shouldPauseAnimation,
-		hasUserInteracted,
-		totalWidth,
-		speed,
-		resumeFromOffset,
-	]);
+				// Create seamless infinite loop
+				if (newOffset >= totalWidth) {
+					newOffset = newOffset - totalWidth;
+				}
+
+				return newOffset;
+			});
+
+			animationRef.current = requestAnimationFrame(animate);
+		};
+
+		animationRef.current = requestAnimationFrame(animate);
+
+		return () => {
+			if (animationRef.current) {
+				cancelAnimationFrame(animationRef.current);
+			}
+		};
+	}, [shouldPauseAnimation, mounted, speed, totalWidth]);
 
 	// Mouse events
 	const handleMouseDown = useCallback(
@@ -214,11 +212,6 @@ export default function InfiniteCarousel({
 
 			// Stop any ongoing momentum
 			stopMomentumAnimation();
-
-			// Capture current CSS animation position on first interaction
-			if (!hasUserInteracted) {
-				setResumeFromOffset(currentOffset);
-			}
 
 			setIsDragging(true);
 			setHasUserInteracted(true);
@@ -239,12 +232,7 @@ export default function InfiniteCarousel({
 
 			e.preventDefault();
 		},
-		[
-			currentOffset,
-			clearResumeTimeout,
-			hasUserInteracted,
-			stopMomentumAnimation,
-		]
+		[currentOffset, clearResumeTimeout, stopMomentumAnimation]
 	);
 
 	const handleMouseMove = useCallback(
@@ -253,10 +241,24 @@ export default function InfiniteCarousel({
 
 			e.preventDefault();
 			const deltaX = e.clientX - dragStart.x;
-			const newOffset = dragStart.scrollLeft - deltaX;
-			const normalizedOffset =
-				((newOffset % totalWidth) + totalWidth) % totalWidth;
-			setCurrentOffset(normalizedOffset);
+			let newOffset = dragStart.scrollLeft - deltaX;
+
+			// Handle infinite loop during drag
+			if (newOffset >= totalWidth) {
+				newOffset = newOffset - totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft - totalWidth,
+				}));
+			} else if (newOffset < 0) {
+				newOffset = newOffset + totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft + totalWidth,
+				}));
+			}
+
+			setCurrentOffset(newOffset);
 
 			// Track position for velocity calculation
 			trackPosition(e.clientX);
@@ -274,8 +276,7 @@ export default function InfiniteCarousel({
 				animateMomentum(-velocity, currentOffset); // Negative because we want opposite direction
 			} else {
 				// No momentum, just resume normal animation
-				setResumeFromOffset(currentOffset);
-				animationStartTimeRef.current = Date.now();
+				lastTimeRef.current = Date.now();
 			}
 		}
 		setIsDragging(false);
@@ -288,11 +289,6 @@ export default function InfiniteCarousel({
 
 			// Stop any ongoing momentum
 			stopMomentumAnimation();
-
-			// Capture current CSS animation position on first interaction
-			if (!hasUserInteracted) {
-				setResumeFromOffset(currentOffset);
-			}
 
 			setIsDragging(true);
 			setHasUserInteracted(true);
@@ -312,12 +308,7 @@ export default function InfiniteCarousel({
 				velocity: 0,
 			};
 		},
-		[
-			currentOffset,
-			clearResumeTimeout,
-			hasUserInteracted,
-			stopMomentumAnimation,
-		]
+		[currentOffset, clearResumeTimeout, stopMomentumAnimation]
 	);
 
 	const handleTouchMove = useCallback(
@@ -326,10 +317,24 @@ export default function InfiniteCarousel({
 
 			const touch = e.touches[0];
 			const deltaX = touch.clientX - dragStart.x;
-			const newOffset = dragStart.scrollLeft - deltaX;
-			const normalizedOffset =
-				((newOffset % totalWidth) + totalWidth) % totalWidth;
-			setCurrentOffset(normalizedOffset);
+			let newOffset = dragStart.scrollLeft - deltaX;
+
+			// Handle infinite loop during drag
+			if (newOffset >= totalWidth) {
+				newOffset = newOffset - totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft - totalWidth,
+				}));
+			} else if (newOffset < 0) {
+				newOffset = newOffset + totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft + totalWidth,
+				}));
+			}
+
+			setCurrentOffset(newOffset);
 
 			// Track position for velocity calculation
 			trackPosition(touch.clientX);
@@ -347,8 +352,7 @@ export default function InfiniteCarousel({
 				animateMomentum(-velocity, currentOffset); // Negative because we want opposite direction
 			} else {
 				// No momentum, just resume normal animation
-				setResumeFromOffset(currentOffset);
-				animationStartTimeRef.current = Date.now();
+				lastTimeRef.current = Date.now();
 			}
 		}
 		setIsDragging(false);
@@ -367,17 +371,10 @@ export default function InfiniteCarousel({
 			!hasItemActive &&
 			!isMomentumScrolling
 		) {
-			// Resume animation from current position when mouse leaves
-			setResumeFromOffset(currentOffset);
-			animationStartTimeRef.current = Date.now();
+			// Resume animation when mouse leaves
+			lastTimeRef.current = Date.now();
 		}
-	}, [
-		hasUserInteracted,
-		isDragging,
-		currentOffset,
-		hasItemActive,
-		isMomentumScrolling,
-	]);
+	}, [hasUserInteracted, isDragging, hasItemActive, isMomentumScrolling]);
 
 	// Item click/tap handler
 	const handleItemClick = useCallback(
@@ -390,18 +387,12 @@ export default function InfiniteCarousel({
 
 			// On mobile/tablet, set item as active
 			if ('ontouchstart' in window) {
-				// Capture current animation position on first interaction
-				if (!hasUserInteracted) {
-					setResumeFromOffset(currentOffset);
-					setHasUserInteracted(true);
-					animationStartTimeRef.current = Date.now();
-				}
-
+				setHasUserInteracted(true);
 				setHasItemActive(true);
 				setResumeTimeout();
 			}
 		},
-		[setResumeTimeout, hasUserInteracted, currentOffset]
+		[setResumeTimeout]
 	);
 
 	// Global mouse/touch event listeners
@@ -409,10 +400,24 @@ export default function InfiniteCarousel({
 		const handleGlobalMouseMove = (e: MouseEvent) => {
 			if (!isDragging) return;
 			const deltaX = e.clientX - dragStart.x;
-			const newOffset = dragStart.scrollLeft - deltaX;
-			const normalizedOffset =
-				((newOffset % totalWidth) + totalWidth) % totalWidth;
-			setCurrentOffset(normalizedOffset);
+			let newOffset = dragStart.scrollLeft - deltaX;
+
+			// Handle infinite loop during drag
+			if (newOffset >= totalWidth) {
+				newOffset = newOffset - totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft - totalWidth,
+				}));
+			} else if (newOffset < 0) {
+				newOffset = newOffset + totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft + totalWidth,
+				}));
+			}
+
+			setCurrentOffset(newOffset);
 			trackPosition(e.clientX);
 		};
 
@@ -427,8 +432,7 @@ export default function InfiniteCarousel({
 					animateMomentum(-velocity, currentOffset);
 				} else {
 					// No momentum, just resume normal animation
-					setResumeFromOffset(currentOffset);
-					animationStartTimeRef.current = Date.now();
+					lastTimeRef.current = Date.now();
 				}
 			}
 			setIsDragging(false);
@@ -438,10 +442,24 @@ export default function InfiniteCarousel({
 			if (!isDragging) return;
 			const touch = e.touches[0];
 			const deltaX = touch.clientX - dragStart.x;
-			const newOffset = dragStart.scrollLeft - deltaX;
-			const normalizedOffset =
-				((newOffset % totalWidth) + totalWidth) % totalWidth;
-			setCurrentOffset(normalizedOffset);
+			let newOffset = dragStart.scrollLeft - deltaX;
+
+			// Handle infinite loop during drag
+			if (newOffset >= totalWidth) {
+				newOffset = newOffset - totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft - totalWidth,
+				}));
+			} else if (newOffset < 0) {
+				newOffset = newOffset + totalWidth;
+				setDragStart((prev) => ({
+					...prev,
+					scrollLeft: prev.scrollLeft + totalWidth,
+				}));
+			}
+
+			setCurrentOffset(newOffset);
 			trackPosition(touch.clientX);
 		};
 
@@ -456,8 +474,7 @@ export default function InfiniteCarousel({
 					animateMomentum(-velocity, currentOffset);
 				} else {
 					// No momentum, just resume normal animation
-					setResumeFromOffset(currentOffset);
-					animationStartTimeRef.current = Date.now();
+					lastTimeRef.current = Date.now();
 				}
 			}
 			setIsDragging(false);
@@ -491,6 +508,9 @@ export default function InfiniteCarousel({
 		return () => {
 			clearResumeTimeout();
 			stopMomentumAnimation();
+			if (animationRef.current) {
+				cancelAnimationFrame(animationRef.current);
+			}
 		};
 	}, [clearResumeTimeout, stopMomentumAnimation]);
 
@@ -568,11 +588,8 @@ export default function InfiniteCarousel({
 		<>
 			<style jsx>{`
 				.seamless-scroll-track {
-					transform: translateX(-${currentOffset % totalWidth}px);
+					transform: translateX(-${currentOffset}px);
 					will-change: transform;
-					transition: ${isMomentumScrolling
-						? 'none'
-						: 'transform 0.1s ease-out'};
 				}
 
 				/* Gradient overlays for smooth edges */
@@ -623,11 +640,6 @@ export default function InfiniteCarousel({
 					-moz-user-select: none;
 					-ms-user-select: none;
 				}
-
-				/* Smooth momentum scrolling */
-				.seamless-scroll-track.momentum-scrolling {
-					transition: none !important;
-				}
 			`}</style>
 
 			<div
@@ -645,16 +657,13 @@ export default function InfiniteCarousel({
 				onTouchEnd={handleTouchEnd}
 				style={{ touchAction: 'pan-y pinch-zoom' }}
 			>
-				<div
-					ref={trackRef}
-					className={`seamless-scroll-track flex ${
-						shouldPauseAnimation ? 'paused' : ''
-					} ${isMomentumScrolling ? 'momentum-scrolling' : ''}`}
-				>
+				<div ref={trackRef} className='seamless-scroll-track flex'>
 					{/* First set */}
 					{items.map((item, index) => renderProjectCard(item, index, 0))}
 					{/* Second set for seamless loop */}
 					{items.map((item, index) => renderProjectCard(item, index, 1))}
+					{/* Third set for extra buffer during fast scrolling */}
+					{items.map((item, index) => renderProjectCard(item, index, 2))}
 				</div>
 			</div>
 		</>
