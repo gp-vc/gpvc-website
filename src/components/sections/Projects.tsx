@@ -12,10 +12,10 @@ export default function Projects({ locale }: ProjectsProps) {
 
 	const content = {
 		ko: {
-			title: '프로젝트',
+			title: 'Highlights',
 		},
 		en: {
-			title: 'Projects',
+			title: 'Highlights',
 		},
 	};
 

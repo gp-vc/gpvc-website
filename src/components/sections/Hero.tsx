@@ -10,13 +10,20 @@ export default function Hero({ locale }: HeroProps) {
 	const heroRef = useRef<HTMLDivElement>(null);
 
 	const content = {
-		ko: {
-			title: 'GPVC',
-			subtitle1: '글로벌 시장과 아이디어를 아우르며',
-		},
 		en: {
-			title: 'GPVC',
-			subtitle1: 'Across markets & ideas',
+			title: 'Across markets & ideas',
+			subtitle1:
+				'Blending culture, innovation, and global inspiration, creating connections that span continents.',
+			subtitle2:
+				'We discover what resonates, craft it with care, and share it widely. From screen to shelf.',
+			subtitle3:
+				'We explore, we create, we showcase. For audiences everywhere.',
+		},
+		ko: {
+			title: 'Across markets & ideas',
+			subtitle1: '문화에서 얻은 아이디어를 정교하게 다듬어 세계와 나눕니다.',
+			subtitle2: '스크린에서 삶 속까지 울림 있는 이야기를 찾아 전합니다.',
+			subtitle3: '우리는 탐색하고 만들고, 선보입니다.',
 		},
 	};
 
@@ -42,10 +49,10 @@ export default function Hero({ locale }: HeroProps) {
 		return () => observer.disconnect();
 	}, []);
 
-	const scrollToNext = () => {
-		const businessSection = document.getElementById('business');
-		if (businessSection) {
-			businessSection.scrollIntoView({ behavior: 'smooth' });
+	const scrollToVideo = () => {
+		const aboutSection = document.getElementById('about');
+		if (aboutSection) {
+			aboutSection.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
 
@@ -59,19 +66,25 @@ export default function Hero({ locale }: HeroProps) {
 			<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
 				<div className='space-y-8'>
 					{/* Main Title */}
-					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl font-thin text-white leading-tight drop-shadow-2xl'>
+					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl text-white leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.title}</span>
 					</h1>
 					{/* Sub Title */}
-					<h1 className='animate-on-scroll text-xl sm:text-2xl lg:text-4xl font-thin text-white leading-tight drop-shadow-2xl'>
+					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-3xl font-thin text-white leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.subtitle1}</span>
+					</h1>
+					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-3xl font-thin text-white leading-tight drop-shadow-2xl'>
+						<span className='block'>{t.subtitle2}</span>
+					</h1>
+					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-3xl font-thin text-white leading-tight drop-shadow-2xl'>
+						<span className='block'>{t.subtitle3}</span>
 					</h1>
 				</div>
 			</div>
 
 			{/* Scroll indicator - Desktop */}
 			<div
-				onClick={scrollToNext}
+				onClick={scrollToVideo}
 				className='cursor-pointer hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20'
 			>
 				<div className='w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm'>
@@ -81,7 +94,7 @@ export default function Hero({ locale }: HeroProps) {
 
 			{/* Swipe indicator - Mobile/Tablet */}
 			<div
-				onClick={scrollToNext}
+				onClick={scrollToVideo}
 				className='lg:hidden absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20'
 			>
 				<div className='flex items-center space-x-2 text-white/80 animate-pulse'>

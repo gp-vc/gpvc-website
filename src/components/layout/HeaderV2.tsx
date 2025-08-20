@@ -24,21 +24,19 @@ export default function HeaderV2({ locale }: HeaderProps) {
 
 	const navigation = {
 		ko: {
-			about: '회사소개',
-			business: '사업분야',
-			projects: '프로젝트',
-			contact: '연락처',
+			business: 'Domains',
+			projects: 'Highlights',
+			contact: 'Contact',
 		},
 		en: {
-			about: 'Our Vision',
-			business: 'Industry Expertise',
-			projects: 'Projects',
-			contact: 'Contact Us',
+			business: 'Domains',
+			projects: 'Highlights',
+			contact: 'Contact',
 		},
 	};
 
 	const navItems = [
-		{ key: 'about', href: '#about' },
+		// { key: 'about', href: '#about' },
 		{ key: 'business', href: '#business' },
 		{ key: 'projects', href: '#projects' },
 		{ key: 'contact', href: '#contact' },
