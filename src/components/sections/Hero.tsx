@@ -63,20 +63,20 @@ export default function Hero({ locale }: HeroProps) {
 			className='min-h-screen flex items-center justify-center relative'
 		>
 			{/* Content */}
-			<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center'>
+			<div className='relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8'>
 				<div className='space-y-8'>
 					{/* Main Title */}
-					<h1 className='animate-on-scroll text-4xl sm:text-5xl lg:text-7xl text-white leading-tight drop-shadow-2xl'>
+					<h1 className='animate-on-scroll text-3xl sm:text-5xl lg:text-7xl font-extralight text-white text-center leading-tight drop-shadow-2xl mb-16'>
 						<span className='block'>{t.title}</span>
 					</h1>
 					{/* Sub Title */}
-					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-3xl font-thin text-white leading-tight drop-shadow-2xl'>
+					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-2xl font-thin text-white text-left leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.subtitle1}</span>
 					</h1>
-					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-3xl font-thin text-white leading-tight drop-shadow-2xl'>
+					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-2xl font-thin text-white text-left leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.subtitle2}</span>
 					</h1>
-					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-3xl font-thin text-white leading-tight drop-shadow-2xl'>
+					<h1 className='animate-on-scroll text-lg sm:text-xl lg:text-2xl font-thin text-white text-left leading-tight drop-shadow-2xl'>
 						<span className='block'>{t.subtitle3}</span>
 					</h1>
 				</div>

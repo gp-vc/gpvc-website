@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 interface HeaderProps {
 	locale: Locale;
@@ -12,6 +13,10 @@ export default function HeaderV2({ locale }: HeaderProps) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isScrolled, setIsScrolled] = useState(false);
 	const [mounted, setMounted] = useState(false);
+	const pathname = usePathname();
+
+	// Check if we're on the main page
+	const isMainPage = pathname === `/${locale}` || pathname === `/${locale}/`;
 
 	useEffect(() => {
 		setMounted(true);
@@ -51,6 +56,13 @@ export default function HeaderV2({ locale }: HeaderProps) {
 	const handleNavClick = (href: string) => {
 		setIsMenuOpen(false);
 		if (typeof window !== 'undefined') {
+			// If we're not on the main page, navigate to main page first
+			if (!isMainPage) {
+				window.location.href = `/${locale}${href}`;
+				return;
+			}
+
+			// If we're on the main page, scroll to section
 			const element = document.querySelector(href);
 			if (element) {
 				element.scrollIntoView({ behavior: 'smooth' });
@@ -122,31 +134,33 @@ export default function HeaderV2({ locale }: HeaderProps) {
 						</a>
 					</div>
 
-					{/* Desktop Navigation - slides out when scrolled */}
-					<div
-						className={`hidden lg:block transition-all duration-500 ease-in-out ${
-							isScrolled
-								? 'translate-x-full opacity-0 pointer-events-none'
-								: 'translate-x-0 opacity-100'
-						}`}
-					>
-						<div className='ml-10 flex items-baseline space-x-8'>
-							{navItems.map((item) => (
-								<button
-									key={item.key}
-									onClick={() => handleNavClick(item.href)}
-									className='px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 relative group text-white hover:text-[#bdb9dc]'
-								>
-									{
-										navigation[locale][
-											item.key as keyof (typeof navigation)[typeof locale]
-										]
-									}
-									<span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#bdb9dc] transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
-								</button>
-							))}
+					{/* Desktop Navigation - slides out when scrolled OR not on main page */}
+					{isMainPage && (
+						<div
+							className={`hidden lg:block transition-all duration-500 ease-in-out ${
+								isScrolled
+									? 'translate-x-full opacity-0 pointer-events-none'
+									: 'translate-x-0 opacity-100'
+							}`}
+						>
+							<div className='ml-10 flex items-baseline space-x-8'>
+								{navItems.map((item) => (
+									<button
+										key={item.key}
+										onClick={() => handleNavClick(item.href)}
+										className='px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 relative group text-white hover:text-[#bdb9dc]'
+									>
+										{
+											navigation[locale][
+												item.key as keyof (typeof navigation)[typeof locale]
+											]
+										}
+										<span className='absolute bottom-0 left-1/2 w-0 h-0.5 bg-[#bdb9dc] transition-all duration-300 group-hover:w-full group-hover:left-0'></span>
+									</button>
+								))}
+							</div>
 						</div>
-					</div>
+					)}
 
 					{/* Language Toggle & Menu Button */}
 					<div className='flex items-center space-x-2'>
@@ -165,12 +179,16 @@ export default function HeaderV2({ locale }: HeaderProps) {
 							</span>
 						</button>
 
-						{/* Menu button - shows when scrolled on desktop, always visible on mobile */}
+						{/* Menu button - shows when scrolled on desktop OR always on mobile OR not on main page */}
 						<div
-							className={`lg:transition-all lg:duration-500 lg:ease-in-out ${
-								isScrolled
-									? 'lg:translate-x-0 lg:opacity-100'
-									: 'lg:translate-x-full lg:opacity-0 lg:pointer-events-none'
+							className={`${
+								isMainPage
+									? `lg:transition-all lg:duration-500 lg:ease-in-out ${
+											isScrolled
+												? 'lg:translate-x-0 lg:opacity-100'
+												: 'lg:translate-x-full lg:opacity-0 lg:pointer-events-none'
+									  }`
+									: '' // Always show menu button when not on main page
 							}`}
 						>
 							<button
@@ -187,7 +205,7 @@ export default function HeaderV2({ locale }: HeaderProps) {
 					</div>
 				</div>
 
-				{/* Mobile/Hamburger Navigation Menu */}
+				{/* Mobile/Hamburger Navigation Menu - only show navigation items if on main page */}
 				{isMenuOpen && (
 					<div className='fixed inset-0 z-40 flex items-start justify-end pt-20 pr-2 sm:pr-4'>
 						{/* Lighter Backdrop */}
@@ -198,24 +216,41 @@ export default function HeaderV2({ locale }: HeaderProps) {
 
 						{/* Menu Content - Heavy Backdrop Blur */}
 						<div className='relative bg-black/20 backdrop-blur-2xl rounded-2xl w-64 shadow-2xl border border-white/20 animate-slide-up'>
-							{/* Navigation Items */}
+							{/* Navigation Items - only show if on main page */}
 							<div className='p-6 space-y-1'>
-								{navItems.map((item) => (
-									<button
-										key={item.key}
-										onClick={() => handleNavClick(item.href)}
-										className='block w-full text-left px-4 py-3 text-white hover:text-[#bdb9dc] hover:bg-white/10 rounded-xl text-base font-medium transition-all duration-200 hover:translate-x-1 drop-shadow'
-									>
-										{
-											navigation[locale][
-												item.key as keyof (typeof navigation)[typeof locale]
-											]
-										}
-									</button>
-								))}
+								{isMainPage && (
+									<>
+										{navItems.map((item) => (
+											<button
+												key={item.key}
+												onClick={() => handleNavClick(item.href)}
+												className='block w-full text-left px-4 py-3 text-white hover:text-[#bdb9dc] hover:bg-white/10 rounded-xl text-base font-medium transition-all duration-200 hover:translate-x-1 drop-shadow'
+											>
+												{
+													navigation[locale][
+														item.key as keyof (typeof navigation)[typeof locale]
+													]
+												}
+											</button>
+										))}
 
-								{/* Mobile Language Toggle */}
-								<div className='border-t border-white/20 pt-3 mt-3'>
+										{/* Separator when navigation items are present */}
+										<div className='border-t border-white/20 pt-3 mt-3'>
+											<button
+												onClick={toggleLanguage}
+												className='flex items-center space-x-2 px-4 py-3 text-white hover:text-[#bdb9dc] hover:bg-white/10 rounded-xl w-full transition-all duration-200 drop-shadow'
+											>
+												<Globe size={16} />
+												<span className='text-sm font-medium'>
+													{locale === 'ko' ? 'English' : '한국어'}
+												</span>
+											</button>
+										</div>
+									</>
+								)}
+
+								{/* Language toggle only (when not on main page) */}
+								{!isMainPage && (
 									<button
 										onClick={toggleLanguage}
 										className='flex items-center space-x-2 px-4 py-3 text-white hover:text-[#bdb9dc] hover:bg-white/10 rounded-xl w-full transition-all duration-200 drop-shadow'
@@ -225,7 +260,7 @@ export default function HeaderV2({ locale }: HeaderProps) {
 											{locale === 'ko' ? 'English' : '한국어'}
 										</span>
 									</button>
-								</div>
+								)}
 							</div>
 						</div>
 					</div>

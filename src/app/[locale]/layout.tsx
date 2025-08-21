@@ -1,13 +1,21 @@
-import { Inter } from 'next/font/google';
+// src/app/[locale]/layout.tsx
+import localFont from 'next/font/local';
 import '../globals.css';
 import { Locale } from '@/lib/i18n';
 import Header from '@/components/layout/HeaderV2';
 import Footer from '@/components/layout/Footer';
 
-const inter = Inter({
-	subsets: ['latin'],
-	variable: '--font-inter',
+// Define the custom Noto Sans KR variable font
+const notoSansKR = localFont({
+	src: '../fonts/notosanskr-vf.ttf',
+	variable: '--font-noto-sans-kr',
 	display: 'swap',
+	// Optional: Define weight range for variable font
+	weight: '100 900',
+	// Optional: Define style if the font supports italic
+	style: 'normal',
+	// Optional: Preload the font for better performance
+	preload: true,
 });
 
 interface LocaleLayoutProps {
@@ -23,7 +31,7 @@ export default async function LocaleLayout({
 	const { locale } = resolvedParams;
 
 	return (
-		<html lang={locale} className={inter.variable}>
+		<html lang={locale} className={notoSansKR.variable}>
 			<head>
 				<title>GPVC - Global Content Media Group</title>
 				<meta
@@ -32,7 +40,7 @@ export default async function LocaleLayout({
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
 			</head>
-			<body className={`${inter.className} antialiased`}>
+			<body className={`${notoSansKR.className} antialiased`}>
 				<Header locale={locale} />
 				<main>{children}</main>
 				<Footer locale={locale} />

@@ -7,6 +7,20 @@ module.exports = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				// Add custom font family
+				'noto-sans-kr': ['var(--font-noto-sans-kr)', 'system-ui', 'sans-serif'],
+				// Keep sans as the default but using custom font
+				sans: [
+					'var(--font-noto-sans-kr)',
+					'system-ui',
+					'-apple-system',
+					'BlinkMacSystemFont',
+					'Segoe UI',
+					'Roboto',
+					'sans-serif',
+				],
+			},
 			screens: {
 				mobile: '375px',
 				tablet: '768px',
