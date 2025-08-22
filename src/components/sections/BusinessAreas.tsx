@@ -8,6 +8,17 @@ interface DomainsProps {
 	locale: Locale;
 }
 
+interface DomainItem {
+	ko: string;
+	en: string;
+	description?: { ko: string; en: string };
+	links?: {
+		website?: string;
+		instagram?: string;
+	};
+	subItems?: DomainItem[]; // Added support for nested items
+}
+
 interface Domain {
 	id: number;
 	title: { ko: string; en: string };
@@ -18,15 +29,7 @@ interface Domain {
 	}>;
 	detailCategories: Array<{
 		title: { ko: string; en: string };
-		items: Array<{
-			ko: string;
-			en: string;
-			description?: { ko: string; en: string };
-			links?: {
-				website?: string;
-				instagram?: string;
-			};
-		}>;
+		items: DomainItem[];
 	}>;
 }
 
@@ -90,7 +93,7 @@ export default function Domains({ locale }: DomainsProps) {
 							en: 'K-Pop and Global Artists',
 						},
 						{
-							ko: '브랜드 스폰서쉽',
+							ko: '브랜드 스폰서십',
 							en: 'Brand Sponsorships',
 						},
 						{
@@ -191,12 +194,38 @@ export default function Domains({ locale }: DomainsProps) {
 							ko: "Clos de L'Obac 클로스 데 로박",
 							en: "Clos de L'Obac",
 							description: {
-								ko: "Gratallops (그라탈롭스)의 소량 생산, Terroir (테루아) 중심 Priorat (프리오라트)의 대표 컬트 와인 Clos de L'Obac은 리코렐라(슬레이트) 토양과 정교한 숙성으로 변치 않는 장기 숙성형 블렌드를 빚으며, 한정된 물량으로 전 세계 톱 소믈리에와 미쉐린 스타 레스토랑에서 인정받습니다. 무리한 생산도, 대량 소비도 없습니다.",
+								ko: "Gratallops (그라탈롭스)의 소량 생산, Terroir (테루아) 중심 Priorat (프리오라트)의 대표 컬트 와인 Clos de L'Obac은 리코렐라(슬레이트) 토양과 정교한 숙성으로 변치 않는 장기 숙성형 블렌드를 빚으며, 한정된 물량으로 전 세계 톱 소믈리에와 미슐랭 스타 레스토랑에서 인정받습니다. 무리한 생산도, 대량 소비도 없습니다.",
 								en: "Small-production, terroir-driven benchmark Priorat from Gratallops: Clos de L'Obac crafts unchanging, age-worthy blends defined by llicorella slate and meticulous élevage—kept intentionally limited in volume and recognized among top sommeliers and Michelin-starred restaurants worldwide.",
 							},
 							links: {
 								instagram: 'https://instagram.com/closdelobac',
 								website: 'https://obac.es/en_US',
+							},
+							subItems: [
+								{
+									ko: "Gran Hotel Mas d'en Bruno 그란 호텔 마스 데 브루노",
+									en: "Gran Hotel Mas d'en Bruno",
+									description: {
+										ko: "Gran Hotel Mas d'en Bruno는 Clos de L'Obac 와이너리의 시그니처 리조트로, 프리오랏의 슬레이트 언덕에 자리합니다. 과거 로마 수도원이 있던 터에 세워져, 수백 년의 역사를 간직한 특별한 공간입니다. 와인과 같은 철학—진정성, 품질, 자연과의 조화—를 담아냈습니다. Travel + Leisure가 선정한 2024 유럽 최고 리조트이자 세계 최고의 호텔 중 하나로 인정받았습니다. 와인, 문화, 휴식이 어우러지는 독보적인 리조트입니다.",
+										en: "Gran Hotel Mas d'en Bruno is the signature retreat of Clos de L'Obac, set in the heart of Priorat's llicorella hills. Built on the grounds of a former Roman monastery, it carries centuries of history while embracing the same philosophy as our wines. Authenticity, timeless quality, and harmony with nature define every detail. Recognized by Travel + Leisure as the Best Resort in Europe 2024 and among the world's top hotels. A place where wine, culture, and refined hospitality meet.",
+									},
+									links: {
+										instagram: 'https://www.instagram.com/masdenbrunohotel/',
+										website: 'https://www.masdenbruno.com/en/',
+									},
+								},
+							],
+						},
+						{
+							ko: 'Bodega El Capricho 엘 카프리초',
+							en: 'Bodega El Capricho',
+							description: {
+								ko: 'Bodega El Capricho는 스페인 레온에서 와인메이커였던 호세 고든 (José Gordon)의 할아버지가 세운 가족 와이너리에서 시작되었습니다. 호세는 이 유산을 이어받아 전통을 지켜내면서도 세계적인 명성을 쌓아 올렸습니다. 오늘날 "세계 최고의 스테이크하우스"로 불리지만, 엘카프리초의 뿌리는 언제나 와인에 있습니다. 한정된 수량으로 빚어지는 와인은 떼루아의 순수한 개성을 담아내며, 지금도 엘카프리초의 이야기를 완성합니다.',
+								en: 'Bodega El Capricho, rooted in León, Spain, began as a family winery established by founder José Gordon\'s grandfather, a dedicated winemaker. Carrying forward his legacy, José has preserved the land\'s tradition while elevating them to global renown. Celebrated today as "the world\'s best steakhouse", El Capricho has never forgotten its origins in wine. Produced in limited quantities, its distinctive wines embody pure terroir and remain at the heart of it story.',
+							},
+							links: {
+								instagram: 'https://www.instagram.com/bodegaelcapricho/',
+								website: 'https://bodegaelcapricho.com/en/',
 							},
 						},
 					],
@@ -282,6 +311,81 @@ export default function Domains({ locale }: DomainsProps) {
 		document.addEventListener('keydown', handleEscape);
 		return () => document.removeEventListener('keydown', handleEscape);
 	}, [isModalOpen]);
+
+	// Recursive function to render items and sub-items
+	const renderItem = (item: DomainItem, depth: number = 0) => {
+		const indentClass = depth > 0 ? 'ml-6 border-l-2 border-white/20 pl-4' : '';
+		const bulletSize = depth > 0 ? 'w-1.5 h-1.5' : 'w-2 h-2';
+		
+		return (
+			<div key={item[locale]} className={`space-y-3 ${indentClass}`}>
+				<div className='flex items-start space-x-3'>
+					<div className={`${bulletSize} bg-[#bdb9dc] rounded-full flex-shrink-0 mt-2 shadow-sm`}></div>
+					<div className='flex-1'>
+						<p className='text-white font-medium drop-shadow'>
+							{item[locale]}
+						</p>
+						{item.description && (
+							<p className='text-white/80 text-sm leading-relaxed mt-2 drop-shadow'>
+								{item.description[locale]}
+							</p>
+						)}
+						{item.links && (
+							<div className='flex space-x-4 mt-3'>
+								{item.links.website && (
+									<a
+										href={item.links.website}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='flex items-center space-x-1 text-[#bdb9dc] hover:text-white transition-all duration-200 hover:scale-105 group/link'
+									>
+										<Globe
+											size={16}
+											className='group-hover/link:rotate-12 transition-transform duration-200'
+										/>
+										<span className='text-sm drop-shadow'>
+											Website
+										</span>
+										<ExternalLink
+											size={12}
+											className='group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200'
+										/>
+									</a>
+								)}
+								{item.links.instagram && (
+									<a
+										href={item.links.instagram}
+										target='_blank'
+										rel='noopener noreferrer'
+										className='flex items-center space-x-1 text-[#bdb9dc] hover:text-white transition-all duration-200 hover:scale-105 group/link'
+									>
+										<Instagram
+											size={16}
+											className='group-hover/link:scale-110 transition-transform duration-200'
+										/>
+										<span className='text-sm drop-shadow'>
+											Instagram
+										</span>
+										<ExternalLink
+											size={12}
+											className='group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200'
+										/>
+									</a>
+								)}
+							</div>
+						)}
+					</div>
+				</div>
+				
+				{/* Render sub-items recursively */}
+				{item.subItems && item.subItems.length > 0 && (
+					<div className='space-y-4 mt-4'>
+						{item.subItems.map((subItem) => renderItem(subItem, depth + 1))}
+					</div>
+				)}
+			</div>
+		);
+	};
 
 	const renderDomainCard = (domain: Domain) => (
 		<div
@@ -372,9 +476,9 @@ export default function Domains({ locale }: DomainsProps) {
 					></div>
 
 					{/* Modal Content - Heavy Backdrop Blur */}
-					<div className='relative bg-black/20 backdrop-blur-2xl rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-white/20'>
+					<div className='relative bg-black/20 backdrop-blur-2xl rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-white/20'>
 						{/* Header */}
-						<div className='sticky top-0 bg-black/30 backdrop-blur-2xl border-b border-white/20 p-6 flex justify-between items-start'>
+						<div className='sticky z-100 top-0 bg-black/90 lg:bg-black/30 backdrop-blur-2xl border-b border-white/20 p-6 flex justify-between items-start'>
 							<div>
 								<h2 className='text-2xl font-thin text-white mb-2 drop-shadow-lg'>
 									{selectedDomain.title[locale]}
@@ -404,67 +508,7 @@ export default function Domains({ locale }: DomainsProps) {
 										</h3>
 
 										<div className='space-y-4'>
-											{category.items.map((item, itemIndex) => (
-												<div key={itemIndex} className='space-y-3'>
-													<div className='flex items-start space-x-3'>
-														<div className='w-2 h-2 bg-[#bdb9dc] rounded-full flex-shrink-0 mt-2 shadow-sm'></div>
-														<div className='flex-1'>
-															<p className='text-white font-medium drop-shadow'>
-																{item[locale]}
-															</p>
-															{item.description && (
-																<p className='text-white/80 text-sm leading-relaxed mt-2 drop-shadow'>
-																	{item.description[locale]}
-																</p>
-															)}
-															{item.links && (
-																<div className='flex space-x-4 mt-3'>
-																	{item.links.website && (
-																		<a
-																			href={item.links.website}
-																			target='_blank'
-																			rel='noopener noreferrer'
-																			className='flex items-center space-x-1 text-[#bdb9dc] hover:text-white transition-all duration-200 hover:scale-105 group/link'
-																		>
-																			<Globe
-																				size={16}
-																				className='group-hover/link:rotate-12 transition-transform duration-200'
-																			/>
-																			<span className='text-sm drop-shadow'>
-																				Website
-																			</span>
-																			<ExternalLink
-																				size={12}
-																				className='group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200'
-																			/>
-																		</a>
-																	)}
-																	{item.links.instagram && (
-																		<a
-																			href={item.links.instagram}
-																			target='_blank'
-																			rel='noopener noreferrer'
-																			className='flex items-center space-x-1 text-[#bdb9dc] hover:text-white transition-all duration-200 hover:scale-105 group/link'
-																		>
-																			<Instagram
-																				size={16}
-																				className='group-hover/link:scale-110 transition-transform duration-200'
-																			/>
-																			<span className='text-sm drop-shadow'>
-																				Instagram
-																			</span>
-																			<ExternalLink
-																				size={12}
-																				className='group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform duration-200'
-																			/>
-																		</a>
-																	)}
-																</div>
-															)}
-														</div>
-													</div>
-												</div>
-											))}
+											{category.items.map((item, itemIndex) => renderItem(item))}
 										</div>
 									</div>
 								)
