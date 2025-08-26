@@ -13,7 +13,7 @@ export default function Footer({ locale }: FooterProps) {
 			address: '서울 강남구 언주로157길 6, 3층',
 			phone: '+82-1600-1228',
 			email: 'info@gp-vc.com',
-			copyright: '© 2025 GPVC Co.,Ltd. 모든 권리 보유.',
+			copyright: '©2025 GPVC Co.,Ltd. 모든 권리 보유.',
 			privacyPolicy: '개인정보처리방침',
 		},
 		en: {
@@ -21,7 +21,7 @@ export default function Footer({ locale }: FooterProps) {
 				'3F, 6, Eonju-ro 157-gil, Gangnam-gu, Seoul, Republic of Korea, 06024',
 			phone: '+82-1600-1228',
 			email: 'info@gp-vc.com',
-			copyright: '© 2025 GPVC Co.,Ltd. All rights reserved.',
+			copyright: '©2025 GPVC Co.,Ltd. All rights reserved.',
 			privacyPolicy: 'Privacy Policy',
 		},
 	};
