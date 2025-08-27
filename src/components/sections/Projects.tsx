@@ -25,7 +25,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			title: { ko: '요술램프', en: 'Magic Lamp' },
 			imagePath: '/project-images/project-2.jpeg',
 			year: { ko: '2023년 제작', en: 'Produced 2023' },
-			category: { ko: 'TV예능', en: 'TV Variety Show' },
+			category: { ko: 'TV예능', en: 'Travel Reality Show' },
 			platforms: {
 				ko: 'MBCevery1, Tving, Wavve 방영',
 				en: 'Aired on MBCevery1, Tving, Wavve',
@@ -63,23 +63,23 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 4,
 			title: {
 				ko: '인피니트 이성열 팬미팅 이벤트',
-				en: 'INFINITE Lee Seong Yeol Fan Meeting Event',
+				en: 'INFINITE Lee Seong Yeol Fan Meetup',
 			},
 			imagePath: '/project-images/project-6.jpeg',
 			year: {
 				ko: '2025년 7월 상해',
 				en: 'July 2025 Shanghai',
 			},
-			category: { ko: '팬미팅 이벤트', en: 'Fan Meeting Event' },
+			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
-			type: 'fan-meeting',
+			type: 'fan-meetup',
 		},
 		{
 			id: 5,
 			title: { ko: '요술램프', en: 'Magic Lamp' },
 			imagePath: '/project-images/project-3.jpeg',
 			year: { ko: '2023년 제작', en: 'Produced 2023' },
-			category: { ko: 'TV예능', en: 'TV Variety Show' },
+			category: { ko: 'TV예능', en: 'Travel Reality Show' },
 			platforms: {
 				ko: 'MBCevery1, Tving, Wavve 방영',
 				en: 'Aired on MBCevery1, Tving, Wavve',
@@ -115,8 +115,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			year: { ko: 'Spain, Priorat 지방', en: 'Spain, Priorat Region' },
 			category: { ko: '와인 수입', en: 'Wine Import' },
 			platforms: {
-				ko: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart 와인",
-				en: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart Wines",
+				ko: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
+				en: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
 			},
 			type: 'wine-import',
 		},
@@ -124,16 +124,16 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 7,
 			title: {
 				ko: '인피니트 이성열 팬미팅 이벤트',
-				en: 'INFINITE Lee Seong Yeol Fan Meeting Event',
+				en: 'INFINITE Lee Seong Yeol Fan Mwwrup',
 			},
 			imagePath: '/project-images/project-7.jpeg',
 			year: {
 				ko: '2025년 8월 광저우',
 				en: 'August 2025 Guangzhou',
 			},
-			category: { ko: '팬미팅 이벤트', en: 'Fan Meeting Event' },
+			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
-			type: 'fan-meeting',
+			type: 'fan-meetup',
 		},
 	];
 
