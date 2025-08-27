@@ -194,8 +194,8 @@ export default function Domains({ locale }: DomainsProps) {
 							ko: "Clos de L'Obac 클로스 데 로박",
 							en: "Clos de L'Obac",
 							description: {
-								ko: "Gratallops (그라탈롭스)의 소량 생산, Terroir (테루아) 중심 Priorat (프리오라트)의 대표 컬트 와인 Clos de L'Obac은 리코렐라(슬레이트) 토양과 정교한 숙성으로 변치 않는 장기 숙성형 블렌드를 빚으며, 한정된 물량으로 전 세계 톱 소믈리에와 미슐랭 스타 레스토랑에서 인정받습니다. 무리한 생산도, 대량 소비도 없습니다.",
-								en: "Small-production, terroir-driven benchmark Priorat from Gratallops: Clos de L'Obac crafts unchanging, age-worthy blends defined by llicorella slate and meticulous élevage—kept intentionally limited in volume and recognized among top sommeliers and Michelin-starred restaurants worldwide.",
+								ko: "그라탈롭스에서 탄생한 소량 생산의 테루아 중심 대표 와인이자 진정한 프리오라트 개척자, 클로스 데 로박(Clos de L’Obac). 프리오라트의 현대적 부흥을 이끈 주역 중 대표자로, 첫 빈티지 이후 단 한 번도 변하지 않은 블렌딩 비율과 험준한 리코렐라 슬레이트 토양에서 비롯된 개성을 담아냅니다. 매년 극히 한정된 수량으로만 출시되며, 전 세계 컬렉터들에게 컬트 와인으로 손꼽히고, 세계 정상급 소믈리에와 미슐랭 스타 레스토랑에서 인정받고 있습니다",
+								en: "Small-production, terroir-driven benchmark from Gratallops and the true Priorat pioneer: Clos de L'Obac—one of the founding forces behind Priorat’s modern revival—crafts timeless blends with unchanging ratios since its first vintage, shaped by the rugged llicorella slate terroir and meticulous élevage - it is released only in strictly limited allocations. Celebrated as a cult classic among collectors and consistently recognized by top sommeliers and Michelin-starred restaurants worldwide.",
 							},
 							links: {
 								instagram: 'https://instagram.com/closdelobac',
@@ -221,7 +221,7 @@ export default function Domains({ locale }: DomainsProps) {
 							en: 'Bodega El Capricho',
 							description: {
 								ko: 'Bodega El Capricho는 스페인 레온에서 와인메이커였던 호세 고든 (José Gordon)의 할아버지가 세운 가족 와이너리에서 시작되었습니다. 호세는 이 유산을 이어받아 전통을 지켜내면서도 세계적인 명성을 쌓아 올렸습니다. 오늘날 "세계 최고의 스테이크하우스"로 불리지만, 엘카프리초의 뿌리는 언제나 와인에 있습니다. 한정된 수량으로 빚어지는 와인은 떼루아의 순수한 개성을 담아내며, 지금도 엘카프리초의 이야기를 완성합니다.',
-								en: 'Bodega El Capricho, rooted in León, Spain, began as a family winery established by founder José Gordon\'s grandfather, a dedicated winemaker. Carrying forward his legacy, José has preserved the land\'s tradition while elevating them to global renown. Celebrated today as "the world\'s best steakhouse", El Capricho has never forgotten its origins in wine. Produced in limited quantities, its distinctive wines embody pure terroir and remain at the heart of it story.',
+								en: 'Bodega El Capricho, rooted in León, Spain, began as a family winery established by founder José Gordon\'s grandfather, a dedicated winemaker. Carrying forward his legacy, José has preserved the land\'s tradition while elevating them to global renown. Celebrated today as "the world\'s best steakhouse", El Capricho has never forgotten its origins in wine. Produced in limited quantities, its distinctive wines embody pure terroir and remain at the heart of its story.',
 							},
 							links: {
 								instagram: 'https://www.instagram.com/bodegaelcapricho/',
