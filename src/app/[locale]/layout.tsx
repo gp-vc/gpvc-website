@@ -39,6 +39,7 @@ export default async function LocaleLayout({
 					content='Global Content Media Group providing innovative solutions across various fields'
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<meta name="naver-site-verification" content="306ed7453d7ce2744afbfc06876533c7afc82c45" />
 			</head>
 			<body className={`${notoSansKR.className} antialiased`}>
 				<Header locale={locale} />
