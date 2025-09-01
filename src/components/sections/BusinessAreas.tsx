@@ -62,7 +62,7 @@ export default function Domains({ locale }: DomainsProps) {
 				ko: '전 세계 다양한 문화와 언어 속에서 의미 있는 콘텐츠를 전합니다.',
 				en: 'Sharing meaningful content with audiences across cultures and languages.',
 			},
-			image: '/stock-images/production.jpeg',
+			image: '/stock-images/production.webp',
 			shortCategories: [
 				{
 					title: { ko: '제작/투자', en: 'Production & Investment' },
@@ -115,7 +115,7 @@ export default function Domains({ locale }: DomainsProps) {
 				ko: '기본부터 디테일까지—다양성과 개성을 존중하는 제품으로 매일의 아름다움을 더욱 빛나게 합니다. 깨끗한 성분으로부터 시작해, 세련된 마무리로 완성된 제품을 선보입니다. 누구에게나 어울리고, 각자의 개성을 존중하며, 일상의 아름다움이 더욱 빛날 수 있도록 함께합니다.',
 				en: 'Enhancing beauty through innovative products that celebrate diversity and individuality.',
 			},
-			image: '/stock-images/cosmetics.jpeg',
+			image: '/stock-images/cosmetics.webp',
 			shortCategories: [
 				{
 					title: { ko: 'CLNL', en: 'CLNL' },
@@ -168,7 +168,7 @@ export default function Domains({ locale }: DomainsProps) {
 				ko: '원산지와 다이렉트한 연결을 통해 뛰어난 생산자와 엄선된 제품을 큐레이션합니다.',
 				en: 'Curating world-class producers and products, direct from origin.',
 			},
-			image: '/stock-images/global-sourcing.jpeg',
+			image: '/stock-images/global-sourcing.webp',
 			shortCategories: [
 				{
 					title: {
@@ -246,7 +246,7 @@ export default function Domains({ locale }: DomainsProps) {
 				ko: '스트리밍·리테일·B2B/B2C/D2C 전세계 모든 채널로 유통을 합니다. 권리와 메타데이터부터 모든 과정 및 성과 분석까지 끊김 없이—마스터에서 매대까지.',
 				en: 'End-to-end distribution for content, OSTs, and merch across streaming, retail, and B2C/D2C. Seamless from rights and metadata to delivery, logistics, and analytics—masters to shelves.',
 			},
-			image: '/stock-images/distribution.jpeg',
+			image: '/stock-images/distribution.webp',
 			shortCategories: [
 				{
 					title: { ko: '유통 서비스', en: 'Distribution Services' },
