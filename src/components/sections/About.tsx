@@ -99,7 +99,7 @@ export default function About() {
 					playsInline
 					preload='metadata'
 				>
-					<source src='/stock-videos/about.mp4' type='video/mp4' />
+					<source src='/stock-videos/about.webm' type='video/webm' />
 				</video>
 
 				{/* Dark overlay for text readability */}
