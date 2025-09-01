@@ -110,9 +110,9 @@ export default function Projects({ locale }: ProjectsProps) {
 		// },
 		{
 			id: 6,
-			title: { ko: "Clos de L'obac winery", en: "Clos de L'Obac Winery" },
+			title: { ko: "Clos de L'obac Winery", en: "Clos de L'Obac Winery" },
 			imagePath: '/project-images/project-1.png',
-			year: { ko: 'Spain, Priorat 지방', en: 'Spain, Priorat Region' },
+			year: { ko: 'Priorat, Spain', en: 'Priorat, Spain' },
 			category: { ko: '와인 수입', en: 'Wine Import' },
 			platforms: {
 				ko: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
@@ -124,7 +124,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 7,
 			title: {
 				ko: '인피니트 이성열 팬미팅 이벤트',
-				en: 'INFINITE Lee Seong Yeol Fan Mwwrup',
+				en: 'INFINITE Lee Seong Yeol Fan Meetup',
 			},
 			imagePath: '/project-images/project-7.jpeg',
 			year: {
@@ -135,6 +135,20 @@ export default function Projects({ locale }: ProjectsProps) {
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
 			type: 'fan-meetup',
 		},
+		{
+			id: 8,
+			title: {
+				ko: "Bodega El Capricho Winery", en: "Bodega El Capricho Winery"
+			},
+			imagePath: '/project-images/project-9.png',
+			year: { ko: 'Leon, Spain', en: 'Leon, Spain'},
+			category: { ko: '와인 수입', en: 'Wine Import'},
+			platforms: {
+				ko: "Valdecedin, El Chano, Vina de Uta",
+				en: "Valdecedin, El Chano, Vina de Uta"
+			},
+			type: 'wine-import'
+		}
 	];
 
 	const t = content[locale];
