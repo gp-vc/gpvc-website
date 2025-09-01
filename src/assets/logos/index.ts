@@ -13,7 +13,8 @@ import ygLogo from './yg.svg';
 import inkodeLogo from './inkode.svg';
 import viuLogo from './viu.svg';
 import viuTvLogo from './viu-tv.svg';
-import datVietVacLogo from './dat-viet-vac.svg';
+import elCaprichoLogo from './el-capricho.png';
+// import datVietVacLogo from './dat-viet-vac.svg';
 import vieOnLogo from './vie-on.svg';
 import management from './management.png';
 import rainCompany from './rain-company.png';
@@ -64,9 +65,9 @@ export const clientLogos = [
 		alt: 'ViuTV Logo',
 	},
 	{
-		name: 'DatVietVAC',
-		src: datVietVacLogo,
-		alt: 'DatVietVAC Logo',
+		name: 'ElCapricho',
+		src: elCaprichoLogo,
+		alt: 'ElCapricho Logo',
 	},
 	{
 		name: 'VieON',
@@ -128,7 +129,7 @@ export {
 	inkodeLogo,
 	viuLogo,
 	viuTvLogo,
-	datVietVacLogo,
+	elCaprichoLogo,
 	vieOnLogo,
 	management,
 	rainCompany,
