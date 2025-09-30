@@ -123,6 +123,21 @@ export default function Projects({ locale }: ProjectsProps) {
 		{
 			id: 7,
 			title: {
+				ko: "GOT7 영재 아시아투어 콘서트 in 홍콩, 대만",
+				en: "GOT7 Youngjae Asia Tour 'Fermata' in Hong Kong, Taiwan"
+			},
+			imagePath: '/project-images/project-10.png',
+			year: {
+				ko: '2025년 10월',
+				en: 'October 2025'
+			},
+			category: { ko: '콘서트', en: 'Concert' },
+			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
+			type: 'concert',
+		},
+		{
+			id: 8,
+			title: {
 				ko: '인피니트 이성열 팬미팅 이벤트',
 				en: 'INFINITE Lee Seong Yeol Fan Meetup',
 			},
@@ -136,7 +151,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'fan-meetup',
 		},
 		{
-			id: 8,
+			id: 9,
 			title: {
 				ko: "Bodega El Capricho Winery", en: "Bodega El Capricho Winery"
 			},
