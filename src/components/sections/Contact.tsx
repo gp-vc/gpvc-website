@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Send, MapPin, ExternalLink, Navigation } from 'lucide-react';
 import { Locale } from '@/lib/i18n';
 import Image from 'next/image';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 interface ContactProps {
 	locale: Locale;
@@ -16,6 +17,11 @@ export default function Contact({ locale }: ContactProps) {
 		email: '',
 		message: '',
 	});
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	const [statusMessage, setStatusMessage] = useState('');
+
+	// Using recaptcha hook
+	const { executeRecaptcha } = useGoogleReCaptcha();
 
 	const content = {
 		ko: {
@@ -87,10 +93,56 @@ export default function Contact({ locale }: ContactProps) {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		console.log('Form submitted:', formData);
+
+		if (!executeRecaptcha) {
+			setStatusMessage('❌ 보안 모듈 로딩 중입니다. 잠시 후 다시 시도해주세요.');
+			return;
+		}
+
+		setIsSubmitting(true);
+		setStatusMessage('Sending Inquiry...');
+
+		try {
+			// 1. reCAPTCHA token get
+			const recaptchaToken = await executeRecaptcha('contactFormSubmit');
+
+			// 2. data + token
+			const dataToSend = {
+				...formData,
+				recaptchaToken: recaptchaToken,
+			};
+
+			// 3. API Route Call (Sending Email)
+			const response = await fetch('/api/contact', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(dataToSend),
+			});
+
+			const result = await response.json();
+
+			if (response.ok) {
+				setStatusMessage('✅ 문의가 성공적으로 전송되었습니다! 곧 연락드리겠습니다.');
+				setFormData({ firstName: '', lastName: '', email: '', message: '' });
+			} else {
+				setStatusMessage(`❌ 전송 실패: ${result.message || '서버 오류가 발생했습니다.'}`);
+			}
+		} catch (error) {
+			console.error('Submission Error:', error);
+			setStatusMessage('Internal Network Error');
+		} finally {
+			setIsSubmitting(false);
+		}
 	};
+
+	// const handleSubmit = (e: React.FormEvent) => {
+	// 	e.preventDefault();
+	// 	console.log('Form submitted:', formData);
+	// };
 
 	const openInMaps = () => {
 		window.open(googleMapsLink, '_blank', 'noopener,noreferrer');
@@ -202,9 +254,10 @@ export default function Contact({ locale }: ContactProps) {
 							{/* Submit Button */}
 							<button
 								type='submit'
+								disabled={isSubmitting}
 								className='w-full bg-[#bdb9dc]/80 hover:bg-[#bdb9dc] backdrop-blur-sm text-white py-4 px-6 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center space-x-2 group hover:shadow-xl hover:scale-[1.02]'
 							>
-								<span>{t.submit}</span>
+								<span>{isSubmitting ? '전송 중...' : t.submit}</span>
 								<Send
 									size={18}
 									className='group-hover:translate-x-1 transition-transform duration-200'

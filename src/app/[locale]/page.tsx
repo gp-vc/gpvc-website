@@ -2,9 +2,10 @@ import Hero from '@/components/sections/Hero';
 import About from '@/components/sections/About';
 import BusinessAreas from '@/components/sections/BusinessAreas';
 import Projects from '@/components/sections/Projects';
-import Contact from '@/components/sections/Contact';
+// import Contact from '@/components/sections/Contact';
 import { Locale } from '@/lib/i18n';
 import Clients from '@/components/sections/Clients';
+import ContactWrapper from '@/components/sections/ContactWrapper';
 
 // This is required for `output: export` with dynamic routes
 export async function generateStaticParams() {
@@ -47,7 +48,8 @@ export default async function Home({
 				<BusinessAreas locale={locale} />
 				<Projects locale={locale} />
 				<Clients locale={locale} />
-				<Contact locale={locale} />
+				<ContactWrapper locale={locale} />
+				{/* <Contact locale={locale} /> */}
 			</div>
 		</div>
 	);
