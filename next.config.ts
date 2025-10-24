@@ -14,7 +14,7 @@ const nextConfig: NextConfig = {
 	// Handle basePath for different deployment environments
 	basePath: process.env.NODE_ENV === 'production' ? '' : '',
 	// Ensure static export works with dynamic routes
-	distDir: 'out',
+	// distDir: 'out',
 };
 
 export default nextConfig;
