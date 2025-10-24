@@ -8,10 +8,10 @@ import Clients from '@/components/sections/Clients';
 import ContactWrapper from '@/components/sections/ContactWrapper';
 
 // This is required for `output: export` with dynamic routes
-export async function generateStaticParams() {
-	const locales: Locale[] = ['en', 'ko'];
-	return locales.map((locale) => ({ locale }));
-}
+// export async function generateStaticParams() {
+// 	const locales: Locale[] = ['en', 'ko'];
+// 	return locales.map((locale) => ({ locale }));
+// }
 
 export default async function Home({
 	params,
