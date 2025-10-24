@@ -68,3 +68,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: '이메일 전송에 실패했습니다. (서버 오류)' }, { status: 500 });
     }
 }
+
+export async function GET() {
+    return NextResponse.json({ message: 'Contact API is working' }, { status: 200 });
+};
