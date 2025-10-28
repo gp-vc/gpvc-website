@@ -33,6 +33,21 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'tv-variety',
 		},
 		{
+			id: 7,
+			title: {
+				ko: "GOT7 영재 아시아투어 콘서트 in 홍콩, 대만",
+				en: "GOT7 Youngjae Asia Tour 'Fermata' in Hong Kong, Taiwan"
+			},
+			imagePath: '/project-images/project-10.png',
+			year: {
+				ko: '2025년 10월',
+				en: 'October 2025'
+			},
+			category: { ko: '콘서트', en: 'Concert' },
+			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
+			type: 'concert',
+		},
+		{
 			id: 2,
 			title: { ko: '쏘니의 경쟁', en: "Sonny's Competition" },
 			imagePath: '/project-images/project-4.jpeg',
