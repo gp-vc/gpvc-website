@@ -24,7 +24,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 1,
 			title: { ko: '요술램프', en: 'Magic Lamp' },
 			imagePath: '/project-images/project-2.jpeg',
-			year: { ko: '2023년 제작', en: 'Produced 2023' },
+			year: { ko: '2023년 제작', en: 'Produced in 2023' },
 			category: { ko: 'TV예능', en: 'Travel Reality Show' },
 			platforms: {
 				ko: 'MBCevery1, Tving, Wavve 방영',
@@ -53,7 +53,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			imagePath: '/project-images/project-4.jpeg',
 			year: {
 				ko: '2024년 제작, 2025년 1월 방영',
-				en: 'Produced 2024, Aired January 2025',
+				en: 'Produced in 2024, Aired January 2025',
 			},
 			category: { ko: '숏폼드라마', en: 'Short-Form Drama' },
 			platforms: {
@@ -66,7 +66,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 3,
 			title: { ko: '레인보우7+', en: 'Rainbow7+' },
 			imagePath: '/project-images/project-5.jpeg',
-			year: { ko: '2024년 제작', en: 'Produced 2024' },
+			year: { ko: '2024년 제작, 싱크작업 참여', en: 'Produced in 2024. \nParticipated in the implementation of layer synchronization.' },
 			category: { ko: '모바일 웹예능', en: 'Mobile Web Variety' },
 			platforms: {
 				ko: 'U+모바일tv, BFLIX 방영',
@@ -93,7 +93,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 5,
 			title: { ko: '요술램프', en: 'Magic Lamp' },
 			imagePath: '/project-images/project-3.jpeg',
-			year: { ko: '2023년 제작', en: 'Produced 2023' },
+			year: { ko: '2023년 제작', en: 'Produced in 2023' },
 			category: { ko: 'TV예능', en: 'Travel Reality Show' },
 			platforms: {
 				ko: 'MBCevery1, Tving, Wavve 방영',
@@ -201,7 +201,7 @@ export default function Projects({ locale }: ProjectsProps) {
 				</div>
 
 				{/* Single Infinite Carousel */}
-				<div className='relative'>
+				<div className='relative' style={{ whiteSpace: 'pre-line' }}>
 					<InfiniteCarousel
 						items={projects}
 						// speed={60}
