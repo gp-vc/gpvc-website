@@ -20,7 +20,12 @@ const notoSansKR = localFont({
 
 interface LocaleLayoutProps {
 	children: React.ReactNode;
-	params: Promise<{ locale: Locale }>;
+	params: Promise<{ locale: string }>;
+}
+
+// Add generateStaticParams to ensure proper typing
+export async function generateStaticParams() {
+	return [{ locale: 'en' }, { locale: 'ko' }];
 }
 
 export default async function LocaleLayout({
@@ -28,7 +33,7 @@ export default async function LocaleLayout({
 	params,
 }: LocaleLayoutProps) {
 	const resolvedParams = await params;
-	const { locale } = resolvedParams;
+	const { locale } = resolvedParams as { locale: Locale };
 
 	return (
 		<html lang={locale} className={notoSansKR.variable}>
@@ -39,8 +44,14 @@ export default async function LocaleLayout({
 					content='Global Content Media Group providing innovative solutions across various fields'
 				/>
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
-				<meta name="naver-site-verification" content="306ed7453d7ce2744afbfc06876533c7afc82c45" />
-				<meta name="google-site-verification" content="hj-IFgwGxsjRrm_7Yiscrmv1iVqnj-8VksqDnOCnKMc" />
+				<meta
+					name='naver-site-verification'
+					content='306ed7453d7ce2744afbfc06876533c7afc82c45'
+				/>
+				<meta
+					name='google-site-verification'
+					content='hj-IFgwGxsjRrm_7Yiscrmv1iVqnj-8VksqDnOCnKMc'
+				/>
 			</head>
 			<body className={`${notoSansKR.className} antialiased`}>
 				<Header locale={locale} />

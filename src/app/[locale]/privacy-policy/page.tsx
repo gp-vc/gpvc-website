@@ -10,9 +10,10 @@ import { Locale } from '@/lib/i18n';
 export default async function PrivacyPolicyPage({
 	params,
 }: {
-	params: Promise<{ locale: Locale }>;
+	params: Promise<{ locale: string }>;
 }) {
-	const { locale } = await params;
+	const resolvedParams = await params;
+	const { locale } = resolvedParams as { locale: Locale };
 
 	return <PrivacyPolicy locale={locale} />;
 }

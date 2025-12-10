@@ -16,9 +16,10 @@ import ContactWrapper from '@/components/sections/ContactWrapper';
 export default async function Home({
 	params,
 }: {
-	params: Promise<{ locale: Locale }>;
+	params: Promise<{ locale: string }>;
 }) {
-	const { locale } = await params;
+	const resolvedParams = await params;
+	const { locale } = resolvedParams as { locale: Locale };
 
 	return (
 		<div className='relative min-h-screen'>
