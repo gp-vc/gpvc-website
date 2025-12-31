@@ -21,6 +21,9 @@ import rainCompany from './rain-company.png';
 import closDeLobac from './clos-de-lobac.svg'
 import echoHk from './echo-hk.svg'
 import masDenBruno from './mas-den-bruno.svg'
+import dramaboxLogo from './dramabox.svg';
+import reelshortLogo from './reelshort.svg';
+import viglooLogo from './vigloo.svg';
 
 // Export all logos with metadata
 export const clientLogos = [
@@ -114,6 +117,21 @@ export const clientLogos = [
 		src: management,
 		alt: 'Management Logo',
 	},
+	// {
+	// 	name: 'ReelShort',
+	// 	src: reelshortLogo,
+	// 	alt: 'ReelShort Logo',
+	// },
+	// {
+	// 	name: 'DramaBox',
+	// 	src: dramaboxLogo,
+	// 	alt: 'DramaBox Logo',
+	// },
+	// {
+	// 	name: 'Vigloo',
+	// 	src: viglooLogo,
+	// 	alt: 'Vigloo Logo',
+	// }
 ] as const;
 
 // Optional: Export individual logos if needed elsewhere
@@ -133,4 +151,7 @@ export {
 	vieOnLogo,
 	management,
 	rainCompany,
+	viglooLogo,
+	dramaboxLogo,
+	reelshortLogo
 };

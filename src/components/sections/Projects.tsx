@@ -163,6 +163,20 @@ export default function Projects({ locale }: ProjectsProps) {
 				en: "Valdecedin, El Chano, Vina de Uta"
 			},
 			type: 'wine-import'
+		},
+		{
+			id: 10,
+			title: {
+				ko: "포토제닉 스캔들", en: "Photogenic Scandal"
+			},
+			imagePath: '/project-images/project-11.png',
+			year: { ko: "2025년 제작, 2025년 12월 방영", en: "Produced in 2025, Aired in December 2025" },
+			category: { ko: "숏폼드라마", en: "Short-Form Drama" },
+			platforms: {
+				ko: "Shortime, DramaBox, ReelShort, Vigloo 방영",
+				en: "Aired on Shortime, DramaBox, ReelShort, Vigloo"
+			},
+			type: 'short-drama'
 		}
 	];
 

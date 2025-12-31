@@ -68,6 +68,10 @@ export default function Clients({ locale }: ClientsProps) {
 									src={logo.src}
 									alt={logo.alt}
 									fill
+			// 						className='object-contain transition-all duration-500 
+            //    filter grayscale 
+            //    brightness-[5] contrast-[0.2] 
+            //    group-hover:grayscale-0 group-hover:brightness-100 group-hover:contrast-100'
 									className='object-contain transition-all duration-500 filter grayscale group-hover:grayscale-0 group-active:grayscale-0 brightness-0 invert group-hover:brightness-100 group-hover:invert-0'
 									sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px'
 								/>
