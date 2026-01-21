@@ -57,8 +57,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			category: { ko: '숏폼드라마', en: 'Short-Form Drama' },
 			platforms: {
-				ko: 'Shortime, 숏챠 방영',
-				en: 'Aired on Shortime, Shortcha',
+				ko: 'Shortime, 숏챠, Dramabox 방영',
+				en: 'Aired on Shortime, Shortcha, Dramabox',
 			},
 			type: 'short-drama',
 		},
@@ -173,8 +173,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			year: { ko: "2025년 제작, 2025년 12월 방영", en: "Produced in 2025, Aired in December 2025" },
 			category: { ko: "숏폼드라마", en: "Short-Form Drama" },
 			platforms: {
-				ko: "Shortime, DramaBox, ReelShort, Vigloo 방영",
-				en: "Aired on Shortime, DramaBox, ReelShort, Vigloo"
+				ko: "Shortime, DramaBox, ReelShort 방영",
+				en: "Aired on Shortime, DramaBox, ReelShort"
 			},
 			type: 'short-drama'
 		}
