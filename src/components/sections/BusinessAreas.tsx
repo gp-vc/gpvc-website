@@ -509,6 +509,27 @@ export default function Domains({ locale }: DomainsProps) {
 
 										<div className='space-y-4'>
 											{category.items.map((item, itemIndex) => renderItem(item))}
+
+											{selectedDomain.id === 3 && categoryIndex === 0 && (
+												<a
+													href="https://gpvcgs.com"
+													target="_blank"
+													className="mt-8 flex items-center justify-between p-4 rounded-xl bg-white/5 border border-[#bdb9dc]/30 hover:bg-[#bdb9dc]/10 transition-all group"
+												>
+													<div>
+														<p className="text-white font-medium">
+															{locale === 'ko' ? '와인 포트폴리오 웹사이트' : 'Wine Portfolio Website'}
+														</p>
+														<p className="text-[#bdb9dc]/70 text-sm font-light italic">
+															https://gpvcgs.com
+														</p>
+														<p className='text-xs text-white/60 mt-1'>
+															{locale === 'ko' ? '모든 지역별 와이너리와 상세 정보를 확인하세요' : 'Explore all regional wineries and details here'}
+														</p>
+													</div>
+													<ArrowRight size={20} className="text-[#bdb9dc] group-hover:translate-x-1 transition-transform" />
+												</a>
+											)}
 										</div>
 									</div>
 								)
