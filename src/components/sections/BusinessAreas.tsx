@@ -194,7 +194,7 @@ export default function Domains({ locale }: DomainsProps) {
 							ko: "Clos de L'Obac 클로스 데 로박",
 							en: "Clos de L'Obac",
 							description: {
-								ko: "그라탈롭스에서 탄생한 소량 생산의 테루아 중심 대표 와인이자 진정한 프리오라트 개척자, 클로스 데 로박(Clos de L’Obac). 프리오라트의 현대적 부흥을 이끈 주역 중 대표자로, 첫 빈티지 이후 단 한 번도 변하지 않은 블렌딩 비율과 험준한 리코렐라 슬레이트 토양에서 비롯된 개성을 담아냅니다. 매년 극히 한정된 수량으로만 출시되며, 전 세계 컬렉터들에게 컬트 와인으로 손꼽히고, 세계 정상급 소믈리에와 미슐랭 스타 레스토랑에서 인정받고 있습니다",
+								ko: "그라탈롭스에서 탄생한 소량 생산의 테루아 중심 대표 와인이자 진정한 프리오랏의 개척자, 클로스 데 로박(Clos de L’Obac). 프리오랏의 현대적 부흥을 이끈 주역 중 대표자로, 첫 빈티지 이후 단 한 번도 변하지 않은 블렌딩 비율과 험준한 리코렐라 슬레이트 토양에서 비롯된 개성을 담아냅니다. 매년 극히 한정된 수량으로만 출시되며, 전 세계 컬렉터들에게 컬트 와인으로 손꼽히고, 세계 정상급 소믈리에와 미슐랭 스타 레스토랑에서 인정받고 있습니다",
 								en: "Small-production, terroir-driven benchmark from Gratallops and the true Priorat pioneer: Clos de L'Obac—one of the founding forces behind Priorat’s modern revival—crafts timeless blends with unchanging ratios since its first vintage, shaped by the rugged llicorella slate terroir and meticulous élevage - it is released only in strictly limited allocations. Celebrated as a cult classic among collectors and consistently recognized by top sommeliers and Michelin-starred restaurants worldwide.",
 							},
 							links: {
@@ -518,13 +518,13 @@ export default function Domains({ locale }: DomainsProps) {
 												>
 													<div>
 														<p className="text-white font-medium">
-															{locale === 'ko' ? '와인 포트폴리오 웹사이트' : 'Wine Portfolio Website'}
+															{locale === 'ko' ? '와인 포트폴리오' : 'Our Wine Portfolio'}
 														</p>
 														<p className="text-[#bdb9dc]/70 text-sm font-light italic">
 															https://gpvcgs.com
 														</p>
 														<p className='text-xs text-white/60 mt-1'>
-															{locale === 'ko' ? '모든 지역별 와이너리와 상세 정보를 확인하세요' : 'Explore all regional wineries and details here'}
+															{locale === 'ko' ? 'GPVC에서 수입하는 모든 지역별 와이너리와 상세 정보를 확인하세요' : 'Explore all our regional wineries and details here'}
 														</p>
 													</div>
 													<ArrowRight size={20} className="text-[#bdb9dc] group-hover:translate-x-1 transition-transform" />
