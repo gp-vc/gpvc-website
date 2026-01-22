@@ -24,6 +24,7 @@ import masDenBruno from './mas-den-bruno.svg'
 import dramaboxLogo from './dramabox.svg';
 import reelshortLogo from './reelshort.svg';
 import viglooLogo from './vigloo.svg';
+import hamadaVineyardLogo from './hamada-vineyard.svg'
 
 // Export all logos with metadata
 export const clientLogos = [
@@ -83,10 +84,15 @@ export const clientLogos = [
 		alt: 'RainCompany Logo',
 	},
 	{
-		name: 'Echo HK',
-		src: echoHk,
-		alt: 'Echo HK Logo',
+		name: 'Hamada Vineyard',
+		src: hamadaVineyardLogo,
+		alt: 'Hamada Vineyard Logo',
 	},
+	// {
+	// 	name: 'Echo HK',
+	// 	src: echoHk,
+	// 	alt: 'Echo HK Logo',
+	// },
 	{
 		name: 'Shinsegae',
 		src: shinsegaeLogo,
