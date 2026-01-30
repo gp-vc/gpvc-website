@@ -81,7 +81,7 @@ export default function Domains({ locale }: DomainsProps) {
 						},
 						{
 							ko: '콘서트 / 팬미팅 / 라이브 퍼포먼스',
-							en: 'Concerts, Theatres & Live Performances',
+							en: 'Concerts, Theaters & Live Performances',
 						},
 					],
 				},
@@ -90,7 +90,7 @@ export default function Domains({ locale }: DomainsProps) {
 					items: [
 						{
 							ko: 'K-POP 및 글로벌 아티스트',
-							en: 'K-Pop and Global Artists',
+							en: 'K-POP and Global Artists',
 						},
 						{
 							ko: '브랜드 스폰서십',
