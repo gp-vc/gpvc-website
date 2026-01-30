@@ -25,6 +25,7 @@ import dramaboxLogo from './dramabox.svg';
 import reelshortLogo from './reelshort.svg';
 import viglooLogo from './vigloo.svg';
 import hamadaVineyardLogo from './hamada-vineyard.svg'
+import kitzLogo from './kitz.svg';
 
 // Export all logos with metadata
 export const clientLogos = [
@@ -119,10 +120,15 @@ export const clientLogos = [
 		alt: 'MBC Everyone Logo',
 	},
 	{
-		name: 'Management',
-		src: management,
-		alt: 'Management Logo',
+		name: 'Kitz',
+		src: kitzLogo,
+		alt: 'Kitz Logo',
 	},
+	// {
+	// 	name: 'Management',
+	// 	src: management,
+	// 	alt: 'Management Logo',
+	// },
 	// {
 	// 	name: 'ReelShort',
 	// 	src: reelshortLogo,
@@ -159,5 +165,6 @@ export {
 	rainCompany,
 	viglooLogo,
 	dramaboxLogo,
-	reelshortLogo
+	reelshortLogo,
+	kitzLogo
 };

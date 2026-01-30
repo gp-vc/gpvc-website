@@ -57,8 +57,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			category: { ko: '숏폼드라마', en: 'Short-Form Drama' },
 			platforms: {
-				ko: 'Shortime, 숏챠, Dramabox 방영',
-				en: 'Aired on Shortime, Shortcha, Dramabox',
+				ko: 'Shortime, 숏챠, Dramabox, Kitz 방영',
+				en: 'Aired on Shortime, Shortcha, Dramabox, Kitz',
 			},
 			type: 'short-drama',
 		},
