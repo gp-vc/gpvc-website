@@ -136,7 +136,7 @@ export default function Domains({ locale }: DomainsProps) {
 								en: "At CLNL, we believe clean is the foundation of healthy, balanced skin. That's why we keep only the essentials—gentle, irritation-free, and easy to use anytime, anywhere. CLNL brings quiet comfort to your daily routine, supporting your skin with ease.",
 							},
 							links: {
-								instagram: '#',
+								instagram: 'https://instagram.com/clnl_official',
 								website: '#',
 							},
 						},
