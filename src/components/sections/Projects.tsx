@@ -118,7 +118,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			id: 7,
 			title: { ko: '씨엘엔엘 누보 스킨 바디 와입', en: 'CLNL Nouveau Skin Body Wipe' },
 			imagePath: '/project-images/project-13.jpg',
-			year: { ko: 'Body wipes brand', en: 'Body Wipes Brand' },
+			year: { ko: 'Body wipes', en: 'Body Wipes' },
 			category: { ko: '뷰티 브랜드', en: 'Beauty Brand' },
 			platforms: { ko: '홍콩, 미국 수출', en: 'Export to Hong Kong, USA' },
 			type: 'beauty-brand',
