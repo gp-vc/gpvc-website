@@ -103,7 +103,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		},
 		{
 			id: 6,
-			title: { ko: "강승식 팬미팅", en: "Sur(fp)hase Kang Seungsik Fan Meetup" },
+			title: { ko: "강승식 팬미팅", en: "VICTON Kang Seungsik Fan Meetup" },
 			imagePath: '/project-images/project-12.webp',
 			year: { ko: '2026년 4월 서울', en: 'April 2026 Seoul' },
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
@@ -120,7 +120,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		// 	imagePath: '/project-images/project-7.png',
 		// 	year: { ko: 'Body wipes brand', en: 'Body Wipes Brand' },
 		// 	category: { ko: '뷰티 브랜드', en: 'Beauty Brand' },
-		// 	platforms: { ko: '한국, 미국 수출', en: 'Export to Korea, USA' },
+		// 	platforms: { ko: '홍콩, 미국 수출', en: 'Export to Hong Kong, USA' },
 		// 	type: 'beauty-brand',
 		// },
 		// {
