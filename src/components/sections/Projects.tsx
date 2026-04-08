@@ -77,13 +77,13 @@ export default function Projects({ locale }: ProjectsProps) {
 		{
 			id: 4,
 			title: {
-				ko: '인피니트 이성열 팬미팅 이벤트',
-				en: 'INFINITE Lee Seong Yeol Fan Meetup',
+				ko: '인피니트 이성열',
+				en: 'INFINITE Lee Seong Yeol',
 			},
 			imagePath: '/project-images/project-6.jpeg',
 			year: {
-				ko: '2025년 7월 상해',
-				en: 'July 2025 Shanghai',
+				ko: '2025 상하이 팬미팅 Lightyear of Fire',
+				en: '2025 Lightyear of Fire in Shanghai',
 			},
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
@@ -103,26 +103,26 @@ export default function Projects({ locale }: ProjectsProps) {
 		},
 		{
 			id: 6,
-			title: { ko: "강승식 팬미팅", en: "VICTON Kang Seungsik Fan Meetup" },
+			title: { ko: "VICTON 강승식 팬미팅", en: "VICTON Kang Seungsik" },
 			imagePath: '/project-images/project-12.webp',
-			year: { ko: '2026년 4월 서울', en: 'April 2026 Seoul' },
+			year: { ko: 'Sur(fp)hase', en: 'Sur(fp)hase' },
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
-			// platforms: {
-			// 	ko: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
-			// 	en: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
-			// },
+			platforms: {
+				ko: "이벤트",
+				en: "Events",
+			},
 			type: 'fan-meetup',
 		},
 		// Don't remove below, waiting for assets
-		// {
-		// 	id: 5,
-		// 	title: { ko: 'CLNL', en: 'CLNL' },
-		// 	imagePath: '/project-images/project-7.png',
-		// 	year: { ko: 'Body wipes brand', en: 'Body Wipes Brand' },
-		// 	category: { ko: '뷰티 브랜드', en: 'Beauty Brand' },
-		// 	platforms: { ko: '홍콩, 미국 수출', en: 'Export to Hong Kong, USA' },
-		// 	type: 'beauty-brand',
-		// },
+		{
+			id: 7,
+			title: { ko: '씨엘엔엘 누보 스킨 바디 와입', en: 'CLNL Nouveau Skin Body Wipe' },
+			imagePath: '/project-images/project-13.jpg',
+			year: { ko: 'Body wipes brand', en: 'Body Wipes Brand' },
+			category: { ko: '뷰티 브랜드', en: 'Beauty Brand' },
+			platforms: { ko: '홍콩, 미국 수출', en: 'Export to Hong Kong, USA' },
+			type: 'beauty-brand',
+		},
 		// {
 		// 	id: 6,
 		// 	title: { ko: 'Donotstare co.', en: 'Donotstare co.' },
@@ -136,7 +136,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		// 	type: 'perfume-brand',
 		// },
 		{
-			id: 7,
+			id: 8,
 			title: { ko: "Clos de L'obac Winery", en: "Clos de L'Obac Winery" },
 			imagePath: '/project-images/project-1.png',
 			year: { ko: 'Priorat, Spain', en: 'Priorat, Spain' },
@@ -148,22 +148,22 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'wine-import',
 		},
 		{
-			id: 8,
+			id: 9,
 			title: {
-				ko: '인피니트 이성열 팬미팅 이벤트',
-				en: 'INFINITE Lee Seong Yeol Fan Meetup',
+				ko: '인피니트 이성열',
+				en: 'INFINITE Lee Seong Yeol',
 			},
 			imagePath: '/project-images/project-7.jpeg',
 			year: {
-				ko: '2025년 8월 광저우',
-				en: 'August 2025 Guangzhou',
+				ko: '2025 광저우 팬미팅 Sunfire Love Letter',
+				en: '2025 Sunfire Love Letter in Guangzhou',
 			},
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
 			type: 'fan-meetup',
 		},
 		{
-			id: 9,
+			id: 10,
 			title: {
 				ko: "Bodega El Capricho Winery", en: "Bodega El Capricho Winery"
 			},
@@ -177,7 +177,7 @@ export default function Projects({ locale }: ProjectsProps) {
 			type: 'wine-import'
 		},
 		{
-			id: 10,
+			id: 11,
 			title: {
 				ko: "포토제닉 스캔들", en: "Photogenic Scandal"
 			},
