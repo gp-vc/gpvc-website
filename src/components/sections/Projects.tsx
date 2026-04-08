@@ -101,6 +101,18 @@ export default function Projects({ locale }: ProjectsProps) {
 			},
 			type: 'tv-variety',
 		},
+		{
+			id: 6,
+			title: { ko: "강승식 팬미팅", en: "Sur(fp)hase Kang Seungsik Fan Meetup" },
+			imagePath: '/project-images/project-12.webp',
+			year: { ko: '2026년 4월 서울', en: 'April 2026 Seoul' },
+			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
+			// platforms: {
+			// 	ko: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
+			// 	en: "Clos de l'Obac, Miserere, Kyrie, Usatges Blanc, Usatges Negre, L'Escarpart",
+			// },
+			type: 'fan-meetup',
+		},
 		// Don't remove below, waiting for assets
 		// {
 		// 	id: 5,
@@ -124,7 +136,7 @@ export default function Projects({ locale }: ProjectsProps) {
 		// 	type: 'perfume-brand',
 		// },
 		{
-			id: 6,
+			id: 7,
 			title: { ko: "Clos de L'obac Winery", en: "Clos de L'Obac Winery" },
 			imagePath: '/project-images/project-1.png',
 			year: { ko: 'Priorat, Spain', en: 'Priorat, Spain' },
