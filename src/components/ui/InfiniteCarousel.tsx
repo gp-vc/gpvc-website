@@ -557,6 +557,11 @@ export default function InfiniteCarousel({
 							{item.year[locale] || item.year}
 						</p>
 					)}
+					{item.lineup && (
+						<p className='text-xs text-white font-semibold drop-shadow'>
+							{item.lineup?.[locale] || item.lineup || 'Lineup'}
+						</p>
+					)}
 					{item.category && (
 						<p className='text-xs text-white/90 font-medium drop-shadow'>
 							{item.category[locale] || item.category}

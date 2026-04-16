@@ -30,6 +30,10 @@ export default function Projects({ locale }: ProjectsProps) {
 				ko: 'MBCevery1, Tving, Wavve 방영',
 				en: 'Aired on MBCevery1, Tving, Wavve',
 			},
+			lineup: {
+				ko: '김재중, 정한(세븐틴), 디노(세븐틴), 강휘, 이주안, 준피, 탄',
+				en: 'Kim Jaejoong, Jeonghan(SEVENTEEN), Dino(SEVENTEEN), Kang Hui, Lee Ju-An, Junpi, Tan',
+			},
 			type: 'tv-variety',
 		},
 		{
@@ -98,6 +102,10 @@ export default function Projects({ locale }: ProjectsProps) {
 			platforms: {
 				ko: 'MBCevery1, Tving, Wavve 방영',
 				en: 'Aired on MBCevery1, Tving, Wavve',
+			},
+			lineup: {
+				ko: '김재중, 정한(세븐틴), 디노(세븐틴), 강휘, 이주안, 준피, 탄',
+				en: 'Kim Jaejoong, Jeonghan(SEVENTEEN), Dino(SEVENTEEN), Kang Hui, Lee Ju-An, Junpi, Tan',
 			},
 			type: 'tv-variety',
 		},
