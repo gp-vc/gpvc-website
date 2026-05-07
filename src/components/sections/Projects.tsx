@@ -197,6 +197,24 @@ export default function Projects({ locale }: ProjectsProps) {
 				en: "Aired on Shortime, DramaBox, ReelShort, Lezhin Snack"
 			},
 			type: 'short-drama'
+		},
+		{
+			id: 12,
+			title: {
+				ko:'인피니트 이성종 팬미팅',
+				en: 'INFINITE Lee Seong Jong'
+			},
+			imagePath: '/project-images/project-14.webp',
+			year: {
+				ko: "Chamber: Wings",
+				en: "Chamber: Wings"
+			},
+			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
+			platforms: {
+				ko: "이벤트",
+				en: "Events"
+			},
+			type: 'fan-meetup'
 		}
 	];
 
