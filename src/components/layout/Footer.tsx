@@ -76,6 +76,14 @@ export default function Footer({ locale }: FooterProps) {
                                 GPVC Global Sourcing
                                 <ExternalLink size={14} className="ml-1.5 opacity-40 group-hover:opacity-100 transition-all" />
                             </Link>
+                            <Link 
+                                href="https://clnl.global" 
+                                target="_blank" 
+                                className='text-gray-300 hover:text-[#bdb9dc] text-sm font-medium flex items-center transition-all group border-b border-transparent hover:border-[#bdb9dc] pb-0.5'
+                            >
+                                CLNL+
+                                <ExternalLink size={14} className="ml-1.5 opacity-40 group-hover:opacity-100 transition-all" />
+                            </Link>
                         </div>
                     </div>
                 </div>

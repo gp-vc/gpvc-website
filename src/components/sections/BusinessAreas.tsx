@@ -137,7 +137,7 @@ export default function Domains({ locale }: DomainsProps) {
 							},
 							links: {
 								instagram: 'https://instagram.com/clnl_official',
-								website: '#',
+								website: 'https://clnl.global',
 							},
 						},
 					],
