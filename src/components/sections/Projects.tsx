@@ -193,8 +193,8 @@ export default function Projects({ locale }: ProjectsProps) {
 			year: { ko: "2025년 제작, 2025년 12월 방영", en: "Produced in 2025, Aired in December 2025" },
 			category: { ko: "숏폼드라마", en: "Short-Form Drama" },
 			platforms: {
-				ko: "Shortime, DramaBox, ReelShort 방영",
-				en: "Aired on Shortime, DramaBox, ReelShort"
+				ko: "Shortime, DramaBox, ReelShort, Lezhin Snack 방영",
+				en: "Aired on Shortime, DramaBox, ReelShort, Lezhin Snack"
 			},
 			type: 'short-drama'
 		}
