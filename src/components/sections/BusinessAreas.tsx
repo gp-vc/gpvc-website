@@ -228,6 +228,18 @@ export default function Domains({ locale }: DomainsProps) {
 								website: 'https://bodegaelcapricho.com/en/',
 							},
 						},
+						{
+							ko: 'Hamada Vineyard 하마다 빈야드',
+							en: 'Hamada Vineyard',
+							description: {
+								ko: '홋카이도 미카사시 타푸의 언덕(達布の丘)에 자리한 하마다 빈야드는, 도쿄대 의학부 출신으로 30여 년간 암 신약을 연구해온 하마다 히로후미 박사 부부가 일군 가족 경영 부티크 와이너리입니다. 부르고뉴를 닮은 점토·석회질 테루아 위에 의사 부부의 과학적 정밀함과 야생 효모를 활용한 자연주의 양조 철학이 더해져, 깔끔하면서도 깊은 복합미의 와인이 탄생합니다. 연간 6,000병만 생산하는 희소한 와인이며, 특히 시그니처 샤르도네는 부르고뉴 뫼르소를 연상시키는 크리미한 질감과 단단한 미네랄로 호평받고 있습니다.',
+								en: 'Set on the Tappu Hills(達布の丘) of Mikasa, Hokkaido, Hamada Vineyard is a family-run boutique winery founded by Dr. Hiromi Hamada — a University of Tokyo-trained physician with over three decades in cancer research — and his wife, also a medical doctor. On a Burgundy-like terroir of clay and limestone, the couple\'s scientific precision meets a minimal-intervention, wild-yeast philosophy to produce wines of striking purity and depth. With just 6,000 bottles released each year, the estate\'s signature Chardonnay has drawn comparisons to fine Meursault for its creamy texture and firm mineral backbone.',
+							},
+							links: {
+								instagram: 'https://www.instagram.com/hamadavineyard/',
+								website: 'https://hamadavineyard.com/',
+							}	
+						}
 					],
 				},
 				{
