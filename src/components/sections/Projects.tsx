@@ -92,6 +92,10 @@ export default function Projects({ locale }: ProjectsProps) {
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
 			type: 'fan-meetup',
+			lineup: {
+				ko: '2025년 7월 19일 주최',
+				en: 'Held in July 19, 2025',
+			},
 		},
 		{
 			id: 5,
@@ -120,6 +124,10 @@ export default function Projects({ locale }: ProjectsProps) {
 				en: "Events",
 			},
 			type: 'fan-meetup',
+			lineup: {
+				ko: '2026년 4월 19일 주최',
+				en: 'Held in April 19, 2026',
+			},
 		},
 		// Don't remove below, waiting for assets
 		{
@@ -169,6 +177,10 @@ export default function Projects({ locale }: ProjectsProps) {
 			category: { ko: '팬미팅 이벤트', en: 'Fan Meetup' },
 			platforms: { ko: '글로벌 이벤트', en: 'Global Events' },
 			type: 'fan-meetup',
+			lineup: {
+				ko: '2025년 8월 31일 주최',
+				en: 'Held in August 31, 2025',
+			},
 		},
 		{
 			id: 10,
@@ -214,7 +226,11 @@ export default function Projects({ locale }: ProjectsProps) {
 				ko: "이벤트",
 				en: "Events"
 			},
-			type: 'fan-meetup'
+			type: 'fan-meetup',
+			lineup: {
+				ko: '2026년 5월 9일 주최',
+				en: 'Held in May 9, 2026',
+			}
 		}
 	];
 
