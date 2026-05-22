@@ -35,8 +35,8 @@ export default function Footer({ locale }: FooterProps) {
                 {/* 3분할 레이아웃 (모바일은 1열, PC는 3열) */}
 				<div className='grid grid-cols-1 md:grid-cols-[1fr_2fr_1fr] gap-12 items-start'>                    
                     {/* 1. 왼쪽: 회사 로고 */}
-                    <div className='flex justify-start'>
-                        <div className='w-32 h-16 relative'>
+                    <Link href={`/${locale}`} className='flex justify-start group'>
+                        <div className='w-32 h-16 relative transition-transform duration-300 group-hover:scale-105'>
                             <Image
                                 src='/branding/gpvc-text-logo-primary.svg'
                                 alt='GPVC'
@@ -45,7 +45,7 @@ export default function Footer({ locale }: FooterProps) {
                                 sizes='128px'
                             />
                         </div>
-                    </div>
+                    </Link>
 
                     {/* 2. 가운데: 회사 정보 (연락처) */}
                     <div className='space-y-3'>
