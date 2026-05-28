@@ -480,7 +480,7 @@ export default function Domains({ locale }: DomainsProps) {
 
 			{/* Modal */}
 			{isModalOpen && selectedDomain && (
-				<div className='fixed inset-0 z-50 flex items-center justify-center p-4'>
+				<div className='fixed inset-0 z-[60] flex items-start justify-center p-2 pt-16 overflow-y-auto sm:p-4 sm:pt-20'>
 					{/* Lighter Backdrop */}
 					<div
 						className='absolute inset-0 bg-black/40'
@@ -488,9 +488,9 @@ export default function Domains({ locale }: DomainsProps) {
 					></div>
 
 					{/* Modal Content - Heavy Backdrop Blur */}
-					<div className='relative bg-black/20 backdrop-blur-2xl rounded-2xl max-w-4xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-white/20'>
+					<div className='relative mt-2 w-full max-w-4xl max-h-[calc(100vh-5rem)] overflow-y-auto rounded-2xl border border-white/20 bg-black/20 shadow-2xl backdrop-blur-2xl sm:mt-0 sm:max-h-[calc(100vh-6rem)]'>
 						{/* Header */}
-						<div className='sticky z-100 top-0 bg-black/90 lg:bg-black/30 backdrop-blur-2xl border-b border-white/20 p-6 flex justify-between items-start'>
+						<div className='sticky top-0 z-[70] border-b border-white/20 bg-black/90 p-6 backdrop-blur-2xl lg:bg-black/30 flex items-start justify-between'>
 							<div>
 								<h2 className='text-2xl font-thin text-white mb-2 drop-shadow-lg'>
 									{selectedDomain.title[locale]}
