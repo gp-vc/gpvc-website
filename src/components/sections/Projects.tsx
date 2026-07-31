@@ -231,6 +231,28 @@ export default function Projects({ locale }: ProjectsProps) {
 				ko: '2026년 5월 9일 주최',
 				en: 'Held in May 9, 2026',
 			}
+		},
+		{
+			id: 13,
+			title: {
+				ko: 'Niko',
+				en: 'Niko',
+			},
+			imagePath: '/project-images/project-15.webp',
+			year: {
+				ko: '2025년 제작, 2026년 하반기 상영예정',
+				en: 'Produced in 2025, Scheduled for release in the second half of 2026',
+			},
+			type: 'movie',
+			category: { ko: '영화', en: 'Movie' },
+			platforms: {
+				ko: '부천국제영화제, 몬트리올 FANTASIA 상영',
+				en: 'Screened at Bucheon International Fantastic Film Festival(BIFAN), Montreal FANTASIA',
+			},
+			lineup: {
+				ko: '티파니 영, 산도르 푼텍, 김소이',
+				en: 'Tiffany Young, Sandor Funtek, Soy Kim',
+			},
 		}
 	];
 
