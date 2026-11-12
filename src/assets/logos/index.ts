@@ -26,6 +26,13 @@ import reelshortLogo from './reelshort.svg';
 import viglooLogo from './vigloo.svg';
 import hamadaVineyardLogo from './hamada-vineyard.svg'
 import kitzLogo from './kitz.svg';
+import caredocLogo from './caredoc.svg';
+import jejuOlleLogo from './jeju-olle.svg';
+import laKoreanFestivalLogo from './la-korean-festival.svg';
+import lezhinSnackLogo from './lezhin-snack.svg';
+import macauTourLogo from './macau-tour.svg';
+import macauTourWhiteLogo from './macau-tour-white.svg';
+import shortchaLogo from './shortcha.svg';
 
 // Export all logos with metadata
 export const clientLogos = [
@@ -124,6 +131,37 @@ export const clientLogos = [
 		src: kitzLogo,
 		alt: 'Kitz Logo',
 	},
+	{
+		name: 'Caredoc',
+		src: caredocLogo,
+		alt: 'Caredoc Logo',
+	},
+	{
+		name: 'Jeju Olle',
+		src: jejuOlleLogo,
+		alt: 'Jeju Olle Logo',
+	},
+	{
+		name: 'LA Korean Festival',
+		src: laKoreanFestivalLogo,
+		alt: 'LA Korean Festival Logo',
+	},
+	{
+		name: 'Lezhin Snack',
+		src: lezhinSnackLogo,
+		alt: 'Lezhin Snack Logo',
+	},
+	{
+		name: 'Macau Tour',
+		src: macauTourWhiteLogo,
+		hoverSrc: macauTourLogo,
+		alt: 'Macau Tour Logo',
+	},
+	{
+		name: 'Shortcha',
+		src: shortchaLogo,
+		alt: 'Shortcha Logo',
+	},
 	// {
 	// 	name: 'Management',
 	// 	src: management,
@@ -166,5 +204,12 @@ export {
 	viglooLogo,
 	dramaboxLogo,
 	reelshortLogo,
-	kitzLogo
+	kitzLogo,
+	caredocLogo,
+	jejuOlleLogo,
+	laKoreanFestivalLogo,
+	lezhinSnackLogo,
+	macauTourLogo,
+	macauTourWhiteLogo,
+	shortchaLogo
 };

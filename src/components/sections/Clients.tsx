@@ -64,6 +64,15 @@ export default function Clients({ locale }: ClientsProps) {
 								key={index}
 								className='group relative flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 cursor-pointer'
 							>
+								{'hoverSrc' in logo && (
+									<Image
+										src={logo.hoverSrc}
+										alt={logo.alt}
+										fill
+										className='object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-active:opacity-100'
+										sizes='(max-width: 640px) 80px, (max-width: 768px) 96px, (max-width: 1024px) 112px, 128px'
+									/>
+								)}
 								<Image
 									src={logo.src}
 									alt={logo.alt}
