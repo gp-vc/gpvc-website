@@ -94,6 +94,7 @@ export const clientLogos = [
 	{
 		name: 'Hamada Vineyard',
 		src: hamadaVineyardLogo,
+		imgClassName: 'scale-125',
 		alt: 'Hamada Vineyard Logo',
 	},
 	// {
